@@ -6,11 +6,11 @@
 $ git clone 레포지토리 주소
 $ cd snulion8th
 $ git pull
-$ git checkout -b Lion origin/Lion       <-- 자기 이름으로 된 브랜치 가져오기
+$ git checkout -b minji origin/minji       <-- 자기 이름으로 된 브랜치 가져오기
 $ git remote add upstream https://github.com/hyesoo5115/snulion8th.git  <--원본 레포지토리를 upstream이라는 이름으로 추가
 ```
-3. 본인의 레포지토리인 `이름/snulion8th`에 수업 내용 및 과제 commit & push
-4. 과제 완료 시 `hyesoo5115/snulion8th`의 이름 브랜치로 Pull Request 요청
+3. 본인의 레포지토리인 `minji0345/snulion8th`에 수업 내용 및 과제 commit & push
+4. 과제 완료 시 `hyesoo5115/snulion8th`의 **minji** 브랜치로 Pull Request 요청
 5. 과제 미완료 시 `hyesoo5115/snulion8th`의 master 브랜치에 올라온 정답 코드를 다음 명령으로 내 레포지토리의 master 브랜치에 불러오기
 ```bash
 $ git fetch upstream
