@@ -49,8 +49,6 @@ server 관련 개발(눈에 보이지 않는 부분)
 웹 프로그래밍에 있어 뼈대 역할.
 vue.js나 react.js 이용하자.
 
-* 
-
 ***
 웹의 기초, 개발환경 세팅
 ---
@@ -94,4 +92,9 @@ Django 시작
 설치 여부 확인.
 
 Django의 버젼을 확인할 수 있다.
-```
+```django-admin startproject myproject```
+프로젝트 생성
+
+```python manage.py runserver```
+서버 시작
+
