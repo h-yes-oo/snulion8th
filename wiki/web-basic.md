@@ -14,7 +14,7 @@
 * virtualenvwrapper-win을 설치하는 과정
 * virtualenvwrapper-win : 현재 작업 디렉토리와 가상환경을 매핑해주는 파이썬 패키지
 
-    >mkvirtualenv seminar
+\~\~~mkvirtualenv seminar\~\~~
 'seminar'라는 가상환경을 생성하고 진입
 
 
