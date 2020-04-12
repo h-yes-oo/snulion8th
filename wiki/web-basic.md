@@ -17,7 +17,7 @@
 ```> mkvirtualenv seminar```
 * 'seminar'라는 가상환경을 생성하고 진입
 
-* 자주 쓰는 명령어 목록
+### 자주 쓰는 명령어 목록
   + 가상환경 생성 : mkvirtualenv
   + 가상환경 삭제
   + 만들어진
