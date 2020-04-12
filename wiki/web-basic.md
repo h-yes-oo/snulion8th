@@ -123,8 +123,13 @@ Django 시작
 어떤 팀원이 어떻게 자료를 수정했는지 기록이 남아 협업 툴로도 좋다.
 
 ### 깃 환경 설정
-```git config --global user.name "원하는 이름"``` 내 이름 설정
-```git config --global user.email "원하는 메일주소"``` 내 이메일주소 설정
+```git config --global user.name "원하는 이름"``` 
+
+내 이름 설정
+
+```git config --global user.email "원하는 메일주소"``` 
+
+내 이메일주소 설정
 
 ### 리눅스 명령 연습
 ```pwd```
