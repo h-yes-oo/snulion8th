@@ -10,9 +10,8 @@
 
 가상환경 세팅 시 cmd에서 다음과 같은 순서를 거친다.
 
-'''
-pip install virtualenvwrapper-win
-'''
+    pip install virtualenvwrapper-win
+
 
 virtualenvwrapper-win을 설치하는 과정(virtualenvwrapper-win : 현재 작업 디렉토리와 가상환경을 매핑해주는 파이썬 패키지)
 
