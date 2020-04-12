@@ -86,14 +86,19 @@ vue.js나 react.js 이용하자.
 Django 시작
 ---
 ```pip install Django```
+
 가상환경 상에서 django 설치
 
 ```pip list```
+
 설치 여부 확인. Django의 버젼을 확인할 수 있다.
+
 ```django-admin startproject myproject```
+
 프로젝트 생성
 
 ```python manage.py runserver```
+
 서버 시작
 ***
 
@@ -122,10 +127,31 @@ Django 시작
 ```git config --global user.email "원하는 메일주소"``` 내 이메일주소 설정
 
 ### 리눅스 명령 연습
-```pwd```print working directory의 줄임말로 현재 위치 경로 나옴
-```ls```list의 줄임말. 현재 위치 경로의 파일들 목록을 보여준다.
-```ls -a```list all의 줄임말. 현재 위치 경로의 파일들 중에서 숨겨진 목록까지 모두 보여준다.
-```cd```change directory의 줄임말. 디렉토리 간 이동
-```cd ..```상위 디렉토리로 이동.
-```cd 이동할 디렉토리 이름``` 해당 위치 경로에서 하위 디렉토리로 이동할때 사용가능.
-```cd ~```~는 가장 홈 디렉토리로 돌아간다.
+```pwd```
+
+print working directory의 줄임말로 현재 위치 경로 나옴
+
+```ls```
+
+list의 줄임말. 현재 위치 경로의 파일들 목록을 보여준다.
+
+```ls -a```
+
+list all의 줄임말. 현재 위치 경로의 파일들 중에서 숨겨진 목록까지 모두 보여준다.
+
+```cd```
+
+change directory의 줄임말. 디렉토리 간 이동
+
+```cd ..```
+
+상위 디렉토리로 이동.
+
+```cd 이동할 디렉토리 이름```
+
+해당 위치 경로에서 하위 디렉토리로 이동할때 사용가능.
+
+```cd ~```
+
+~는 가장 홈 디렉토리로 돌아간다.
+
