@@ -15,10 +15,9 @@
 * virtualenvwrapper-win : 현재 작업 디렉토리와 가상환경을 매핑해주는 파이썬 패키지
 
 ```> mkvirtualenv seminar```
+* 'seminar'라는 가상환경을 생성하고 진입
 
-*'seminar'라는 가상환경을 생성하고 진입
-
-
+######자주 쓰는 명령어 목록
 * 가상환경 생성 : mkvirtualenv
 * 가상환경 삭제
 * 만들어진
