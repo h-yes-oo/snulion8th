@@ -89,12 +89,20 @@ Django 시작
 가상환경 상에서 django 설치
 
 ```pip list```
-설치 여부 확인.
-
-Django의 버젼을 확인할 수 있다.
+설치 여부 확인. Django의 버젼을 확인할 수 있다.
 ```django-admin startproject myproject```
 프로젝트 생성
 
 ```python manage.py runserver```
 서버 시작
+***
+
+깃
+---
+깃 = 지옥에서 온 관리자
+
+* 깃으로 할 수 있는것
+>1.버전 관리
+>2.백업
+>3.협업
 
