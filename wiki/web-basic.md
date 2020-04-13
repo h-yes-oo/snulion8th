@@ -41,8 +41,28 @@
 >    >**Framework**<br>
 >    >프레임워크는 뼈대 역할을 한다. 사이트를 만들 때 중복되는 기본 코드들이 있을 때
 >    >그것들을 바로 사용할 수 있게끔 해주는 것. React.js, Angular.js, Vue.js 등이
->    >있다.
+>    >있다.<br><br>
 
 
+개발환경 세팅
+----------------------
+>## 1. 가상환경 세팅 & Django 설치
+>    >**가상환경을 사용하는 이유**<br>
+>    >여러 프로젝트를 동시에 진행할 때 설치된 패키지들끼리 충돌할 수가 있음.
+>    >그래서 프로젝트별로 가상환경을 만들고 해당 프로젝트에 필요한 패키지만 
+>    >설치한다. 가상환경끼리는 독립적으로 존재해서 충돌을 막을 수가 있다.<br><br>
+>    >**코드**
+>    ><pre>
+>    ><code>
+>    >pip install virtualenvwrapper-win
+>    >mkvirtualenv seminar
+>    >pip install Django
+>    >django-admin startproject myproject
+>    >cd myproject
+>    >python manage.py runserver
+>    ></code>
+>    ></pre>
+>    >'seminar'라는 
+>    >
 
 
