@@ -38,6 +38,7 @@ $cd <filename> :change directory
   - $cd..: 한 단계 상위 폴더로 이동
   - $cd~ : 가장 홈 디렉터리로 이동
 $mkdir <filename> :make directory
+  
 $rm <filename> :remove directory
   - $rm -r : 디렉터리 안에 있는 하위 디렉터리와 파일까지 삭제
 $vim <textname> : 텍스트 파일 생성 
@@ -79,10 +80,4 @@ $git merge <branchname> *표시된 head 브랜치에 해당 브랜치 병합
 
 ### 브랜치
 브랜치를 생성하면 같은 파일을 여러 브랜치에서 각각 편집
-- $git branch $git chechout <branchname> $git merge <branchname>
-  
-
-
-
-  
-  
+- $git branch $git chechout <branchname> $git merge <branchname> 
