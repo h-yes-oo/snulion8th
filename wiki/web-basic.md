@@ -34,18 +34,22 @@ $git config user.email "younjoo0614@snu.ac.kr" 사용자 이메일 세팅
 
 $dir / ls : 디렉터리에 있는 파일 하위 디렉터리 목록 확인
 - $ls -a : (브랜치, 디렉토리 등에서) 숨겨진 파일까지 보기
+
 $cd <filename> :change directory
   - $cd..: 한 단계 상위 폴더로 이동
   - $cd~ : 가장 홈 디렉터리로 이동
+  
 $mkdir <filename> :make directory
   
 $rm <filename> :remove directory
   - $rm -r : 디렉터리 안에 있는 하위 디렉터리와 파일까지 삭제
+  
 $vim <textname> : 텍스트 파일 생성 
 - 같은 이름 파일이 있으면 그 파일을 오픈 
 - a, i, o 입력모드 esc-> 일반 모드
 - ; 명령 모드 esc-> 일반 모드
   - 명령 모드에서 ;w ;q ;wq write, quit, write quit 한 번에
+  
 -$cat <textname> : 텍스트 파일 내용 확인
   
 $git add : 파일을 스테이지로 보내 버전으로 만들기 위해 대기
@@ -54,6 +58,7 @@ $git commit : 스테이지에 있는 파일을 repository로 보내 버전으로
 - $git commit -m "changes" : 버전의 변경사항을 함께 기록
 - $git commit -a : 한 번 $git add를 한 파일에 대해 스테이징과 커밋을 한 번에
 - $git commit -am "changes":  한 번 $git add를 한 파일에 대해 스테이징과 커밋과 메세지를 한 번에
+
 $git log: 버전 설명, 만든 사람, 시간 , 커밋 메세지 확인
 -$git log --oneline : 버전, 커밋 메세지 커밋 간단하게 확인
 -$git log --oneline --branches --graph : 브랜치들의 상황을 그래프로 확인 
@@ -73,8 +78,10 @@ $git merge <branchname> *표시된 head 브랜치에 해당 브랜치 병합
 
 ### 스테이지와 커밋
 1. 작업트리: .git repository를 포함하는 디렉터리
+
 2. 스테이지: 작업 트리에서 만든 파일 중 버전으로 만들 파일을 스테이지로 넘겨 대기 .git index에 저장
 - $git add
+
 3. repository: 버전들이 저장되는 곳.git의 HEAD에 저장
 - $git commit -m $git commit -a $git commit -am 
 
