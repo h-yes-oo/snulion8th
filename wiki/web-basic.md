@@ -60,8 +60,8 @@ $git commit : 스테이지에 있는 파일을 repository로 보내 버전으로
 - $git commit -am "changes":  한 번 $git add를 한 파일에 대해 스테이징과 커밋과 메세지를 한 번에
 
 $git log: 버전 설명, 만든 사람, 시간 , 커밋 메세지 확인
--$git log --oneline : 버전, 커밋 메세지 커밋 간단하게 확인
--$git log --oneline --branches --graph : 브랜치들의 상황을 그래프로 확인 
+- $git log --oneline : 버전, 커밋 메세지 커밋 간단하게 확인
+- $git log --oneline --branches --graph : 브랜치들의 상황을 그래프로 확인 
 
 $git reset HEAD^ : 마지막에 한 커밋 취소 수정된 채로 파일이 남고 스테이징되지 않은 상태
 - $git restore : 작업트리에서도 수정내역 삭제 안 될 경우 $git checkout 사용(?)
