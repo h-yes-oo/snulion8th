@@ -63,5 +63,16 @@
 >> * git status: 깃의 상태 확인</br>
 >>> 한번도 버전관리를 하지 않은 파일은 untracked files
 >> * git commit : 스테이지에 올라온 파일을 저장소로 보내서 하나의 버전으로 만드는 것
+>> * git commit -m "ex. oofile created" : 어떤 변경사항이 있었는지 메시지를 간략하게 기록 -> 저장하는 사람 임의인가요?
+>> * git log : 누가 커밋을 만들었는지, 만든 시간과 커밋 메시지를 한 번에 볼 수 있는 커밋에 대한 정보 저장
+>> * git commit -a : 스테이징과 커밋 한번에 
+>> * git commit -am "ex. oofile created" : 스텡이징과 커밋을 한번에 하며 커밋 메시지를 남기는 것 </br>
+>>> 한번이라도 커밋 한 적 없는 파일은 스테이징과 커밋의 순서를 거쳐야 하지만 한 번이라도 커밋 한 적 있는 파일은 add와 commit을 한 번에 처리 할 수 있다.
+>> * git commit HEAD^ :마지막에 한 커밋 취소, 되돌리기
+>> * git restore/ git checkout : 작업트리에서의 수정 내역까지 제거
+>>> * git reset HEAD 파일이름 : add 후 commit 전인 파일 되돌리기
+>>> * git reset HEAD^ : 최신 커밋 되돌리기
+>>> *  git reset 커밋해시 : 특정 커밋으로 되돌리기
+>>> * git revert 커밋해시 : 커밋 삭제하지 않고 되돌리기
 
 
