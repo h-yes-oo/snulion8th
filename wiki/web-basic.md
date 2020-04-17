@@ -96,8 +96,8 @@ catch의 약자로 문서 내용을 확인 가능
 <pre><code>$ git status</code></pre>
 깃의 상태를 확인하고 스테이징 할 파일 결정 (untracted files)
 
-<pre><code>$ git add 스테이징 할 파일.txt</code></pre>
-<pre><code>$ git status</code></pre>
+<pre><code>$ git add 스테이징 할 파일.txt
+$ git status</code></pre>
 untracted files가 스테이지에 올라가 changes to committed로 바뀜
 
 스테이지에 올라온 파일 커밋하기
@@ -112,17 +112,17 @@ untracted files가 스테이지에 올라가 changes to committed로 바뀜
 
 스테이징과 커밋 한번에 처리하기
 이미 커밋한 적이있는 파일은 add와 commit 한 번에 처리 가능
-<pre><code>$ git commit -am "커밋과 함께 저장할 메세지"</code></pre>
-<pre><code>$ git log</code></pre>
+<pre><code>$ git commit -am "커밋과 함께 저장할 메세지"
+$ git log</code></pre>
 확인해보면 새로운 버전이 만들어짐
 
 작업 되돌리기
-<pre><code>$ git reset HEAD^</code></pre>
-<pre><code>$ git log</code></pre>
+<pre><code>$ git reset HEAD^
+$ git log</code></pre>
 확인해보면 가장 최근에 커밋한 내역이 사라짐
 
-<pre><code>$ git checkout 수정내역 지울 문서.txt</code></pre>
-<pre><code>$ cat 수정내역 지울 문서.txt</code></pre>
+<pre><code>$ git checkout 수정내역 지울 문서.txt
+$ cat 수정내역 지울 문서.txt</code></pre>
 깃 저장소 뿐만 아니라 작업 트리에서도 수정 내역이 사라짐
 
 브랜치 : 버전 관리 시스템에서 여러 갈래로 퍼지는 데이터 흐름
@@ -134,14 +134,14 @@ untracted files가 스테이지에 올라가 changes to committed로 바뀜
 <pre><code>$ git branch 새로운 브랜치 이름</code></pre>
 새 브랜치 만들기
 
-<pre><code>$ git checkout 넘어갈 브랜치 이름</code></pre>
-<pre><code>$ git branch</code></pre>
+<pre><code>$ git checkout 넘어갈 브랜치 이름
+$ git branch</code></pre>
 확인해보면 원하는 브랜치로 넘어감
 
 <pre><code>$ git log --oneline --branches --graph</code></pre>
 브랜치별 커밋 상황을 간략하게 그래프로 보여줌
 
 브랜치 병합하기
-<pre><code>$ git checkout master</code></pre>
-<pre><code>$ git merge 합칠 브랜치</code></pre>
+<pre><code>$ git checkout master
+$ git merge 합칠 브랜치</code></pre>
 마스터 브랜치에 합칠 브랜치의 문서가 반영, 합칠 브랜치에도 마스터 반영
