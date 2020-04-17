@@ -133,7 +133,7 @@ URL은 Uniform Resource Identifier, 즉 URI의 일종으로 인터넷에서 자�
 > >깃 저장소 뿐만 아니라 작업 트리에서도 수정 내역이 사라짐
 
 > 브랜치 : 버전 관리 시스템에서 여러 갈래로 퍼지는 데이터 흐름
-
+>
 > 브랜치 만들기
 > ><pre><code>$ git branch </code></pre>
 > >현재 브랜치 확인
