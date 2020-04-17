@@ -90,7 +90,6 @@ URL은 Uniform Resource Identifier, 즉 URI의 일종으로 인터넷에서 자�
 ><pre><code>$ cat 문서 이름.txt</code></pre>
 >catch의 약자로 문서 내용을 확인 가능
 
-#### 스테이지와 커밋 이해하기 
 #### 깃의 작업 공간
 > 1. 작업 트리 : 우리 눈에 보이고 파일 수정, 저장 등의 작업을 하는 디렉터리
 > 2. 스테이지 : 버전으로 만들 파일이 대기하는 곳
@@ -128,8 +127,6 @@ URL은 Uniform Resource Identifier, 즉 URI의 일종으로 인터넷에서 자�
 ><pre><code>$ git checkout 수정내역 지울 문서.txt
 >$ cat 수정내역 지울 문서.txt</code></pre>
 >깃 저장소 뿐만 아니라 작업 트리에서도 수정 내역이 사라짐
-
-#### 브랜치 : 버전 관리 시스템에서 여러 갈래로 퍼지는 데이터 흐름
 
 #### 브랜치 만들기
 ><pre><code>$ git branch </code></pre>
