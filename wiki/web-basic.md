@@ -1,13 +1,3 @@
-첫 세미나에서 웹의 기초에 대해 배웠습니다.
-
-재밌는 자료로 가볍게 배웠지만 정말 중요한 개념입니다 :-)
-
-그렇기에 여기에 새롭게 알게된 웹의 기초 내용을 정리해주세요-!
-
-마크다운 문법에도 익숙해지시는 것을 권해드립니다.
-
-하하하 나는 깃을 배웠지 하하하 멋쟁이 사자처럼 대만세
-
 깃 = 백업, 버전 관리를 위한 툴
 깃허브 = 협업을 위한 툴
 
@@ -30,10 +20,14 @@ git add hello.txt
 git commit -m "hello.txt created"  # -m 메시지를 같이 저장
 
 두번째 버전을 만들때부터는 한번에 처리 가능
+<pre><code>
 git commit -am    # -a add, -m 메시지
+</code></pre>
 
+<pre><code>
 $ git reset HEAD 파일이름   <--add 후 commit 전인 파일 되돌리기
 $ git reset HEAD^  <-- 최신 커밋 되돌리기
 $ git reset 커밋해시 <-- 특정 커밋으로 되돌리기
 $ git revert 커밋해시 <-- 커밋 삭제하지 않고 되돌리기
 $ git restore / git checkout 
+</code></pre>
