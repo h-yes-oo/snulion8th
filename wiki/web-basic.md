@@ -51,27 +51,25 @@ URL은 Uniform Resource Identifier, 즉 URI의 일종으로 인터넷에서 자�
 
 깃의 핵심 기능은 버전 관리, 백업 협업
 
-> #### 리눅스 명령어 연습
-> > <pre><code>$ pwd</code></pre>
-> > print workind directory의 약자로 현재 위치의 경로 표시
-> >
-> > <pre><code>$ ls</code></pre>
-> > list의 약자로 현재 디렉터리의 디렉터리, 파일 목록 표시
-> >
-> > <pre><code>$ ls-a</code></pre>
-> > 숨겨진 파일까지 표시
-> >
-> > <pre><code>$ cd</code></pre>
-> > change directory의 약자로 디렉터리 사이를 이동할 때 사용
-> >
-> > <pre><code>$ cd ..</code></pre>
-> >현재 위치의 상위 디렉터리로 이동
-> >
-> > <pre><code>$ cd 이동할 디렉터리 이름</code></pre>
-> > 해당 디렉터리로 이동
-> >
-> ><pre><code>$ cd ~</code></pre>
-> >가장 홈 디렉터리로 이동
+ #### 리눅스 명령어 연습
+> <pre><code>$ pwd</code></pre>
+> print workind directory의 약자로 현재 위치의 경로 표시 
+> <pre><code>$ ls</code></pre> > list의 약자로 현재 디렉터리의 디렉터리, 파일 목록 표시
+> 
+> <pre><code>$ ls-a</code></pre>
+> 숨겨진 파일까지 표시
+>
+> <pre><code>$ cd</code></pre>
+> change directory의 약자로 디렉터리 사이를 이동할 때 사용
+>
+> <pre><code>$ cd ..</code></pre>
+>현재 위치의 상위 디렉터리로 이동
+>
+> <pre><code>$ cd 이동할 디렉터리 이름</code></pre>
+> 해당 디렉터리로 이동
+>
+><pre><code>$ cd ~</code></pre>
+>가장 홈 디렉터리로 이동
 
 > #### 터미널에서 디렉터리 만들기 및 삭제하기
 > ><pre><code>$ cd 디렉터리 만들 위치
