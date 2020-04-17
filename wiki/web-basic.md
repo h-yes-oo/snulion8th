@@ -74,16 +74,16 @@ URL은 Uniform Resource Identifier, 즉 URI의 일종으로 인터넷에서 자�
 > >가장 홈 디렉터리로 이동
 
 > #### 터미널에서 디렉터리 만들기 및 삭제하기
-> ><pre><code>$ cd 디렉터리 만들 위치</code></pre>
-> ><pre><code>$ mkdir 디렉터리 이름</code></pre>
+> ><pre><code>$ cd 디렉터리 만들 위치
+> >$ mkdir 디렉터리 이름</code></pre>
 > ><pre><code>$ rm -r 지울 디렉터리 이름</code></pre>
 
 > #### 빔에서 텍스트 문서 만들기
-> ><pre><code>$ cd 디렉터리 이름</code></pre>
-> ><pre><code>$ vim 만들 파일 이름.txt</code></pre>
+> ><pre><code>$ cd 디렉터리 이름
+> >$ vim 만들 파일 이름.txt</code></pre>
 > >파일 이름과 같은 파일이 없다면 해당 이름으로 새로운 텍스트를 만들고 파일이 있다면 해당 파일 오픈
 > >
-> > 빔 일반 모드에서 a,i,o를 누르면 입력 모드, esc로 돌아감
+> >빔 일반 모드에서 a,i,o를 누르면 입력 모드, esc로 돌아감
 > >빔 일반 모드에서 콜론(:)누르면 명령행 모드, esc로 돌아감
 > >
 > > :wq 저장하고 나가기 (write & quit)
@@ -92,7 +92,7 @@ URL은 Uniform Resource Identifier, 즉 URI의 일종으로 인터넷에서 자�
 > ><pre><code>$ cat 문서 이름.txt</code></pre>
 > >catch의 약자로 문서 내용을 확인 가능
 
-> ####3스테이지와 커밋 이해하기
+> #### 스테이지와 커밋 이해하기
 > > #### 깃의 작업 공간
 > >1. 작업 트리 : 우리 눈에 보이고 파일 수정, 저장 등의 작업을 하는 디렉터리
 > >2. 스테이지 : 버전으로 만들 파일이 대기하는 곳
