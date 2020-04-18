@@ -20,14 +20,18 @@ git add hello.txt
 git commit -m "hello.txt created"  # -m 메시지를 같이 저장   
 
 두번째 버전을 만들때부터는 한번에 처리 가능   
-<pre><code>
 git commit -am    # -a add, -m 메시지
-</code></pre>
 
-<pre><code>
-$ git reset HEAD 파일이름   <--add 후 commit 전인 파일 되돌리기
-$ git reset HEAD^  <-- 최신 커밋 되돌리기
-$ git reset 커밋해시 <-- 특정 커밋으로 되돌리기
-$ git revert 커밋해시 <-- 커밋 삭제하지 않고 되돌리기
-$ git restore / git checkout 
-</code></pre>
+'''
+git reset HEAD 파일이름   <--add 후 commit 전인 파일 되돌리기
+git reset HEAD^  <-- 최신 커밋 되돌리기
+git reset 커밋해시 <-- 특정 커밋으로 되돌리기
+git revert 커밋해시 <-- 커밋 삭제하지 않고 되돌리기
+git restore / git checkout 
+'''
+
+git branch <branch_name> #브랜치 만들기   
+git checkout <branch_name>  #해당 브랜치로 이동   
+git merge <branch_name>  #해당 브랜치를 현재 브랜치에 병합   
+git log --oneline --branches --graph  #상황 모니터링   
+
