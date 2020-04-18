@@ -5,13 +5,14 @@
 가상환경의 사용 이유: 프로젝트마다 필요로 하는 패키지의 버전이 달라서 충돌할 수 있기 때문
 ```
 pip install virtualenvwrappper-win  #설치   
-mkvirtualenv <envname>  #가상환경 만들기   
-rmvirtualenv <envname>  #가상환경 삭제   
-workon <envname>   #가상환경 활성화   
-workon #가상환경 리스트 확인   
-deactivate  #가상환경 비활성화   
- *deactivate: command not found 에러는 계정이 한글이어서 생김
+mkvirtualenv <envname>              #가상환경 만들기   
+rmvirtualenv <envname>              #가상환경 삭제   
+workon <envname>                    #가상환경 활성화   
+workon                              #가상환경 리스트 확인   
+deactivate                          #가상환경 비활성화   
 ```
+###### * deactivate: command not found 에러는 계정이 한글이어서 생김
+
 ***
 ## Django 시작하기   
 ```
