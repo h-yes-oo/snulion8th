@@ -87,4 +87,4 @@ $git merge <branchname> *표시된 head 브랜치에 해당 브랜치 병합
 
 ### 브랜치
 브랜치를 생성하면 같은 파일을 여러 브랜치에서 각각 편집
-- $git branch $git chechout <branchname> $git merge <branchname> 
+- $git branch $git checkout <branchname> $git merge <branchname> 
