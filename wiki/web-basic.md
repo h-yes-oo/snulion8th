@@ -15,10 +15,10 @@ deactivate  #가상환경 비활성화
 ***
 ## Django 시작하기   
 ```
-pip install Django
-django-admin startproject myproject
-cd myproject
-python manage.py runserver
+pip install Django  #장고 설치
+django-admin startproject myproject  #프로젝트 생성
+cd myproject  #프로젝트 디렉토리로 이동
+python manage.py runserver  #서버 시작(localhost:8000 에서 열림)
 ```
 ***
 ## 깃 사용법
