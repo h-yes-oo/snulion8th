@@ -1,11 +1,36 @@
+# 웹의 기초
+***
+## 가상환경 설정
+
+가상환경의 사용 이유: 프로젝트마다 필요로 하는 패키지의 버전이 달라서 충돌할 수 있기 때문
+```
+pip install virtualenvwrappper-win  #설치   
+mkvirtualenv <envname>  #가상환경 만들기   
+rmvirtualenv <envname>  #가상환경 삭제   
+workon <envname>   #가상환경 활성화   
+workon #가상환경 리스트 확인   
+deactivate  #가상환경 비활성화   
+ *deactivate: command not found 에러는 계정이 한글이어서 생김
+```
+***
+## Django 시작하기   
+```
+pip install Django
+django-admin startproject myproject
+cd myproject
+python manage.py runserver
+```
+***
+## 깃 사용법
 깃 = 백업, 버전 관리를 위한 툴
 깃허브 = 협업을 위한 툴
-
+```
  Working directory    우리가 일하는 곳     
   --(add)--    
  Staging area         파일이 대기하는 곳    
   --(commit)--   
  Repository           버전으로 만들어서 저장되는 곳    
+```
 
 기초 명령어
 ```
