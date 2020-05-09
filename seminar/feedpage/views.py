@@ -16,7 +16,7 @@ def index(request):
         return redirect('/feeds')
 
 def new(request):
-    return render(renquest, 'feedpage/new.html')
+    return render(request, 'feedpage/new.html')
 
 def delete(request, id):
     feed = Feed.objects.get(id=id)
@@ -25,4 +25,8 @@ def delete(request, id):
 
 def show(request, id):
     feed=Feed.objects.get(id=id)
-    return render(request, 'feedpage/show.html', {'feed': fedd})
+    return render(request, 'feedpage/show.html', {'feed': feed})
+
+def edit(request, id):
+    feed = Feed.objects.get(id=id)
+    return render(request, 'feedpage/edit.html', {'feed': feed})
