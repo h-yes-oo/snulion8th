@@ -13,11 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+#seminar/seminar/url.py
 from django.contrib import admin
 from django.urls import path
 import feedpage.views
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',feedpage.views.index, name='index')
+    path('',feedpage.views.index, name='index'),
+    path('feeds/', include('feedpage.url')), #feed/까지 자르고 feedpage.url.py 로 보냄
 ]

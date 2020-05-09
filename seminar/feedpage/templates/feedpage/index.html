@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>snulion</title>
-    </head>
+{% extends 'base.html' %}
+{% block content %}
     <body>
-        <h1>Hello World!</h1>
+        <h1>feed page</h1>
+        <a href="{% url 'new'%}">new feed</a>
+        {% for feed in feeds %}
+            <div style="border: 1px solid grey;">
+                <a href="/feeds/{{ feed.id }}">더보기</a>
+                <a href="/feeds/{{ feed.id }}/delete">삭제</a>
+                <p>{{ feed.title }}</p>
+                <p>{{ feed.content }}</p>
+            </div>
+        {% endfor %}
     </body>
-</html>
+{% endblock content %}
