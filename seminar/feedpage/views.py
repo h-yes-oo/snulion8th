@@ -29,9 +29,6 @@ def show(request, id):
     feed.update_content(request.POST['content'])
     return render(request, 'feedpage/show.html',{'feed':feed})
 
-  feed = Feed.objects.get(id = id)
-  return render(request, 'feedpage/show.html',{'feed':feed})
-
 def delete(request, id):
   feed = Feed.objects.get(id = id)
   feed.delete()
