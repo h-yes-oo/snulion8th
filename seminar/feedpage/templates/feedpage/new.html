@@ -1,0 +1,19 @@
+<!-- ./feedpage/templates/feedpage/new.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>snulion</title>
+  </head>
+  <body>
+    <h1>new feed</h1>
+    <form action="/feeds/" method="POST">
+      {% csrf_token %}
+      <p>title</p>
+      <input name="title" /> <br />
+      <p>content</p>
+      <input name="content" /> <br />
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+</html>
