@@ -19,5 +19,5 @@ import feedpage.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('kdkd',feedpage.views.index, name='index')
+    path('',feedpage.views.index, name='index')
 ]
