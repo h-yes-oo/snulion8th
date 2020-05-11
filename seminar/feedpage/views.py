@@ -22,9 +22,12 @@ def new(request):
 def show(request, id):
     feed = Feed.objects.get(id=id)
     if request.method == 'POST':
-        feed.title = request.POST['title']
-        feed.content = request.POST['content']
-        feed.save()
+        if(request.POST['title']):
+            feed.update_title(request.POST['title'])
+            feed.update_date()
+        if(request.POST['content']):
+            feed.update_content(request.POST['content'])
+            feed.update_date()
     return render(request, 'feedpage/show.html', {'feed': feed})
 
 
