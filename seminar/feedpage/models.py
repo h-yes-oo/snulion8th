@@ -14,3 +14,11 @@ class Feed(models.Model):
 
     def __str__(self):
         return self.title
+
+    def update_title(self, title):
+        self.title = title
+        self.save()
+    
+    def update_content(self, content):
+        self.content = content
+        self.save()
