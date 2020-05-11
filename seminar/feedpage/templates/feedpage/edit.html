@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content%}
-<h1>new feed</h1>
-<form action="{% url 'index'%}" method="POST">
+<h1>edit feed</h1>
+<form action="{% url 'show' feed.id %}" method="POST">
   {% csrf_token %}
   <p>title</p>
   <input name="title" /> <br />
