@@ -13,6 +13,7 @@ def index(request):
         content = request.POST['content']
         Feed.objects.create(title=title, content=content)
         return redirect('/feeds')
+        
 
 
 def new(request):
@@ -25,4 +26,15 @@ def show(request, id):
 def delete(request, id):
     feed = Feed.objects.get(id=id)
     feed.delete()
+    return redirect('/feeds')
+
+def edit(request, id):
+    feed = Feed.objects.get(id=id)
+    return render(request, 'feedpage/edit.html', {'feed' : feed})
+
+def update(request, id):
+    feed = Feed.objects.get(id=id)
+    feed.title = request.POST.get('title')
+    feed.content = request.POST.get('content')
+    feed.save()
     return redirect('/feeds')
