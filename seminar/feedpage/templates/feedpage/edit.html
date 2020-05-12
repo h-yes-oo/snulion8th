@@ -8,12 +8,12 @@
       {% comment %} <p>{{ feed.title }}</p>
       <p>{{ feed.content }}</p> {% endcomment %}
 
-      <form action="/feeds/{{ feed.id }}/" method="PUT"> 
+      <form action="/feeds/{{ feed.id }}/" method="POST"> 
         {% csrf_token %}
         <p>title</p>
-        <input name="title_new" / placeholder="{{ feed.title }}"> <br />
+        <input name="title" / placeholder="{{ feed.title }}"> <br />
         <p>content</p>
-        <input name="content_new" / placeholder="{{ feed.content }}"> <br />
+        <input name="content" / placeholder="{{ feed.content }}"> <br />
         <input type="submit" value="submit" />
       </form>
     </div>
