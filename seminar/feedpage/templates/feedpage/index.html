@@ -2,7 +2,7 @@
 {% block content %}
     <body>
         <h1>feed page</h1>
-        <a href="{% url 'new'%}">new feed</a>
+        <a href="/feeds/new/">new feed</a>
         {% for feed in feeds %}
             <div style="border: 1px solid grey;">
                 <a href="/feeds/{{ feed.id }}">더보기</a>

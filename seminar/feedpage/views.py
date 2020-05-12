@@ -18,7 +18,14 @@ def new(request):
 
 def show(request, id):
     feed = Feed.objects.get(id=id)
-    return render(request, 'feedpage/show.html', {'feed':feed})
+    if request.method == 'GET':
+        return render(request, 'feedpage/show.html', {'feed':feed})
+    elif request.method == 'PUT':
+        title = request.PUT['title_new']
+        content = request.PUT['content_new']
+        Feed.objects.update(title=title, content=content)
+        return redirect('/feeds')
+
 
 def delete(request, id):
     feed = Feed.objects.get(id=id)
