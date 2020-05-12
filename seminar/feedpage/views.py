@@ -25,8 +25,14 @@ def delete(request, id):
 
 def show(request, id):
     feed=Feed.objects.get(id=id)
+    if request.method == 'POST':
+        feed.title = request.POST['title']
+        feed.content = request.POST['content']
+        feed.save()
+    
     return render(request, 'feedpage/show.html', {'feed': feed})
 
 def edit(request, id):
     feed = Feed.objects.get(id=id)
     return render(request, 'feedpage/edit.html', {'feed': feed})
+
