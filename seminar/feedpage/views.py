@@ -11,15 +11,33 @@ def index(request):
         content = request.POST['content']
         Feed.objects.create(title=title, content=content)
         return redirect('/feeds')
+    #elif request.method == 'PATCH':
+     #   feed=Feed.objects.get(id=id)
+      #  feed.title = request.PATCH['title']
+       # content = request.PATCH['content']
+        #Feed.objects.update(title=title, content=content)
+        #return redirect('/feeds')
 
 def new(request):
     return render(request, 'feedpage/new.html')
 
 def show(request,id):
     feed=Feed.objects.get(id=id)
-    return render(request, 'feedpage/show.html',{'feed':feed})
+    return render(request, 'feedpage/show.html',{'feed':feed})#{'feed':feed}가 무슨의미?
 
 def delete(request, id):
     feed = Feed.objects.get(id=id)
     feed.delete()
     return redirect('/feeds')
+
+def edit(request, id):
+    if request.method == 'POST':
+        feed=Feed.objects.get(id=id)
+        feed.title = request.POST['title']
+        feed.content = request.POST['content']
+        feed.save()
+        return redirect('/feeds')
+
+
+    feed = Feed.objects.get(id=id)
+    return render(request, 'feedpage/edit.html',{'feed':feed})
