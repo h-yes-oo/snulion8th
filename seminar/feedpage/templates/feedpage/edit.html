@@ -5,10 +5,10 @@
         {% csrf_token %}
     <p>title</p>
     <input type = "text" name="title" value = "{{ feed.title }}"
-        style = "width:500px; height:50px;"/><br />
+        style = "width:90%; height:50px;"/><br />
     <p>content</p>
     <input type = "text" name="content" value = "{{ feed.content }}"
-        style = "width:500px; height:50px; display:inline-block"/><br />
+        style = "width:90%; height:50px;"/><br />
     <input type="submit" value="수정하기" />
     </form>
 {% endblock content %}
