@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Feed
 from django.shortcuts import redirect
+from django.utils import timezone
 # Create your views here.
 def index(request):
     if request.method == 'GET':
@@ -11,12 +12,6 @@ def index(request):
         content = request.POST['content']
         Feed.objects.create(title=title, content=content)
         return redirect('/feeds')
-    #elif request.method == 'PATCH':
-     #   feed=Feed.objects.get(id=id)
-      #  feed.title = request.PATCH['title']
-       # content = request.PATCH['content']
-        #Feed.objects.update(title=title, content=content)
-        #return redirect('/feeds')
 
 def new(request):
     return render(request, 'feedpage/new.html')
@@ -35,6 +30,7 @@ def edit(request, id):
         feed=Feed.objects.get(id=id)
         feed.title = request.POST['title']
         feed.content = request.POST['content']
+        feed.update_date()
         feed.save()
         return redirect('/feeds')
 
