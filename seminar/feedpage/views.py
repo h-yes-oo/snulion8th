@@ -23,3 +23,16 @@ def delete(request, id):
     feed = Feed.objects.get(id=id)
     feed.delete()
     return redirect('/feeds')
+
+def edit(request, id):
+    feed = Feed.objects.get(id=id)
+    return render(request, 'feedpage/edit.html', {'feed':feed})
+
+def editApply(request, id):
+    feed = Feed.objects.get(id=id)
+    feed.title = request.POST['title']
+    feed.content = request.POST['content']
+    feed.save()
+    return redirect('/feeds')
+
+
