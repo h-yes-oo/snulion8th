@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*y6h9!!=!i&e23!m8q#7*mll^v@3_1$zr+pwd+f4nm-sj@n7u('
+SECRET_KEY = '72!uz1&@8jwor^_s9uo#7a2ojw6(q04463c)kpwsuo(ur=r0+u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'feedpage.apps.FeedpageConfig',  #추가, 줄여서 'feedpage'라고만 적어도 된다는 비밀 아닌 비밀
+    'feedpage.apps.FeedpageConfig',
 ]
 
 MIDDLEWARE = [

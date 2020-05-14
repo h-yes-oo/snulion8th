@@ -5,23 +5,64 @@ from django.shortcuts import redirect
 # Create your views here.
 
 def index(request):
-    if request.method == 'GET': # index
+    if request.method == 'GET':
         feeds = Feed.objects.all()
         return render(request, 'feedpage/index.html', {'feeds': feeds})
-    elif request.method == 'POST': # create(form을 이용하여 submit한 형태) 
+    elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        Feed.objects.create(title=title, content=content)
+        new_feed = Feed(title=title, content=content)
+        new_feed.save()
         return redirect('/feeds')
+
 
 def new(request):
     return render(request, 'feedpage/new.html')
 
-def show(request,id):
-    feed=Feed.objects.get(id=id)
-    return render(request,'feedpage/show.html',{'feed':feed})
+def show(request, id):
+    feed = Feed.objects.get(id=id)
+    return render(request, 'feedpage/show.html', {'feed':feed})
+
+def edit(request, id):
+    feed = Feed.objects.get(id=id)
+    return render(request, 'feedpage/edit.html', {'feed':feed})
+    #if request.method == 'POST':
+    #    title = request.POST['title']
+    #    content = request.POST['content']
+    #    edit_feed = Feed(title=title, content=content)
+    #   edit_feed.save()
+    #return redirect('/feeds')
+    #return redirect('/feeds')
+    #return render(request, 'feedpage/edit.html', {'feed':feed})
+
+def update(request, id):
+    feed = Feed.objects.get(id=id)
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        feed.title = title
+        feed.content = content
+        feed.save()
+    return render(request, 'feedpage/show.html', {'feed':feed})
+
+'''
+def update(request, id):
+    feed = Feed.objects.get(id=id)
+    #if request.method == 'GET':
+    #    feeds = Feed.objects.all()
+    #    return render(request, 'feedpage/index.html', {'feeds': feeds})
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        update_feed = Feed(title=title, content=content)
+        update_feed.save()
+        return redirect('/feeds') -->
+'''
+
 
 def delete(request, id):
     feed = Feed.objects.get(id=id)
     feed.delete()
     return redirect('/feeds')
+
+
