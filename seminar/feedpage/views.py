@@ -19,10 +19,21 @@ def new(request):
     return render(request, 'feedpage/new.html')
 
 def show(request, id):
-    feed=Feed.objects.get(id=id)
-    return render(request, 'feedpage/show.html', {'feed':feed})
+    if request.method == 'GET':
+        feed=Feed.objects.get(id=id)
+        return render(request, 'feedpage/show.html', {'feed':feed})
+    elif request.method == 'POST':
+        feed = Feed.objects.get(id=id)
+        feed.title = request.POST['title']
+        feed.content = request.POST['content']
+        feed.save()
+        return render(request, 'feedpage/show.html', {'feed':feed})
 
 def delete(request, id):
     feed = Feed.objects.get(id=id)
     feed.delete()
     return redirect('/feeds')
+
+def edit(request, id):
+    feed=Feed.objects.get(id=id)
+    return render(request, 'feedpage/edit.html', {'feed':feed})
