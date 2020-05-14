@@ -38,13 +38,10 @@ def edit(request, id):
 def update(request, id):
     feed = Feed.objects.get(id=id)
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        feed.title = title
-        feed.content = content
+        feed.title = request.POST['title']
+        feed.content = request.POST['content']
         feed.save()
-    return render(request, 'feedpage/show.html', {'feed':feed})
-
+    return redirect('/feeds')
 '''
 def update(request, id):
     feed = Feed.objects.get(id=id)
