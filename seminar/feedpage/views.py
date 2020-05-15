@@ -31,10 +31,10 @@ def edit(request, id):
 
 def update(request, id):
     feed = Feed.objects.get(id=id)
-    title = request.POST['title']
-    content = request.POST['content']
-    Feed.objects.update(title=title, content=content)
-    return redirect('/feeds')
+    feed.title = request.POST['title']
+    feed.content = request.POST['content']
+    feed.save()
+    return render(request, 'feedpage/show.html', {'feed':feed})
 
 
 def delete(request, id):
