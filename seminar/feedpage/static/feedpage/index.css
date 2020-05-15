@@ -1,0 +1,41 @@
+header {
+    width: 100%;
+    height: 40px;
+    font-size: 30px;
+    background-color: tan;
+    color: white;
+    text-align: center;
+}
+
+body {
+    width: 100;
+}
+
+.Feedheader {
+    width: 40%;
+    margin: auto;    
+}
+
+.bt {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bts {
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+
+.Feeds {
+    border: 1px solid grey;
+    margin-top: 10px;
+    width: 40%;
+    margin: auto;  
+}
+
+.feednumber {
+    font-size: 20px;
+}

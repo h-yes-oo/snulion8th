@@ -36,5 +36,6 @@ def update(request, id):
     feed = Feed.objects.get(id=id)
     feed.title = request.POST.get('title')
     feed.content = request.POST.get('content')
+    feed.update_at()
     feed.save()
     return redirect('/feeds')
