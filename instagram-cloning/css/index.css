@@ -1,0 +1,136 @@
+
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* HEADER SECTION */
+header {
+    height: 77px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+header .header_inner {
+    max-width: 1010px;
+    padding: 16px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+}
+
+header .logo {
+    height: 46px;
+    width: auto;
+    flex: 1 9999 0%;
+}
+
+header .logo_img {
+    height: 100%;
+    width: auto;
+}
+
+header .search {
+    height: 28px;
+    width: 215px;
+    margin: auto;
+}
+
+header .search_box {
+    height: 100%;
+    width: 100%;
+    background: #fafafa;
+    border: solid 1px #dbdbdb;
+    border-radius: 3px;
+    color: #999;
+    cursor: text;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+}
+
+header .button {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: flex-end;
+    height: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.icon {
+    width: 22px;
+    height: 22px;
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* FEED SECTION */
+.feed-section  {
+    display: flex;
+    flex-direction: column;
+    display: block;
+}
+
+.feed-section .inner {
+    display: block;
+    width: 600px;
+    margin: 150px;
+    background: #fafafa;
+    border: solid 1px  #dbdbdb;
+    border-radius: 3px;
+}
+
+.feed-section .user-id {
+    font-weight: bold;
+    padding: 20px;
+}
+
+.feed-section .feed-photo {
+    width: 600px;
+}
+
+.feed-section .icon {
+    margin-left: 5px;
+    padding: 10px;
+}
+
+.feed-section .comment {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    border-bottom: solid 1px  #dbdbdb;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.feed-section .comment-box {
+    height: 22px;
+    width: 100%;
+    padding: 15px;
+    outline: none;
+    background: #fafafa;
+    border: none;
+    border-top: solid 1px  #dbdbdb;
+    text-align: left;
+}
+
+.feed-section .comment-button {
+    width: 50px;
+    padding-right: 10px;
+    background: #fafafa;
+    outline: none;
+    border: none;
+    color: hotpink;
+    border-top: solid 1px  #dbdbdb;
+}
+
+
+
