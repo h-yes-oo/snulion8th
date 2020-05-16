@@ -10,6 +10,8 @@ class Profile(models.Model):   # 추가
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     college = models.CharField(max_length=20, blank=True)
     major = models.CharField(max_length=20, blank=True)
+    birth = models.DateField(blank=True, null=True)
+    sns = models.CharField(max_length=20, blank=True, null=True)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
