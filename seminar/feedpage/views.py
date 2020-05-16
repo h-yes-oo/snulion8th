@@ -8,11 +8,13 @@ def index(request):
   if request.method == 'GET':
     feeds = Feed.objects.all()
     return render(request, 'feedpage/index.html',{'feeds':feeds})
+
   elif request.method =='POST':
     title = request.POST['title']
     content = request.POST['content']
     Feed.objects.create(title = title, content = content)
     return redirect('/feeds')
+
 
 def jackyoung(request):
   return render(request, 'feedpage/jackyoung.html')
@@ -22,8 +24,10 @@ def new(request):
 
 def show(request, id):
   feed = Feed.objects.get(id = id)
+
   if request.method=='GET':
     return render(request, 'feedpage/show.html',{'feed':feed})
+
   elif request.method == 'POST':
     if not request.POST['title']=='':
       feed.title=request.POST['title']
@@ -31,7 +35,10 @@ def show(request, id):
     if not request.POST['content']=='':
       feed.content=request.POST['content']
       feed.save()
-    return render(request, 'feedpage/show.html',{'feed':feed})
+    if request.POST['is_home']=='False':
+      return render(request, 'feedpage/show.html',{'feed':feed})
+    elif request.POST['is_home'] =='True':
+      return redirect('/feeds')
 
 def delete(request, id):
   feed = Feed.objects.get(id = id)
@@ -42,3 +49,6 @@ def update(request, id):
   feed = Feed.objects.get(id = id )
   return render(request, 'feedpage/update.html',{'feed':feed})
   
+def update_home(request, id):
+  feed = Feed.objects.get(id = id )
+  return render(request, 'feedpage/update_home.html',{'feed':feed})

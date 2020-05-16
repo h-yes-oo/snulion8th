@@ -4,7 +4,7 @@
 
 <h1>edit feed</h1>
   <form action="/feeds/{{feed.id}}/" method="POST">
-    <input type="hidden" name="is_home" value='False'/>
+    <input type="hidden" name="is_home" value='True'/>
     {% csrf_token %}
     <p>title</p>
     <input name='title'/> <br/>
@@ -12,5 +12,5 @@
     <input name='content'/> <br/>
     <input type='submit' value='수정하기'/>
   </form>
-
+  
 {% endblock content %}
