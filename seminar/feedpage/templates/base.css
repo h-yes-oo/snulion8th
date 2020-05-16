@@ -1,0 +1,16 @@
+body{
+    margin: auto 0;
+}
+
+h1{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+
+}
+
+a:hover{
+    cursor: pointer;
+}
