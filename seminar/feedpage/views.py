@@ -17,11 +17,11 @@ def new(request):
 
 def show(request,id):
     if request.method == 'POST':
-        feed = Feed.objects.get(id=id)
         title = request.POST['title']
         content = request.POST['content']
-        feed.update(title,content)
-        return redirect('/feeds')
+        Feed.objects.update(id=id, title=title, content=content)
+        feed = Feed.objects.get(id=id)
+        return render(request,'feedpage/show.html',{'feed':feed})
     elif request.method == 'GET':
         feed=Feed.objects.get(id=id)
         return render(request,'feedpage/show.html',{'feed':feed})
