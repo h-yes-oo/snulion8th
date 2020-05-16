@@ -37,4 +37,5 @@ def update(request, id):
     if len(request.POST["content"])!=0:
         feed.content=request.POST["content"]
     feed.save()
+    #확인
     return redirect('/feeds')
