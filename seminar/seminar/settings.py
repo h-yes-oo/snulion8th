@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'feedpage.apps.FeedpageConfig',  #추가, 줄여서 'feedpage'라고만 적어도 된다는 비밀 아닌 비밀
+    'feedpage.apps.FeedpageConfig',
+    'accounts.apps.AccountsConfig'  #추가, 줄여서 'feedpage'라고만 적어도 된다는 비밀 아닌 비밀
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
