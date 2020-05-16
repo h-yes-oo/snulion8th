@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feedpage',
-    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -108,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'ko'
 
 TIME_ZONE = 'Asia/Seoul'
+
+LOGIN_REDIRECT_URL = "/feeds/"
 
 USE_I18N = True
 

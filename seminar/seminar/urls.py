@@ -17,9 +17,15 @@ from django.contrib import admin
 from django.urls import path
 import feedpage.views
 from django.conf.urls import include
+import feedpage.views
+import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', feedpage.views.index, name='index'),
+    #path('accounts/', include('accounts.urls')),
     path('feeds/', include('feedpage.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', accounts.views.signup, name='signup'),
+    
 ]
