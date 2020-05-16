@@ -32,7 +32,9 @@ def edit(request, id):
 
 def update(request, id):
     feed=Feed.objects.get(id=id)
-    feed.title=request.POST["title"]
-    feed.content=request.POST["content"]
+    if len(request.POST["title"])!=0:
+        feed.title=request.POST["title"]
+    if len(request.POST["content"])!=0:
+        feed.content=request.POST["content"]
     feed.save()
     return redirect('/feeds')
