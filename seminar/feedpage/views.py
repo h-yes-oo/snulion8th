@@ -25,8 +25,12 @@ def show(request, id):
   if request.method=='GET':
     return render(request, 'feedpage/show.html',{'feed':feed})
   elif request.method == 'POST':
-    feed.update_title(request.POST['title'])
-    feed.update_content(request.POST['content'])
+    if not request.POST['title']=='':
+      feed.title=request.POST['title']
+      feed.save()
+    if not request.POST['content']=='':
+      feed.content=request.POST['content']
+      feed.save()
     return render(request, 'feedpage/show.html',{'feed':feed})
 
 def delete(request, id):

@@ -13,13 +13,5 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
         self.updated_at = timezone.now()
         self.save()
 
-    def update_title(self, title):
-      self.title = title
-      self.save()
-
-    def update_content(self, content):
-      self.content = content
-      self.save()
-
     def __str__(self):
         return self.title
