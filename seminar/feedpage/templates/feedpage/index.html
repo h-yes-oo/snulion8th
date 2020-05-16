@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <title>snulion</title>
-  </head>
-  <body>
-   <h1>feed page</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="margin: 10px;">
+      <h1>feed page</h1>
+      <a href="/feeds/new"
+         style="background-color: #ffb03b; border-radius: 10px; width: auto; height: auto; padding: 5px; color: #ffffff;">
+         new feed</a><br>
+    </div>
     {% for feed in feeds %} 
-      <div style="border: 1px solid grey;">
+      <div style="border: 2px dashed #ffb03b; margin: 10px; padding: 5px; width: 500px; display: inline-block">
         <a href="/feeds/{{ feed.id }}">더보기</a>
+        <a href="/feeds/{{ feed.id }}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
         <p>{{ feed.title }}</p>
         <p>{{ feed.content }}</p>
       </div>
     {% endfor %} <!-- for를 end시킨다는 뜻! 여기서는 들여쓰기로 끝을 못 내니 -->
-  </body>
-</html>
+{% endblock content %}
