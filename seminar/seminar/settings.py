@@ -30,15 +30,17 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# 위에서 아래로 url 찾는 내용 진행한다. 
+# 따라서 먼저 연결되도록 하려면 위로 올려준다. 
 INSTALLED_APPS = [
+    'feedpage.apps.FeedpageConfig',  #추가, 줄여서 'feedpage'라고만 적어도 된다
+    'accounts.apps.AccountsConfig', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'feedpage.apps.FeedpageConfig',  #추가, 줄여서 'feedpage'라고만 적어도 된다
-    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +122,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+	os.path.join(BASE_DIR, 'seminar', 'static'),
+)
+LOGIN_REDIRECT_URL = '/feeds/'

@@ -5,7 +5,27 @@
         <meta charset="utf-8">
         <title>snulion</title>
     </head>
-    <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">Snulion Feed Page</header>
+    <header >
+        <div style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">
+            Snulion Feed Page  
+        </div>   
+        <div style="text-align: right;">
+        {% if user.is_authenticated %}
+            {{ user.get_username }}님, 안녕하세요
+            <a href="{% url 'logout'%}">로그아웃</a>
+            {% comment %} 
+                여기서 next 부분을 지우게 되면, 
+                logout page로 redirect해준다. 
+            {% endcomment %}
+        {% else %}
+            <a href="{% url 'signup' %}">회원가입</a>
+            <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+            {% comment %} 
+                ?next={{request.path}}는 login 시의 접속 데이터를 기록해준다. 
+            {% endcomment %}
+        {% endif %}
+        </div>
+    </header>
     <body>
     {% block content %}
     {% endblock %}
