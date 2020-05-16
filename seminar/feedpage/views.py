@@ -26,7 +26,7 @@ def show(request, id):
         feed = Feed.objects.get(id=id)
         feed.title = request.POST['title']
         feed.content = request.POST['content']
-        feed.save()
+        feed.update_date()
         return render(request, 'feedpage/show.html', {'feed':feed})
 
 def delete(request, id):
