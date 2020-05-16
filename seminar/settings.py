@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feedpage.apps.FeedpageConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
