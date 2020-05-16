@@ -11,7 +11,7 @@ def index(request):
         title = request.POST['title']
         content = request.POST['content']
         Feed.objects.create(title=title, content=content)
-        return redirect('/feeds')
+        return redirect('/feeds/%d/' %feed.id)#이건 get방식으로 url을 가서 다시 index로 돌아옴
 
 def new(request):
     return render(request, 'feedpage/new.html')
