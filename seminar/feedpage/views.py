@@ -3,7 +3,8 @@ from django.shortcuts import render
 from .models import Feed  
 from django.shortcuts import redirect
 
-def index(request, id):
+# index 함수 코드 변경
+def index(request):
     if request.method == 'GET': # index
         feeds = Feed.objects.all()
         return render(request, 'feedpage/index.html', {'feeds': feeds})
@@ -11,11 +12,6 @@ def index(request, id):
         title = request.POST['title']
         content = request.POST['content']
         Feed.objects.create(title=title, content=content)
-        return redirect('/feeds') 
-    elif request.method == 'PATCH': # edit(form을 이용하여 submit해서 수정) 
-        title = request.PATCH['title']
-        content = request.PATCH['content']
-        Feed.objects.save(title=title, content=content)
         return redirect('/feeds') 
 
 def new(request):
@@ -31,5 +27,14 @@ def delete(request, id):
     return redirect('/feeds')
 
 def edit(request, id):
-    feed = Feed.objects.get(id=id)
-    return render(request,'feedpage/edit.html', {'feed':feed})
+    feed = Feed.objects.get(id = id)
+    return render(request, 'feedpage/edit.html', {'feed':feed })
+
+
+def update(request, id):
+    feed = Feed.objects.get(id = id)
+    feed.title =request.POST.get('title')
+    feed.content =request.POST.get('content')
+    feed.save()
+    return redirect('/feeds')
+

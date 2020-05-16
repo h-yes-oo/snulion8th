@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>edit feed</h1>
-    <form action="/feeds/" method="PATCH">
+    <form action="/feeds/{{ feed.id }}/update/" method="POST">
       {% csrf_token %}
       <p>title</p>
-      <input name="title" /> <br />
+      <input name="title" value="{{ feed.title }}"/> <br />
       <p>content</p>
-      <input name="content" /> <br />
+      <input name="content" value="{{ feed.content }}" /> <br />
       <input type="submit" value="수정하기" />
     </form>
 {% endblock content %}
