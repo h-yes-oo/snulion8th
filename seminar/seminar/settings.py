@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feedpage.apps.FeedpageConfig',  #추가, 줄여서 'feedpage'라고만 적어도 된다
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
