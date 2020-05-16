@@ -28,7 +28,7 @@ def show(request, id):
     if request.method == 'POST':
         feed.title = request.POST['title']
         feed.content = request.POST['content']
-        feed.update_date()
+        Feed.objects.filter(id=id).update(title=feed.title, content=feed.content)
     
     return render(request, 'feedpage/show.html', {'feed': feed})
 
