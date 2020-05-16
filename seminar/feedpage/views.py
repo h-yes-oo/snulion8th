@@ -10,28 +10,34 @@ def index(request):
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        Feed.objects.create(title=title, content=content)
-        return redirect('/feeds')
+        feed = Feed.objects.create(title=title, content=content)
+        return redirect('/feeds/%d' %feed.id)
+
 
 def new(request):
     return render(request, 'feedpage/new.html')
+
 
 def show(request, id):
     feed = Feed.objects.get(id=id)
     if request.method == 'GET':
         return render(request, 'feedpage/show.html', {'feed':feed})
+    
     elif request.method == 'POST':
-        feed.title = request.POST['title']
-        feed.content = request.POST['content']
+        title = request.POST['title']
+        content = request.POST['content']
+        # Feed.objects.update(id=id, title=title, content=content)
+        feed.update_date()
         feed.save()
         # Feed.objects.update(title=feed.title, content=feed.content)
         return render(request, 'feedpage/show.html', {'feed':feed})
-
+        # return redirect('/feeds/%d' %feed.id)
 
 def delete(request, id):
     feed = Feed.objects.get(id=id)
     feed.delete()
     return redirect('/feeds')
+
 
 def edit(request, id):
     feed = Feed.objects.get(id=id)
