@@ -5,7 +5,7 @@
 {% for feed in feeds %} 
   <div style="border: 1px solid grey;">
     <a href="{% url 'show' feed.id %}">더보기</a>
-    <a href="{% url 'delete' feed.id %}">삭제</a> 
+    <a href="{% url 'delete' feed.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a> 
     <p>{{ feed.title }}</p>
     <p>{{ feed.content }}</p>
   </div>
