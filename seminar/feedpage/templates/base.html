@@ -3,20 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>snulion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&display=swap" rel="stylesheet">
   </head>
-  <header>
-     <div style="text-align: right;">
-        {% if user.is_authenticated %}
-             {{ user.get_username }}님, 안녕하세요
-             <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
-             {% comment %} <a href="/accounts/logout/{{ user.id }}?next={{request.path}}">로그아웃</a> {% endcomment %}
-        {% else %}
-             <a href="{% url 'signup' %}">회원가입</a>
-             <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
-        {% endif %} 
+  <header style="font-family: 'Noto Serif KR', serif;">
+    <div style="background-color: #ffb03b; width: 100%; height: 120px; padding: 5px; border-radius: 10px; ">
+      <div style="text-align: right; color: #6b561f; margin: 15px;">
+          {% if user.is_authenticated %}
+              {{ user.get_username }}님, 안녕하세요<br>
+              학교: {{ user.profile.college }}<br>
+              전공: {{ user.profile.major }}<br>
+              
+              <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+              {% comment %} <a href="/accounts/logout/{{ user.id }}?next={{request.path}}">로그아웃</a> {% endcomment %}
+          {% else %}
+              <a href="{% url 'signup' %}">회원가입</a>
+              <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+          {% endif %} 
+      </div>
     </div>
   </header>
-  <body>
+  <body style="font-family: 'Noto Serif KR', serif;">
   {% block content %}
   {% endblock %}
   </body>
