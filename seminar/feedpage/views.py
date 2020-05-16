@@ -17,14 +17,26 @@ def new(request):
 
 def show(request,id):
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        Feed.objects.update(id=id, title=title, content=content)
         feed = Feed.objects.get(id=id)
-        return render(request,'feedpage/show.html',{'feed':feed})
+        feed.update(title=request.POST['title'], content=request.POST['content'])
+        # Feed.objects.filter(id=id).update(title=request.POST['title'], content=request.POST['content'])
+        return redirect('/feeds')
+
     elif request.method == 'GET':
         feed=Feed.objects.get(id=id)
         return render(request,'feedpage/show.html',{'feed':feed})
+
+    # if  request.method == 'GET':
+    #     feed=Feed.objects.get(id=id)
+    #     return render(request,'feedpage/show.html',{'feed':feed})
+
+    # elif request.method == 'POST' :
+    #     feed = Feed.objects.get(id=id)
+    #     feed.title = request.POST['title']
+    #     feed.content = request.POST['content']
+    #     feed.save()
+    #     return redirect('/feeds')
+    
 
 def delete(request, id):
     feed = Feed.objects.get(id=id)
@@ -34,3 +46,4 @@ def delete(request, id):
 def edit(request, id):
     feed=Feed.objects.get(id=id)
     return render(request, 'feedpage/edit.html',{'feed':feed})
+
