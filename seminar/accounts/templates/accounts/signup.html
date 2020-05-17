@@ -1,0 +1,47 @@
+<h1> Sign Up! </h1>
+
+<form method="POST" action="{%url 'signup'%}">
+    {% csrf_token %}
+    사용자 이름:
+    <br>
+    <input name="username" type="text" value="" required>
+    <br>
+    <br>
+    대학명:
+    <br>
+    <input name="college" type="text" value="" placeholder ="ex)서울대학교">
+    <br>
+    <br>
+    전공:
+    <br>
+    <input name="major" type="text" value="">
+    <br>
+    <br>
+    생년월일:
+    <br>
+    <input name="birthdate" type="text" value="" placeholder ="ex)980908">
+    <br>
+    <br>
+    연락처:
+    <br>
+    <input name="contact" type="text" value="" placeholder ="010-xxxx-xxxx">
+    <br>
+    <br>
+    비밀번호:
+    <br>
+    <input name="password1" type="password" value="" required>
+    <br>
+    <br>
+    비밀번호 확인:
+    <br>
+    <input name="password2" type="password" value="" required>
+    <br>
+    <br>
+    {% comment %} 자동생성하기(시드입력):
+    <br>
+    <input name = "seed" type = "text" value ="0"placeholder ="시드 입력(자동생성)">
+    <br> {% endcomment %}
+    <input type="submit" value="Sign Up!">
+    
+    
+</form>

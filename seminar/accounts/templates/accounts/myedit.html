@@ -1,0 +1,27 @@
+<h1> Edit my profile! </h1>
+
+<form method="POST" action="{%url 'myedit'%}">
+    {% csrf_token %}
+    <input type="hidden" name="username" value="{{ user.get_username }}" />
+    대학명:
+    <br>
+    <input name="college" type="text" value={{ user.profile.college }}>
+    <br>
+    <br>
+    전공:
+    <br>
+    <input name="major" type="text" value={{ user.profile.major }}>
+    <br>
+    <br>
+    생년월일:
+    <br>
+    <input name="birthdate" type="text" value={{ user.profile.birthdate }}>
+    <br>
+    <br>
+    연락처:
+    <br>
+    <input name="contact" type="text" value={{ user.profile.contact }}>
+    <br>
+    <br>
+    <input type="submit" value="내정보 수정">
+</form>

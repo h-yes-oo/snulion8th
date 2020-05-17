@@ -101,6 +101,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = "/feeds/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
