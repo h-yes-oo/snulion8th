@@ -4,7 +4,7 @@
     {% csrf_token %}
     사용자 이름:
     <br>
-    <input name="username" type="text" value="" required>
+    <input name="username" type="text" value="" >
     <br>
     <br>
     대학명:
@@ -29,18 +29,18 @@
     <br>
     비밀번호:
     <br>
-    <input name="password1" type="password" value="" required>
+    <input name="password1" type="password" value="" >
     <br>
     <br>
     비밀번호 확인:
     <br>
-    <input name="password2" type="password" value="" required>
+    <input name="password2" type="password" value="" >
     <br>
     <br>
-    {% comment %} 자동생성하기(시드입력):
+    자동생성하기(시드입력):
     <br>
-    <input name = "seed" type = "text" value ="0"placeholder ="시드 입력(자동생성)">
-    <br> {% endcomment %}
+    <input name = "seed" type = "text" value ="0" placeholder ="시드 입력(자동생성)">
+    <br>
     <input type="submit" value="Sign Up!">
     
     

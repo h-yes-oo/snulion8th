@@ -4,10 +4,12 @@ from django.contrib import auth
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout as custom_logout
+from .models import Profile
+
 # Create your views here.
 def signup(request):
     if request.method == 'POST':
-        if request.POST['password1'] == request.POST['password2']:
+        if (request.POST['password1'] == request.POST['password2']) & (request.POST['seed'] == '0'):
             user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])##여기다가 확장한 variable들 쓰면 왜 안되는지? 확장한게 아닌 원래 user에 있는 variable만 접근가능해서?
             profile = user.profile
             profile.college=request.POST['college']
@@ -17,14 +19,17 @@ def signup(request):
             user.save()
             auth.login(request, user)
             return redirect('/feeds/')
-        # elif request.POST['seed'] != '0':
-        #     Profile.seed(int(request.POST['seed']))
+        elif request.POST['seed'] != '0':
+            # a=Profile()
+            Profile.seed(int(request.POST['seed']))
+            return redirect('/feeds/')
 
     return render(request, 'accounts/signup.html')
 
 def myedit(request):
     if request.method == 'POST':
-        user = User.objects.get(username=request.POST['username'])
+        user = request.user
+        # user = User.objects.get(username=request.POST['username'])
         profile = user.profile
         profile.college=request.POST['college']
         profile.major=request.POST['major']

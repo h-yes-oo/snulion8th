@@ -38,7 +38,7 @@ class Profile(models.Model):   # 추가
             profile.birthdate=myfake.date_of_birth()
             profile.contact=myfake.phone_number()
             user.save()
-            auth.login(request, user)
+            # auth.login(request, user)
             
 
 
