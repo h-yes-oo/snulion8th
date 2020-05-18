@@ -102,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #Redirect to home URL after Login
-LOGIN_REDIRECT_URL = "/feeds/"
+# LOGIN_REDIRECT_URL = "/feeds/"
 # LOGOUT_REDIRECT_URL = "/feeds/"
 
 # Internationalization
