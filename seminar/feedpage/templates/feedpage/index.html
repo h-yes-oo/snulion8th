@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=d, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "feedpage/index.css" %}">
+    <title>Snulion</title>
+</head>
+<header>Snulion Feed Page</header>
+<body>
+    <div class="Feedcontainer">
+      <div class="Feedheader">
+        <h1>feed page</h1>
+        <a href="/feeds/new">
+          <input class="new bts"type="button" value="New Feed">
+        </a>
+      </div>
+      {% for feed in feeds %}
+      <div class="Feeds">
+        <div class="bt">
+          <a href="/feeds/{{ feed.id }}">
+            <input class="more bts" type="button" value="더보기">
+          </a>
+          <a href="/feeds/{{ feed.id }}/delete">
+            <input class="del bts" type="button" value="삭제">
+          </a>
+        </div>
+        <p class="feednumber">{{ feed.id }}번째 글</p>
+        <p>{{ feed.title }}</p>
+        <p>{{ feed.content }}</p>
+      </div>
+    </div>
+    {% endfor %} <!-- for를 end시킨다는 뜻! 여기서는 들여쓰기로 끝을 못 내니 -->
+</body>
+</html>
