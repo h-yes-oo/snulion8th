@@ -28,10 +28,11 @@ def edit(request, id):
     feed = Feed.objects.get(id=id)
     return render(request, 'feedpage/edit.html', {'feed':feed})
 
-def update(request, id):
+def editApply(request, id):
     feed = Feed.objects.get(id=id)
-    title = request.POST['title']
-    content = request.POST['content']
-    Feed.objects.filter(id=id).update(id=id, title=title, content=content)
-    return redirect('/feeds/%d' %id)
+    feed.title = request.POST['title']
+    feed.content = request.POST['content']
+    feed.save()
+    return redirect('/feeds')
+
 
