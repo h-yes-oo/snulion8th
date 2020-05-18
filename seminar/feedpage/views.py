@@ -25,8 +25,8 @@ def edit(request, id):
         return render(request, 'feedpage/edit.html', {'feed': feed})
     elif request.method == 'POST':
         feed=Feed.objects.get(id=id)
-        feed.title=request.POST['title']
-        feed.content=request.POST['content']
+        feed.title = request.POST['title']
+        feed.content = request.POST['content']
         feed.save()
         feed.update_date()
         return redirect('/feeds/'+str(id)) 
