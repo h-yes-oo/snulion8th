@@ -24,3 +24,9 @@ class Profile(models.Model):   # 추가
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):  
         instance.profile.save()
+
+    def get_major(self):
+        return self.major
+    
+    def get_college(self):
+        return f'college= {self.college}'
