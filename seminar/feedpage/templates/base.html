@@ -14,7 +14,12 @@
   <header>
     <div style="text-align: right;">
         {% if user.is_authenticated %}
-             {{ user.get_username }}님, 안녕하세요
+             {{ user.get_username }}님, 안녕하세요 <br>
+             학교: {{ user.profile.college }} <br>
+             전공: {{ user.profile.major }} <br>
+             생일: {{ user.profile.birth }} <br>
+             이메일: {{ user.profile.email }} <br>
+             {% comment %} <a href="{% url 'modify' %}?next={{request.path}}">정보수정</a> {% endcomment %}
              <a href="{% url 'logout' %}?next={{request.path}}">로그아웃</a>
         {% else %}
              <a href="{% url 'signup' %}">회원가입</a>

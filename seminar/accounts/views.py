@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from accounts.models import Profile
 from django.contrib import auth
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
@@ -9,7 +10,18 @@ from django.contrib.auth import logout as django_logout
 def signup(request):
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
+            user = User.objects.create_user(
+                username=request.POST['username'], 
+                password=request.POST['password1']
+            )
+            # profile=Profile.objects.create(user=user)
+            user.profile.college=request.POST['college']
+            user.profile.major=request.POST['major']
+            user.profile.birth=request.POST['birth']
+            user.profile.email=request.POST['email']
+
+            user.profile.save()
+
             auth.login(request, user)
             return redirect('/feeds/')
     return render(request, 'accounts/signup.html')

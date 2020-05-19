@@ -9,9 +9,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     college = models.CharField(max_length=20, blank=True)
     major = models.CharField(max_length=20, blank=True)
+    birth = models.CharField(max_length=20, blank=True)
+    email = models.CharField(max_length=20, blank=True)
 
     def __str__(self):   # 추가
-        return 'id=%d, user_id=%d, college=%s, major=%s' % (self.id, self.user.id, self.college, self.major)
+        return 'id=%d, user_id=%d, college=%s, major=%s, birth=%s, email=%s' % (self.id, self.user.id, self.college, self.major, self.birth, self.email)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):  
