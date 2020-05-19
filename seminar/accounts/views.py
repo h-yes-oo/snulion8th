@@ -11,6 +11,6 @@ def signup(request):
 			user.profile.major = request.POST['major']
 			user.save()
 			auth.login(request, user)
-			return redirect('/feeds')
+			return redirect('/feeds/')
 	return render(request, 'accounts/signup.html')
 
