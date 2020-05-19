@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>snulion</title>
+  </head>
+  <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">
+    <div style="text-align: right;">
+        {% if user.is_authenticated %}
+             {{ user.get_username }}님, 안녕하세요<br>
+             학교 : {{user.profile.college}}<br>
+             전공 : {{user.profile.major}}<br>
+             <a href="{% url 'logout'%}">로그아웃</a>
+        {% else %}
+             <a href="{% url 'signup' %}">회원가입</a>
+             <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+        {% endif %}
+    </div>
+    Snulion Feeds
+  </header>
+  <body>
+  {% block content %}
+  {% endblock %}
+  </body>
+</html>

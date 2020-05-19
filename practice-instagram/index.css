@@ -1,0 +1,173 @@
+* {
+  font-family: 'Nanum Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  height: 77px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: #FFF;
+  border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+}
+
+.header_inner {
+  max-width: 1010px;
+  padding: 16px; 
+  margin: auto;
+  width: 100%;
+  display: flex;
+}
+
+.logo {
+  height: 46px;
+  width: auto;
+  flex: 1 9999 0%;
+}
+
+.logo_img {
+  height: 100%;
+  width: auto;
+}
+
+.search {
+  height: 26px;
+  width: 215px;
+  margin: auto;
+}
+
+.search_box {
+  height: 100%;
+  width: 100%;
+  background: rgba(240, 240, 240, 0.8);
+  border: solid 1px #dbdbdb;
+  border-radius: 3px;
+  color: #999;
+  cursor: text;
+  font-size: 14px; /* 글씨체 크기 지정 */
+  font-weight: 300; /* 글씨체 굵기 지정 */
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: flex-end;
+  height: 24px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.icon {
+  height: 22px;
+  width: 22px;
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.feed {
+  background-color: #f6f5f5;
+  position: absolute;
+  margin-top: 78px;
+  height: 2000px;
+  width: 100%;
+  z-index: 0;
+}
+.feed_inner {
+  background-color: #FFF;
+  position: relative;
+  margin-left:100px;
+  margin-top: 100px;
+  width: 500px;
+  height: auto;
+}
+
+.feed_head {
+  border: solid 1px #dddddd81;
+  border-bottom: none;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+}
+.feed_head_name {
+  width: 100%;
+  padding-left: 20px;
+  height: auto;
+  align-items: center;
+  display: flex;
+}
+#feed_name {
+  justify-content: flex-start;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.feed_img {
+  position: relative; 
+  width: 100%;
+  height: auto;
+}
+.img {
+  width: 100%;
+  height: auto;
+  align-self: center;
+}
+.feed_heart {
+  border: solid 1px #dddddd81;
+  border-top: none;
+  position: relative;
+  width: 100%;
+  height: 46px;
+  display: flex;
+}
+.feed_heart_a {
+  padding: 13px 20px;
+  height: 20px;
+  width: 100%;
+}
+.heart_icon {
+  height: 100%;
+  width: auto;
+}
+.feed_text {
+  border: solid 1px #dddddd81;
+  border-top: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: 46px;
+}
+.feed_text_box {
+  height: 36px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  flex: 1 9999 0%;
+  border: none;
+}
+.feed_send_box {
+  justify-content: flex-end;
+  height: 36px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+.feed_send_a {
+  height: 12px;
+  width: 100%;
+}
+#feed_send {
+  height: 12px;
+  font-size: 12px;
+  color: #ff0000;
+}
