@@ -4,7 +4,27 @@
         <meta charset="utf-8">
         <title>snulion</title>
     </head>
-    <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">Snulion Feed Page</header>
+    <header>
+        <div style="text-align: right;">
+            {% if user.is_authenticated %}
+                {{ user.get_username }}님, 안녕하세요
+                <br>
+                학교: {{user.profile.college}}
+                <br>
+                전공: {{user.profile.major}}
+                <br>
+                생일: {{user.profile.birthday}}
+                <br>
+                SNS 계정: {{user.profile.sns}}
+                <br>
+                <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+            {% else %}
+                <a href="{% url 'signup' %}">회원가입</a>
+                <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+            {% endif %}
+        </div>
+        Snulion Feed Page
+    </header>
     <body>
     {% block content %}
     {% endblock %}
