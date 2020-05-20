@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="Feedcontainer">
+    <div class="Feedheader">
+        <h1>Edit Account!</h1>
+    </div>
+    <div class="showcontainer">
+        <form method="POST" action="{%url 'editaccount'%}">
+            {% csrf_token %}
+            사용자 이름: 
+            <br>
+            {{ user.get_username }}
+            <br>
+            <br>
+            기존 비밀번호:
+            <br>
+            <input name="passwordbefore" type="password" value="">
+            <br>
+            <br>
+            변경할 비밀번호:
+            <br>
+            <input name="passwordafter1" type="password" value="">
+            <br>
+            <br>
+            변경할 비밀번호 확인:
+            <br>
+            <input name="passwordafter2" type="password" value="">
+            <br>
+            <br>
+            학교:
+            <br>
+            <input name="college" type="text" value='{{ user.profile.college }}'>
+            <br>
+            <br>
+            전공:
+            <br>
+            <input name="major" type="text" value='{{ user.profile.major }}'>
+            <br>
+            <br>
+            <input type="submit" value="Edit!" onclick="return confirm('수정하시겠습니까?')">
+        </form>
+    </div>
+</div>
+</body>
+{% endblock content %}
+</html>

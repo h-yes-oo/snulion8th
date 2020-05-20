@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <a href="/feeds">Home</a>
-        <a href="/feeds/{{ feed.id }}/edit">Edit</a>
-        <p>{{ feed.title }}</p>
-        <p>{{ feed.content }}</p>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="Feedcontainer">
+    <div class="Feedheader">
+        <h1>Feed No.{{ feed.id }}</h1>
     </div>
+    <div class="showcontainer">
+        <a href="/feeds">
+            <input class="bts" type="button" value="Home">
+        </a>
+        <a href="/feeds/{{ feed.id }}/edit">
+            <input class="bts" type="button" value="Edit">
+        </a>
+        <p>Title:</p> <h3> {{ feed.title }}</h3>
+        <p>Content:<br><br> {{ feed.content }}</p>
+    </div>
+</div>
 </body>
+{% endblock content %}
 </html>
