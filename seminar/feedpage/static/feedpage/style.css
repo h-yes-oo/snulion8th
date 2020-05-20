@@ -1,0 +1,125 @@
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+title{
+    line-height: 43.2px;
+}
+
+body{
+    background-image: url('images/likelion.png');
+    background-size: 100%;
+}
+
+
+a{
+    text-decoration: none;
+    color: black;
+    
+}
+
+.banner{
+    text-align: center;
+}
+
+.feeds{
+    display: flex;
+    justify-content: start;
+    max-width: 600px;
+    border: 0px;
+}
+
+.feed{
+    width:400px;
+    margin: 30px 20px;
+    border: 0px solid gray;
+    border-radius: 10px;
+    box-shadow: 2px 3px 10px #d9dede;
+}
+
+.learn-more{
+    border-radius: 3px;
+    background-color: aquamarine;
+    margin: 3px 3px 0px 10px ;    
+}
+
+.delete{
+    border-radius: 3px;
+    background-color: aquamarine;
+    margin: 3px 3px;
+}
+
+.home{
+    border-radius: 3px;
+    background-color: aquamarine;
+    margin: 10px 3px;
+}
+
+.edit{
+    border-radius: 3px;
+    background-color: aquamarine;
+    margin: 10px 3px;
+}
+
+.title{
+    font-size: 16px;
+    margin: 15px 10px;
+}
+
+.content{
+    font-size: 14px;
+    margin: 15px 10px;
+}
+
+.show{
+    margin: 20px 20px;
+    box-shadow: 2px 3px 10px #d9dede;
+    border-radius: 5px;
+    width:400px;
+}
+
+.new-form{
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.title-input{
+    width:350px;
+    display: flex;
+    margin: 20px 0px;
+    flex-direction: column;
+    align-items: center;
+}
+.title-input input{
+    width:90%;
+}
+
+.content-input{
+    width:350px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-input input{
+    width:90%;
+}
+
+.submit{;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+.submit input{
+    border: 1px #809080;
+    background-color: azure;
+}

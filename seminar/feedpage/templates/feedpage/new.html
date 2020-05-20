@@ -1,12 +1,19 @@
 {% extends 'base.html'%}
 {%block content%}
-    <h1>new feed</h1>
+  <div class='new-form'>
+    <h1 class="new-message">new feed</h1>
     <form action="/feeds/" method="POST">
       {% csrf_token %}
-      <p>title</p>
-      <input name="title" /> <br />
-      <p>content</p>
-      <input name="content" /> <br />
-      <input type="submit" value="submit" />
+      <div class="title-input">
+        <p>title</p>
+        <input class="type-in" name="title" /> <br />
+      </div>
+      <div class="content-input">
+        <p>content</p>
+        <input class="type-in" name="content" /> <br />
+      </div>
+      <div class="submit"><input type="submit" value="submit" /></div>
     </form>
+  </div>
+    
 {% endblock content%}
