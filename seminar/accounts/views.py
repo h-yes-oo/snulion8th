@@ -46,10 +46,8 @@ def editaccount(request):
         user = request.user
         if check_password(passwordbefore, user.password) and passwordafter1 == passwordafter2:
             user.set_password(passwordafter1)
-            user.save()
             user.profile.college = request.POST['college']
             user.profile.major = request.POST['major']
             user.profile.save()
-
             return redirect('/feeds')
     return render(request, 'accounts/editaccount.html')
