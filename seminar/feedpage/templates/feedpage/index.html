@@ -2,14 +2,15 @@
 
 {% block content %}
   <body>
-    <h1>feed page</h1>
-    <a href="/feeds/new">new feed</a> 
+  <div class="new_feed">
+    <a href="/feeds/new">+ new feed</a> 
+  </div>
     {% for feed in feeds %} 
-      <div style="border: 1px solid grey;">
-        <a href="/feeds/{{ feed.id }}">더보기</a>
-        <a href="/feeds/{{ feed.id }}/delete">삭제</a>
-        <p>{{ feed.title }}</p>
-        <p>{{ feed.content }}</p>
+      <div class="feeds">
+        <p id="title">{{ feed.title }}</p>
+        <p id="contents">{{ feed.content }}</p>
+        <a id="delete" href="/feeds/{{ feed.id }}">더보기</a>
+        <a id="delete" href="/feeds/{{ feed.id }}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
       </div>
     {% endfor %} <!-- for를 end시킨다는 뜻! 여기서는 들여쓰기로 끝을 못 내니 -->
   </body>

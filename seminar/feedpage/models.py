@@ -1,4 +1,5 @@
 from django.db import models
+from faker import Faker
 
 # Create your models here.
 from django.utils import timezone # 장고는 created_at과 updated_at을 알아서 만들어 주지 않음. id는 만들어 줌
@@ -17,3 +18,11 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
 
     def __str__(self):
         return self.title
+
+    def seed(count): # 추가
+            myfake = Faker('ko_KR')
+            for i in range(count):
+                Feed.objects.create(
+                    title=myfake.bs(),
+                    content=myfake.text()
+                )

@@ -31,5 +31,6 @@ def edit(request,id):
         feed.title=request.POST['title']
         feed.content=request.POST['content']
         feed.save()
+        feed.update_date()
         return redirect('/feeds')  
  
