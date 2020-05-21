@@ -7,14 +7,12 @@ from django.shortcuts import redirect
 # Create your views here.
 def signup(request):
     if request.method  == 'POST':
-        password1 = request.POST.get('password1', None)
-        password2 = request.POST.get('password2', None)
-        username = request.POST.get('username', None)
-        res_data = {}
-        if not (password1 and password2 and username) :
-            res_data['error'] = "사용자 이름과 비밀번호를 입력해주세요"
-            return render(request, 'accounts/signup.html', res_data)
-        elif password1 != password2:
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        username = request.POST['username']
+        
+        if password1 != password2:
+            res_data = {}
             res_data['error'] = "비밀번호가 일치하지 않습니다" 
             return render(request, 'accounts/signup.html', res_data)
         else:

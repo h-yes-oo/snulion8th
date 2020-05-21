@@ -5,11 +5,11 @@
 <form method="POST" action="{% url 'signup' %}">
     {% csrf_token %}
     사용자 이름: <br>
-    <input name="username" type="text"><br><br>
+    <input name="username" type="text" required><br><br>
     비밀번호:<br>
-    <input name="password1" type="password"><br><br>
+    <input name="password1" type="password" required><br><br>
     비밀번호 확인:<br>
-    <input name="password2" type="password"><br><br>
+    <input name="password2" type="password" required><br><br>
     학교: <br> 
     <input name="college" type="text"><br><br>
     전공: <br> 

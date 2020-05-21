@@ -2,11 +2,11 @@
 <form method="POST" action="{%url 'profile_edit' user.id %}">
     {% csrf_token %}
     학교: <br> 
-    <input name="college" type="text" value="{{ user.profile.college }}"><br><br>
+    <input name="college" type="text" value="{{ user.profile.college }}" required><br><br>
     전공: <br> 
-    <input name="major" type="text" value="{{ user.profile.major }}"><br><br> 
+    <input name="major" type="text" value="{{ user.profile.major }}" required><br><br> 
     e-mail: <br>
-    <input name="email" type="text" value="{{ user.profile.email }}"><br><br>
+    <input name="email" type="text" value="{{ user.profile.email }}" required><br><br>
     생일: <br>
     <input name="birthday" type="date" required pattern = "\d{4}-\d{2}-\d{2}" 
             value="{{ user.profile.birthday | date:"Y-m-d" }}"><br><br>
