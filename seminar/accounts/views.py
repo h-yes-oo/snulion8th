@@ -22,7 +22,7 @@ def profile(request):
     return redirect(request, 'accounts/profile.html',)
 
 
-def profile_update(request, id):
+def profile_update(request):
     user.profile.college = request.POST['college']
     user.profile.major = request.POST['major']
     user.profile.birth = request.POST['birth']

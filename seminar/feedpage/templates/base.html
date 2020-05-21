@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'feedpage/style.css' %}">
   </head>
   <body>
-    <div class="bgbox">
+    
       <header>
         {% if user.is_authenticated %}
         <div class="div_header">
@@ -30,6 +30,6 @@
       </header>
       {% block content %}
       {% endblock %}
-    </div>
+    
   </body>
 </html>
