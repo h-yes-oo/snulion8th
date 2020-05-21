@@ -36,7 +36,7 @@ def modify(request):
             if request.POST['password1']==request.POST['password2']:
                 password=request.POST['password1']
             else:
-                return render(request, 'accounts/modify.html')
+                return render(request, 'accounts/modify_pwfail.html')
             user.save()
 
             user.profile.college=request.POST['college']
