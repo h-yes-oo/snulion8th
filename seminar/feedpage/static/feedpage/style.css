@@ -1,0 +1,26 @@
+header {
+    width: 100%;
+    height: 100%;
+    background-color: mediumslateblue;
+    color: white;
+}
+
+header .feed-name {
+    
+}
+
+header .user-info {
+    display: flex;
+    align-items: flex-end;
+    justify-content: right;
+    flex-direction: column;
+}
+
+header .user-info .user-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    border-radius: 13px;
+    background-color: transparent;
+    border: transparent;
+}
