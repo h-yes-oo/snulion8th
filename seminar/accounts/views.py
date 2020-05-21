@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Profile
 from django.shortcuts import redirect
-from django.http import HttpResponse
 
 # Create your views here.
 def signup(request):
@@ -14,8 +13,10 @@ def signup(request):
         res_data = {}
         if not (password1 and password2 and username) :
             res_data['error'] = "사용자 이름과 비밀번호를 입력해주세요"
+            return render(request, 'accounts/signup.html', res_data)
         elif password1 != password2:
             res_data['error'] = "비밀번호가 일치하지 않습니다" 
+            return render(request, 'accounts/signup.html', res_data)
         else:
             user = User.objects.create_user(username=username,password=password1)
             auth.login(request, user)
@@ -23,8 +24,6 @@ def signup(request):
                             major = request.POST['major'], email = request.POST['email'],\
                             birthday = request.POST['birthday'], address = request.POST['address'])
             return redirect('/feeds')
-
-        return render(request, 'accounts/signup.html', res_data)
 
     elif request.method == 'GET':
         return render(request, 'accounts/signup.html')
@@ -58,5 +57,4 @@ def profile_edit(request, id):
 
     elif request.method == 'GET':
         return render(request, 'accounts/profile_edit.html')
-
 
