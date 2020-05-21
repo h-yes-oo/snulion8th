@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<h1>Profile Update</h1>
+<div class = "profile">
+      <form action="{%url 'profile_update'%}" method="POST">
+      {% csrf_token %}
+      <div>
+        Username</br>
+        <input type = "text" name="title" value="{{ user.get_username }}"/> <br />
+        College</br>
+        <input  type = "text" name="content"  value="{{ user.profile.college}}"/> <br/>
+        Major</br>
+        <input  type = "text" name="content"  value="{{ user.profile.major}}"/> <br/>
+        bitrh</br>
+        <input  type = "text" name="content"  value="{{ user.profile.birth}}"/> <br/>
+      </div>
+      <div class="edit_button">
+        <input type="submit" value="Edit" />
+      </div>
+  </form>
+    </div>
+
+
+{% endblock %}

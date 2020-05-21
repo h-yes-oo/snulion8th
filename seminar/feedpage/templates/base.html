@@ -4,21 +4,32 @@
   <head>
     <meta charset="utf-8">
     <title>snulion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&family=Sunflower:wght@300;500;700&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'feedpage/style.css' %}">
   </head>
   <body>
-  <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">
-    <div style="text-align: right;">
-      {% if user.is_authenticated %}
-      {{ user.get_username }}님, 안녕하세요
-    <a href="{% url 'logout'%}">로그아웃</a>
-    {% else %}
-      <a href="{% url 'signup' %}">회원가입</a>
-      <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
-    {% endif %}
+    <div class="bgbox">
+      <header>
+        {% if user.is_authenticated %}
+        <div class="div_header">
+          <div class="div1"> <a href="/feeds"> SNU LION </a></div>
+          <div>
+          <a href="{% url 'logout'%}">Logout</a>
+          </div>
+        </div>
+        {% else %}
+        <div class="div_header">
+          <div class="div1"> <a href="/feeds"> SNU LION </a> </div>
+            <div class="header_login">
+            <a href="{% url 'signup' %}">Sign up</a>
+            <a href="{% url 'login'%}?next={{request.path}}">Login</a>
+            </div>
+        </div>
+        {% endif %}
+      </header>
+      {% block content %}
+      {% endblock %}
     </div>
-    Snulion Feed Page
-  </header>
-  {% block content %}
-  {% endblock %}
   </body>
 </html>

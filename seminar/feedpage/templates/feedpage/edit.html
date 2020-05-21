@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>feed edit</h1>
+
+<div class="edit">
+    <h1>Feed edit</h1>
     <form action="/feeds/{{feed.id}}/update" method="POST">
       {% csrf_token %}
-      <p>title</p>
-      <input type = "text" name="title" value="{{ feed.title }}"/> <br />
-      <p>content</p>
-      <input  type = "text" name="content"  value="{{ feed.content }}"/> <br />
-      <input type="submit" value="edit" />
-    </form>
+      <div>
+        title</br>
+        <input type = "text" name="title" value="{{ feed.title }}"/> <br />
+        content</br>
+        <input  type = "text" name="content"  value="{{ feed.content }}"/> <br/>
+      </div>
+      <div class="edit_button">
+        <input type="submit" value="Edit" />
+      </div>
+  </form>
+</div>
 {% endblock content %}

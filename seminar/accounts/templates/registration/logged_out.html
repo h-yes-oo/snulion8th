@@ -1,3 +1,9 @@
 <!-- logout.html -->
-<p>로그아웃되었습니다.</p>
-<a href="{% url 'login' %}">다시 로그인하기</a>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="logout">
+    <p>로그아웃되었습니다.</p>
+</div>
+<!-- <a href="{% url 'login' %}">다시 로그인하기</a> -->
+{% endblock content %}

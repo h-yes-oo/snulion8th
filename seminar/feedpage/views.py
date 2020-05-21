@@ -34,7 +34,6 @@ def update(request, id):
     feed.title = request.POST['title']
     feed.content = request.POST['content']
     feed.save()
-    # feed.update(title=title, content=content)
     return render(request, 'feedpage/show.html', {'feed':feed})
 
 

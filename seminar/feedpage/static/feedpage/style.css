@@ -1,0 +1,480 @@
+
+@-keyframes scale-up-hor-center{0%{-webkit-transform:scaleX(.4);transform:scaleX(.4)}100%{-webkit-transform:scaleX(1);transform:scaleX(1)}}@keyframes scale-up-hor-center{0%{-webkit-transform:scaleX(.4);transform:scaleX(.4)}100%{-webkit-transform:scaleX(1);transform:scaleX(1)}}
+@-keyframes slide-in-fwd-center{0%{-webkit-transform:translateZ(-1400px);transform:translateZ(-1400px);opacity:0}100%{-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}@keyframes slide-in-fwd-center{0%{-webkit-transform:translateZ(-1400px);transform:translateZ(-1400px);opacity:0}100%{-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}
+@-keyframes focus-in-expand{0%{letter-spacing:-.5em;-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}@keyframes focus-in-expand{0%{letter-spacing:-.5em;-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}
+
+
+
+body{
+    background-color: white; /*rgb(231, 231, 231);*/
+    margin: 20px;
+    font-family: 'Mukta', sans-serif;
+}
+
+header{
+    margin: 0 auto;
+    padding:10px;
+    background-color: rgb(231, 231, 231);
+    height: 60px;
+    animation-name: scale-up-hor-center;
+    animation-duration: 1s;
+    animation-delay:0.1s;
+    animation-fill-mode: none;
+    }
+
+a:hover{
+   cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+.div_header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 300;
+    letter-spacing: 3px;
+    position: relative;
+    top:8px;
+    animation-name: scale-up-hor-center;
+    animation-duration: 1s;
+    animation-delay:0.1s;
+    animation-fill-mode: none;
+}
+
+
+
+
+.div_header .div1{
+    font-size: 24px;
+    text-align: left;
+    color:black;
+    font-weight: 400;
+}
+
+.div_header a{
+    padding: 5px;
+    margin: 10px;
+    color:black;  /* #a0b5c9;*/
+    /*border-bottom: black solid 1px;*/
+}
+
+.div_header a:hover{
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 2px;
+    border-bottom:white solid 1px;;
+}
+
+.div_header .div1 a{
+    border:none;
+}
+.div_header .div1 a:hover{
+    cursor: pointer;
+    background-color: rgb(231, 231, 231);
+}
+
+
+.h1_div{
+    width: 40%;
+    height: 90px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    /*box-shadow: 5px 5px 12px 1px gray;*/
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.h1_div h1{
+    font-size: 40px;
+    font-weight: 500;
+    color:black;
+    letter-spacing: 10px;
+    margin-bottom: 0;
+    animation-name: focus-in-expand;
+    animation-duration: 1s;
+    animation-delay:0.1s;
+    animation-fill-mode: none;
+}
+
+.new{
+    position: relative;
+    top:50px;
+}
+
+.new_div{
+    border-bottom:black solid 1px;
+    padding-bottom: 35px;
+    margin-top: 30px;
+    text-align: right;
+    margin-bottom: 50px;
+}
+
+.new_div a{
+    padding:7px;
+    margin: 10px;
+    letter-spacing: 2px;
+    color:black;
+    border: black solid 1px;
+    border-radius: 2px;
+}
+
+.new_div a:hover{
+    margin: 10px;
+    letter-spacing: 2px;
+    background-color: rgb(231, 231, 231);
+    padding: 7px;
+}
+
+.new_feed a{
+    color: black;
+    font-size: 14px;
+}
+
+.new_feed a:hover{
+    color: black;
+    font-size: 14px;
+    border-bottom: 1px solid black;
+}
+
+.new_feed{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 2px;
+    background-color:rgb(231, 231, 231);
+    box-shadow: 5px 5px 12px 1px rgb(200, 200, 200);
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-family: 'Mukta';
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.new_feed .feed1{
+    margin-left: 70px;
+}
+
+.new_feed .feed2{
+    margin-right: 30px;
+}
+
+.new_feed .feed2 a{
+    margin: 10px;
+}
+
+.signup h1{
+    font-size: 36px;
+    font-weight: 400;
+    color:black;
+    letter-spacing:5px;
+    padding:50px;
+    border-right: black solid 1px;
+    position: relative;
+    left: -100px;
+}
+
+.signup{
+    height: 480px;
+    margin: 0 auto;
+    position: relative;
+    top:100px;
+    display: flex;
+    justify-content: center;
+    left: -10%;
+}
+
+.signup form{
+    position: relative;
+    left:100px;
+    top:20px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    display: flex;
+}
+
+.signup input{
+    border: none;
+    width: 300px;
+    height: 20px;
+    position: relative;
+    color:black;
+    padding: 5px;
+    background-color: rgb(231, 231, 231);
+}
+.signup input:focus 
+{outline:none;}
+
+
+.signup .button{
+    border: black solid 1px;
+    background-color: rgb(231, 231, 231);
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 2px;
+    position: relative;
+    left: 200px;
+    width: 120px;
+    height: fit-content;
+    top:180px;
+    color:black;
+}
+
+.signup .button:hover{
+    border: solid black 1px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.login_form{
+    height: 250px;
+    margin: 0 auto;
+    position: relative;
+    top:100px;
+    display: flex;
+    justify-content: center;
+    left: -10%;
+}
+
+.login_form form{
+    position: relative;
+    left:100px;
+    top:30px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    display: flex;
+}
+
+.login_form h1{
+    font-size: 36px;
+    font-weight: 400;
+    color:black;
+    letter-spacing:5px;
+    padding:50px;
+    border-right: black solid 1px;
+    position: relative;
+    left: -100px;
+}
+
+.login_form input{
+    display: flex;
+    border: none;
+    width: 300px;
+    height: 20px;
+    position: relative;
+    color:black;
+    background-color: rgb(231, 231, 231);
+}
+
+.login_form input:focus 
+{outline:none;}
+
+.login_button input{
+    border: black solid 1px;
+    background-color: rgb(231, 231, 231);
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 2px;
+    position: relative;
+    left: 200px;
+    height: fit-content;
+    top:50px;
+    color:black;
+    width: 120%;
+    letter-spacing: 1px;
+    padding-left:30px;
+    background-color: rgb(231, 231, 231);
+}
+
+.login_button input:hover{
+    border: solid white 1px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.logout p{
+    position: relative;
+    top:100px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.profile{
+    text-align: right;
+    position: relative;
+    margin: 10px;
+    letter-spacing: 1px;
+}
+
+.profile a{
+    text-decoration: none;
+    color:black;
+}
+
+.profile a:hover{
+   cursor:pointer;
+   border-bottom: 1px solid black;
+}
+
+.new{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.new h1{
+    font-size: 36px;
+    font-weight: 400;
+    color:black;
+    letter-spacing:5px;
+    padding:50px;
+    border-right: black solid 1px;
+    position: relative;
+    left: -100px;
+}
+
+.new form{
+    position: relative;
+    left:-150px;
+    top:20px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    display: flex;
+}
+
+.new form input{
+    width: 500px;
+    height: 40px;
+    color:black;
+    font-size: 12px;
+    padding: 5px;
+    border:none;
+    background-color: rgb(231, 231, 231);
+}
+.new form input:focus{
+    outline:none;
+}
+
+.new .new_button input{
+    width: 150px;
+    height: fit-content;
+    padding: 10px;
+    margin-left: 100px;
+    margin-top: 55px;
+    background-color:rgb(231, 231, 231);
+    border: solid black 1px;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.new .new_button input:hover{
+    cursor: pointer;
+    border: solid black 1px;
+    background-color: white;
+}
+
+.edit{
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    top:50px;
+}
+
+.edit h1{
+    font-size: 36px;
+    font-weight: 400;
+    color:black;
+    letter-spacing:5px;
+    padding:50px;
+    border-right: black solid 1px;
+    position: relative;
+    left: -100px;
+}
+
+.edit form{
+    position: relative;
+    left:-150px;
+    top:20px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    display: flex;
+}
+
+.edit form input{
+    width: 500px;
+    height: 40px;
+    color:black;
+    font-size: 12px;
+    padding: 5px;
+    border:none;
+    background-color: rgb(231, 231, 231);
+}
+.edit form input:focus{
+    outline:none;
+}
+
+.edit .edit_button input{
+    width: 150px;
+    height: fit-content;
+    padding: 10px;
+    margin-left: 100px;
+    margin-top: 55px;
+    background-color:rgb(231, 231, 231);
+    border: solid black 1px;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.edit .edit_button input:hover{
+    cursor: pointer;
+    background-color: white;
+    border: solid black 1px;
+}
+
+.show{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 2px;
+    background-color: rgb(231, 231, 231);
+    box-shadow: 5px 5px 10px 1px rgb(200, 200, 200);
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-family: 'Mukta';
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.show_1{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 20px;
+}
+
+.show a{
+    height: fit-content;
+    position: relative;
+    right: 20px;
+    text-decoration: none;
+    color: black;
+    padding: 3px;
+}
+
+.show a:hover{
+    border-bottom: black solid 1px;
+}
