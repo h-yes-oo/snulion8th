@@ -21,8 +21,9 @@
                 {{ user.get_username }}님, 안녕하세요 </br> 
                 학교: {{ user.profile.college }} </br>
                 전공: {{ user.profile.major }} </br> 
-                sns: {{ user.profile.sns }} </br>
+                이메일: {{ user.profile.email }} </br>
                 생일: {{ user.profile.birthday }} </br> 
+                주소: {{ user.profile.address }} </br>
                 {% comment %} 
                     ?next={{request.path}}를 지우면, 만든 logout page로 redirect. 
                 {% endcomment %}

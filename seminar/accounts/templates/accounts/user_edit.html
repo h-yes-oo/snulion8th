@@ -1,14 +1,16 @@
 <h2> 나의 정보 수정하기 </h2>
-{{ form.as_p }}
 <form method="POST" action="{%url 'user_edit' user.id %}">
     {% csrf_token %}
     학교: <br> 
     <input name="college" type="text" value="{{ user.profile.college }}"><br><br>
     전공: <br> 
     <input name="major" type="text" value="{{ user.profile.major }}"><br><br> 
-    SNS: <br>
-    <input name="sns" type="text" value="{{ user.profile.sns }}"><br><br>
+    e-mail: <br>
+    <input name="email" type="text" value="{{ user.profile.email }}"><br><br>
     생일: <br>
-    <input name="birthday" type="text" value="{{ user.profile.birthday }}"><br><br>
+    <input name="birthday" type="date" required pattern = "\d{4}-\d{2}-\d{2}" 
+            value="{{ user.profile.birthday | date:"Y-m-d" }}"><br><br>
+    주소: <br> 
+    <input name="address" type="text" value="{{ user.profile.address }}"><br><br> 
     <input type="submit" value="수정하기">
 </form>
