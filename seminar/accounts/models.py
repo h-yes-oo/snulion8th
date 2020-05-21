@@ -19,7 +19,6 @@ class Profile(models.Model):
     email = models.CharField(max_length=50, blank=True)
     birthday = models.DateField(blank = True, null=True)
     address = models.CharField(max_length=100, blank = True)
-    # address = models.CharField(max_length=100, blank=True)
 
     def __str__(self):   
         ''' 
@@ -27,7 +26,7 @@ class Profile(models.Model):
         return 'id=%d, user_id=%d, college=%s, major=%s' \
                 % (self.id, self.user.id, self.college, self.major)
         '''
-        return f'id={self.id}, user_id={self.user.id},  \
+        return f'id={self.id}, user_id={self.user.id}, \
                 college={self.college}, major={self.major}, \
                 email={self.email}, birthday = {self.birthday}, \
                 address={self.address}'
@@ -35,14 +34,12 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):  
         
-        # address = fake.address()
         if created:
             Profile.objects.create(user=instance)
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):  
         instance.profile.save()
-        
     '''
         seed(user) 함수
         shell에서 user = User.objects.get(id = id) 후에
@@ -63,5 +60,5 @@ class Profile(models.Model):
             address = myfake.address()
 
             Profile.objects.filter(user=user).update(college=college,\
-            major=major, email=email, birthday=birthday, address=address)
+                major=major, email=email, birthday=birthday, address=address)
         

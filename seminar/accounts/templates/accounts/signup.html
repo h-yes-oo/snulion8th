@@ -5,17 +5,17 @@
 <form method="POST" action="{% url 'signup' %}">
     {% csrf_token %}
     사용자 이름: <br>
-    <input name="username" type="text" value="{{ form.name }}"><br><br>
+    <input name="username" type="text"><br><br>
     비밀번호:<br>
-    <input name="password1" type="password" value=""><br><br>
+    <input name="password1" type="password"><br><br>
     비밀번호 확인:<br>
-    <input name="password2" type="password" value=""><br><br>
+    <input name="password2" type="password"><br><br>
     학교: <br> 
-    <input name="college" type="text" value="{{ form.colleage }}"><br><br>
+    <input name="college" type="text"><br><br>
     전공: <br> 
-    <input name="major" type="text" value="{{ form.major }}"><br><br> 
+    <input name="major" type="text"><br><br> 
     이메일: <br>
-    <input name="email" type="text" value="{{ form.email }}"><br><br>
+    <input name="email" type="text"><br><br>
     생일: <br>
     <input name="birthday" type="date" placeholder="YYYY-MM-DD" 
     value="{{ form.birthday }}" pattern="\d{4}-\d{1,2}-\d{1,2}" required><br><br>
