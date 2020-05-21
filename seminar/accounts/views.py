@@ -27,6 +27,27 @@ def signup(request):
     return render(request, 'accounts/signup.html')
 
 
+def modify(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            user = request.user
+
+            user.username=request.POST['username']
+            if request.POST['password1']==request.POST['password2']:
+                password=request.POST['password1']
+            else:
+                return render(request, 'accounts/modify.html')
+            user.save()
+
+            user.profile.college=request.POST['college']
+            user.profile.major=request.POST['major']
+            user.profile.birth=request.POST['birth']
+            user.profile.email=request.POST['email']
+            user.profile.save()
+        return redirect('/feeds/')
+    return render(request, 'accounts/modify.html')
+
+
 # def login(request):
 #     if request.method == 'POST':
 #         user = authenticate(username=request.POST['username'], password=request.POST['password'])
