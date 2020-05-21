@@ -48,7 +48,7 @@ def login(request):
 def logout(request):
     return render(request, 'accounts/logged_out.html')
 
-def user_edit(request, id):
+def profile_edit(request, id):
     if request.method == 'POST':
         user = User.objects.get(id = id)
         Profile.objects.filter(user = user).update(college = request.POST['college'], \
@@ -57,6 +57,6 @@ def user_edit(request, id):
         return redirect('/feeds')
 
     elif request.method == 'GET':
-        return render(request, 'accounts/user_edit.html')
+        return render(request, 'accounts/profile_edit.html')
 
 

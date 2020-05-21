@@ -1,5 +1,5 @@
 <h2> 나의 정보 수정하기 </h2>
-<form method="POST" action="{%url 'user_edit' user.id %}">
+<form method="POST" action="{%url 'profile_edit' user.id %}">
     {% csrf_token %}
     학교: <br> 
     <input name="college" type="text" value="{{ user.profile.college }}"><br><br>
