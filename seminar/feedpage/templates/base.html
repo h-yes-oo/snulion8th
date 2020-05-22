@@ -4,9 +4,25 @@
   <head>
     <meta charset="utf-8">
     <title>snulion</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'feedpage/style.css' %}"
   </head>
   <body>
-  <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">Snulion Feed Page</header>
+    <header>
+      <div style="text-align: right; width: 100%; background-color: mediumslateblue; color: white;">
+          {% if user.is_authenticated %}
+               <div>{{ user.get_username }}님, 안녕하세요</div>
+               <div>학교: {{ user.profile.college }}</div>
+               <div>전공: {{ user.profile.major }}</div>
+               <div>나이: {{ user.profile.age }}</div>
+               <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+          {% else %}
+               <a href="{% url 'signup' %}">회원가입</a>
+               <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+          {% endif %}
+      </div>
+      
+  </header>
   {% block content %}
   {% endblock %}
   </body>
