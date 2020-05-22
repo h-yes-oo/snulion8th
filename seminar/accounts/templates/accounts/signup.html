@@ -1,25 +1,28 @@
 <!-- accounts/templates/accounts/signup.html -->
-<h1> Sign Up! </h1>
-
-{{ error }} </br></br>
-<form method="POST" action="{% url 'signup' %}">
-    {% csrf_token %}
-    사용자 이름: <br>
-    <input name="username" type="text" required><br><br>
-    비밀번호:<br>
-    <input name="password1" type="password" required><br><br>
-    비밀번호 확인:<br>
-    <input name="password2" type="password" required><br><br>
-    학교: <br> 
-    <input name="college" type="text"><br><br>
-    전공: <br> 
-    <input name="major" type="text"><br><br> 
-    이메일: <br>
-    <input name="email" type="text"><br><br>
-    생일: <br>
-    <input name="birthday" type="date" placeholder="YYYY-MM-DD" 
-    value="{{ form.birthday }}" pattern="\d{4}-\d{1,2}-\d{1,2}" required><br><br>
-    주소: <br> 
-    <input name="address" type="text"><br><br>
-    <input type="submit" value="Sign Up">
-</form>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="feed-block">
+        <div class="content"> 회원가입 </div>
+        <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <div class="title"> 사용자 이름 </div>
+            <input name="username" type="text" required><br><br>
+            <div class="title"> 비밀번호 </div>
+            <input name="password1" type="password" required><br><br>
+            <div class="title"> 비밀번호 확인</div>
+            <input name="password2" type="password" required><br><br>
+            <div class="title"> 학교 </div> 
+            <input name="college" type="text"><br><br>
+            <div class="title"> 전공 </div> 
+            <input name="major" type="text"><br><br> 
+            <div class="title"> 이메일 </div>
+            <input name="email" type="text"><br><br>
+            <div class="title"> 생일</div>
+            <input name="birthday" type="date" placeholder="YYYY-MM-DD" 
+            value="{{ form.birthday }}" pattern="\d{4}-\d{1,2}-\d{1,2}" required><br><br>
+            <div class="title"> 주소 </div> 
+            <input name="address" type="text"><br><br>
+            <button type="submit">Sign Up</button>
+        </form> 
+    </div>
+{% endblock content %}

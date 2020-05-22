@@ -9,30 +9,38 @@
         <link rel="stylesheet" href="{% static 'feedpage/style.css' %}">
     </head>
     <header>
-        <div class="feed-name">Snulion Feed Page </div> 
+        <div class="feed-name">Snulion Feed Page</div> 
         <div class="user-info">
             {% if user.is_authenticated %}
                 <div class="user-button">
+                    <div class="user-name"> {{ user.get_username }}님, 안녕하세요 </br></div>
                     <a href="{% url 'profile_edit' user.id %}">
                         <button>정보수정</button></a> </br>
-                    <a href="{% url 'logout' %}?next={{request.path}}">
+                    <a href="{% url 'logout' %}">
                         <button>로그아웃</button></a> </br>
                 </div>
-                {{ user.get_username }}님, 안녕하세요 </br> 
-                학교: {{ user.profile.college }} </br>
-                전공: {{ user.profile.major }} </br> 
-                이메일: {{ user.profile.email }} </br>
-                생일: {{ user.profile.birthday }} </br> 
-                주소: {{ user.profile.address }} </br>
+                <div class="user-profile">
+                    대학: {{ user.profile.college }} university</br>
+                    전공: {{ user.profile.major }} </br> 
+                    이메일: {{ user.profile.email }} </br>
+                    생일: {{ user.profile.birthday }} </br> 
+                    주소: {{ user.profile.address }} </br>
+                </div>
                 {% comment %} 
                     ?next={{request.path}}를 지우면, 만든 logout page로 redirect. 
                 {% endcomment %}
             {% else %}
-                <a href="{% url 'signup' %}">회원가입</a>
-                <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
-                {% comment %} 
-                    ?next={{request.path}}는 login 시의 접속 데이터를 기록해준다. 
-                {% endcomment %}
+                <div class="user-button">
+                    <a href="{% url 'signup' %}">
+                        <button>회원가입</button>
+                    </a>
+                    <a href="{% url 'login'%}?next={{request.path}}">
+                        <button>로그인</button>
+                    </a>
+                    {% comment %} 
+                        ?next={{request.path}}는 login 시의 접속 데이터를 기록해준다. 
+                    {% endcomment %}
+                </div>
             {% endif %}
         </div>
     </header>
