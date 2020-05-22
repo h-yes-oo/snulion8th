@@ -7,10 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&family=Sunflower:wght@300;500;700&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'feedpage/style.css' %}">
+    <!-- <script>
+      function click(){
+        var header = document.getElementBy("id_header");
+        heder.style.animation-name = scale-up-hor-center, fade;
+        header.style.animation-duration = 1s, 1s;
+        header.animation-delay = 0.1s, 0.1s;
+        header.animation-fill-mode = both, both;
+        }
+    </script> -->
   </head>
   <body>
     
-      <header>
+      <header id="id_header">
         {% if user.is_authenticated %}
         <div class="div_header">
           <div class="div1"> <a href="/feeds"> SNU LION </a></div>

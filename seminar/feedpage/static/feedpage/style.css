@@ -2,7 +2,14 @@
 @-keyframes scale-up-hor-center{0%{-webkit-transform:scaleX(.4);transform:scaleX(.4)}100%{-webkit-transform:scaleX(1);transform:scaleX(1)}}@keyframes scale-up-hor-center{0%{-webkit-transform:scaleX(.4);transform:scaleX(.4)}100%{-webkit-transform:scaleX(1);transform:scaleX(1)}}
 @-keyframes slide-in-fwd-center{0%{-webkit-transform:translateZ(-1400px);transform:translateZ(-1400px);opacity:0}100%{-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}@keyframes slide-in-fwd-center{0%{-webkit-transform:translateZ(-1400px);transform:translateZ(-1400px);opacity:0}100%{-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}
 @-keyframes focus-in-expand{0%{letter-spacing:-.5em;-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}@keyframes focus-in-expand{0%{letter-spacing:-.5em;-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}
-
+@keyframes fade{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
 
 
 body{
@@ -16,10 +23,10 @@ header{
     padding:10px;
     background-color: rgb(231, 231, 231);
     height: 60px;
-    animation-name: scale-up-hor-center;
-    animation-duration: 1s;
-    animation-delay:0.1s;
-    animation-fill-mode: none;
+    animation-name: scale-up-hor-center, fade;
+    animation-duration: 1s, 1s;
+    animation-delay:0.1s, 0.1s;
+    animation-fill-mode: both, both;
     }
 
 a:hover{
@@ -40,10 +47,10 @@ a{
     letter-spacing: 3px;
     position: relative;
     top:8px;
-    animation-name: scale-up-hor-center;
+    animation-name: fade;
     animation-duration: 1s;
-    animation-delay:0.1s;
-    animation-fill-mode: none;
+    animation-delay: 1.2s;
+    animation-fill-mode: both;
 }
 
 
@@ -101,10 +108,10 @@ a{
     color:black;
     letter-spacing: 10px;
     margin-bottom: 0;
-    animation-name: focus-in-expand;
-    animation-duration: 1s;
-    animation-delay:0.1s;
-    animation-fill-mode: none;
+    animation-name: focus-in-expand, fade;
+    animation-duration: 1s, 1s;
+    animation-delay: 1.8s, 1.8s;
+    animation-fill-mode:both, both;
 }
 
 .new{
@@ -118,6 +125,11 @@ a{
     margin-top: 30px;
     text-align: right;
     margin-bottom: 50px;
+    animation-name:fade;
+    animation-duration: 0.5s;
+    animation-delay: 2s;
+    animation-fill-mode: both;
+    
 }
 
 .new_div a{
@@ -160,6 +172,10 @@ a{
     font-family: 'Mukta';
     font-weight: 400;
     letter-spacing: 2px;
+    animation-name:fade;
+    animation-duration: 0.5s;
+    animation-delay: 2s;
+    animation-fill-mode: both;
 }
 
 .new_feed .feed1{
@@ -193,6 +209,10 @@ a{
     display: flex;
     justify-content: center;
     left: -10%;
+    animation-name:fade;
+    animation-duration: 0.5s;
+    animation-delay: 1.8s;
+    animation-fill-mode: both;
 }
 
 .signup form{
@@ -246,6 +266,10 @@ a{
     display: flex;
     justify-content: center;
     left: -10%;
+    animation-name:fade;
+    animation-duration: 0.5s;
+    animation-delay: 1.8s;
+    animation-fill-mode: both;
 }
 
 .login_form form{
@@ -317,6 +341,10 @@ a{
     position: relative;
     margin: 10px;
     letter-spacing: 1px;
+    animation-name:fade;
+    animation-duration: 0.5s;
+    animation-delay: 2s;
+    animation-fill-mode: both;
 }
 
 .profile a{
@@ -332,6 +360,10 @@ a{
 .new{
     display: flex;
     justify-content: space-evenly;
+    animation-name:fade;
+    animation-duration: 0.5s;
+    animation-delay: 1.8s;
+    animation-fill-mode: both;
 }
 
 .new h1{
@@ -390,6 +422,10 @@ a{
     justify-content: space-evenly;
     position: relative;
     top:50px;
+    animation-name:fade;
+    animation-duration: 0.5s;
+    animation-delay: 1.8s;
+    animation-fill-mode: both;
 }
 
 .edit h1{
@@ -457,6 +493,10 @@ a{
     font-family: 'Mukta';
     font-weight: 400;
     letter-spacing: 2px;
+    animation-name:fade;
+    animation-duration: 0.5s;
+    animation-delay: 1.8s;
+    animation-fill-mode: both;
 }
 
 .show_1{
