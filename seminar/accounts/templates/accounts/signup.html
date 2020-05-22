@@ -3,6 +3,7 @@
 {% block content %}
     <div class="feed-block">
         <div class="content"> 회원가입 </div>
+        {{ error }}<br>
         <form method="POST" action="{% url 'signup' %}">
             {% csrf_token %}
             <div class="title"> 사용자 이름 </div>
