@@ -35,6 +35,4 @@ def delete(request, id):
 def edit(request, id):
     feed = Feed.objects.get(id=id)
     return render(request, 'feedpage/edit.html', {'feed':feed})
-
-
     
