@@ -3,7 +3,8 @@ from django.utils import timezone
 from faker import Faker
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save  
-from django.dispatch import receiver   
+from django.dispatch import receiver
+
 # Create your models here.
 
 class Profile(models.Model):   
@@ -22,3 +23,13 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):  
         instance.profile.save()
+
+    def seed(count): # 추가
+        myfake = Faker()
+        for i in range(count):
+            user = User.objects.create_user(username=myfake.name(), password=myfake.password())
+            profile=user.profile
+            profile.college=myfake.words()[0][:3]
+            profile.major=myfake.words()[0][:3]
+            profile.mbti=myfake.words()[0][:4]
+            profile.save()
