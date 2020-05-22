@@ -10,6 +10,10 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:
             user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
             auth.login(request, user)
+            Profile.objects.filter(user=user).update(\
+            college  =request.POST['college'],\
+            major    =request.POST['major'],\
+            birthday =request.POST['birthday'])
             return redirect('/feeds')
     return render(request, 'accounts/signup.html')
 
