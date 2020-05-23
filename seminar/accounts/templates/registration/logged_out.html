@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="feed-block">
+        <div class="content">로그아웃되었습니다.</div>
+        <a href="{% url 'login' %}">
+            <button type="submit">다시 로그인하기</button>
+        </a>
+    </div> 
+{% endblock content %}

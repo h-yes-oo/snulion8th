@@ -1,0 +1,118 @@
+* {
+    background-color:white; 
+}
+
+button {
+    border-radius: 15px;
+    border: none;
+    margin-left: 10px;
+    color: #800080;
+    background-color: #FFF0F5;
+}
+
+button:hover {
+    background-color: #800080;
+    color: white;
+}
+
+header {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+header .user-info {
+    display: flex;
+    margin-top: -20px;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+header .user-info .user-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    color: #800080;
+    background-color: transparent;
+}
+
+header .user-info .user-profile {
+    color: #800080;
+    font-size: 12px;
+    font-weight: bold; 
+    border: 3px solid #FFF0F5;
+    border-radius: 15px;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+header .user-info .user-name {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.feed-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.feed-head button {
+    margin-left: 10px;
+}
+
+.feed-name {
+    color:  #9400D3;
+    font-size: 20px;
+}
+
+.feed-name2 {
+    color:  rgb(126, 36, 165);
+    font-size: 20px;
+    justify-content: center;
+}
+.feed-block {
+    border: 2px solid #9400D3;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.feed-block .title {
+    color: #9400D3;
+    font-weight: bold; 
+    padding: 5px;
+}
+
+.feed-block .content {
+    color: #708090;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.feed-block .feed-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -30px;
+    margin-bottom: 10px;
+}
+.new-feed .head {
+    color:  #9400D3;
+}
+
+.submit {
+    display: flex;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+input {
+    border-radius: 10px;
+    padding: 10px;
+    border: 3px solid #FFF0F5;
+}
+
+input:focus {
+    outline: none;
+}

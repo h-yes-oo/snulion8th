@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>feed page</h1>
-    <a href="{% url 'new' %}">new feed</a>
-    {% for feed in feeds %} 
-    <div style="border: 1px solid grey;">
-        <a href="{% url 'show' feed.id %}">더보기</a>
-        <a href="{% url 'delete' feed.id %}">삭제</a>
-        <p>{{ feed.title }}</p>
-        <p>{{ feed.content }}</p>
+    <div class="feed-head">
+        <div class="feed-name2">SNULION FEED</div>
+        <a href="{% url 'new' %}">
+            <button>new feed</button>
+        </a>
     </div>
-    {% endfor %} <!-- for를 end시킨다는 뜻! 여기서는 들여쓰기로 끝을 못 내니 -->
+    <div class="feeds">
+        {% for feed in feeds %} 
+        <div class="feed-block">
+            <div class="title">"{{ feed.title }}"</div>
+            <div class="feed-button">
+                <a href="{% url 'show' feed.id %}">
+                    <button>더보기</button>
+                </a>
+                <a href="{% url 'delete' feed.id %}" 
+                    onclick="return confirm('정말 삭제하시겠습니까?')">
+                    <button>삭제</button>
+                </a>
+            </div>
+            <div class="content">{{ feed.content }}</div>
+        </div>
+        {% endfor %} <!-- for를 end시킨다는 뜻! 여기서는 들여쓰기로 끝을 못 내니 -->
+    </div>
 {% endblock content %}

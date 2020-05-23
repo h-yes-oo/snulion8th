@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div>
-        <a href="{% url 'index' %}">home</a>
-        <a href="{% url 'edit' feed.id %}">edit</a>
-        <p>{{ feed.title }}</p>
-        <p>{{ feed.content }}</p>
+    <a href="{% url 'index' %}"><button>home</button></a>
+    <a href="{% url 'edit' feed.id %}"><button>edit</button></a>
+    <div class="feed-block">
+        <div class="title">
+            <p>제목: "{{ feed.title }}"</p>
+        </div>
+        <div class="content">
+            <p>내용: {{ feed.content }}</p>
+        </div>
     </div>
 {% endblock content %}
