@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>snulion</title>
+  </head>
+  <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">
+    Snulion Feeds
+  </header>
+  <body>
+    <h1>User Edit</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        {% bootstrap_form user_change_form %}
+        <input type="submit" value="Submit"/>
+    </form>
+  </body>
+
+
+<a href="{% url 'accounts:delete' %}" class="btn btn-danger">회원탈퇴</a>
+<a href="{% url 'accounts:password' %}">비밀밀호 변경</a>

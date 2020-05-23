@@ -26,16 +26,20 @@ def delete(request, id):
     feed.delete()
     return redirect('/feeds')
 
-def edit(request, id):
+'''def edit(request, id):
     feed=Feed.objects.get(id=id)
     return render(request, 'feedpage/edit.html', {'feed':feed})
+'''
+def edit(request, id):
+    if request.method=='GET':
+        feed=Feed.objects.get(id=id)
+        return render(request, 'feedpage/edit.html', {'feed':feed})
+    elif request.method=='POST':
+        feed=Feed.objects.get(id=id)
+        if len(request.POST["title"])!=0:
+            feed.title=request.POST["title"]
+        if len(request.POST["content"])!=0:
+            feed.content=request.POST["content"]
+        feed.save()
+        return redirect('/feeds')
 
-def update(request, id):
-    feed=Feed.objects.get(id=id)
-    if len(request.POST["title"])!=0:
-        feed.title=request.POST["title"]
-    if len(request.POST["content"])!=0:
-        feed.content=request.POST["content"]
-    feed.save()
-    #확인
-    return redirect('/feeds')

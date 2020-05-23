@@ -3,11 +3,13 @@
         <h1>feed page</h1>
         <a href="/feeds/new">new feed</a>
     {% for feed in feeds %} 
-      <div style="border: 1px solid grey;">
-        <a href="/feeds/{{ feed.id }}">더보기</a>
-        <a href="/feeds/{{ feed.id }}/delete">삭제</a>
-        <p>{{ feed.title }}</p>
-        <p>{{ feed.content }}</p>
+     <div class="feeds">
+      <div class="feed">
+        <a class="learn-more" href="/feeds/{{ feed.id }}">더보기</a>
+        <a class="delete" href="/feeds/{{ feed.id }}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+        <p class='title '>{{ feed.title }}</p>
+        <p class='content'>{{ feed.content }}</p>
       </div>
+     </div>      
     {% endfor %}
 {% endblock content%}

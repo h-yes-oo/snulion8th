@@ -1,0 +1,9 @@
+
+<h1>로그인</h1>
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="{{next}}" />
+    <input type="submit" value="로그인" />
+</form>
+<!--django.contrib.를 사용할 때 장고가 registration이라는 폴더를 찾아감-->
