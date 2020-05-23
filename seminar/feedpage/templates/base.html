@@ -3,19 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>snulion</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'feedpage/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header style="width: 100%; background-color:mediumslateblue; color: white; text-align: left;">
-      <div style="text-align: right;">
-        {% if user.is_authenticated %}
-          {{ user.get_username }}님, 안녕하세요
-          <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
-        {% else %}
-          <a href="{% url 'signup' %}">회원가입</a>
-          <a href="{% url 'login' %}?next={{request.path}}">로그인</a>
-        {% endif %}
+    <header>
+      <div class="header-inner">
+        <div class="header-text-logo">Snulion Feeds</div>
+        <div class="header-inner-box" style="text-align: right;">
+          {% if user.is_authenticated %}
+            {{ user.get_username }}님, 안녕하세요
+            <br>
+            학교: {{ user.profile.college }}
+            <br>
+            전공: {{ user.profile.major }}
+            <br>
+            <a href="{% url 'logout' %}?next={{request.path}}">로그아웃</a>
+          {% else %}
+            <a href="{% url 'signup' %}">회원가입</a>
+            <a href="{% url 'login' %}?next={{request.path}}">로그인</a>
+          {% endif %}
+        </div>
       </div>
-      Snulion Feed Page
     </header>
   {% block content %}
   {% endblock %}
