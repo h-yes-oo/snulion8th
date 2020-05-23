@@ -12,6 +12,7 @@ class Profile(models.Model):
     major = models.CharField(max_length=20, blank=True)
     email = models.CharField(max_length=20, blank=True)
     post = models.CharField(max_length=20, blank=True)
+    follows = models.ManyToManyField('self', through = 'Follow', blank=True, related_name = 'followed', symmetrical=False)
 
     def __str__(self):
         return 'id=%d, user_id=%id, college=%s, major=%s, email=%s, post=%s' % (self.id, self.user.id, self.college, self.major, self.email, self.post)
@@ -24,3 +25,10 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+class Follow(models.Model):
+    follow_to = models.ForeignKey(Profile, related_name = 'follow_from', on_delete=models.CASCADE)
+    follow_from = models.ForeignKey(Profile, related_name = 'follow_to', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{} follows {}'.format(self.follow_from, self.follow_to)
