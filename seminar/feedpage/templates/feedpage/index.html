@@ -1,0 +1,19 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>feed page</h1>
+    <a href="/feeds/new">new feed</a>
+    {% for feed in feeds %}
+        <div style="border: 1px solid grey;">
+            <a href="/feeds/{{ feed.id }}">더보기</a>
+            <a href="/feeds/{{ feed.id }}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+            <p>{{ feed.title }}</p>
+            <p>{{ feed.content }}</p>
+        </div>
+    {% endfor %}
+    {% endblock content %}
+ <!-- for를 end시킨다는 뜻! 여기서는 들여쓰기로 끝을 못 내니 -->
+</body>
+</html>
+
