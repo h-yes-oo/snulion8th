@@ -17,6 +17,9 @@
         <div>학교: {{ user.profile.college }}</div>
         <div>전공: {{ user.profile.major }}</div>
         <div>나이: {{ user.profile.age }}</div>
+        <div style="text-align: right">              
+          내가 좋아한 글 : {{ user.like_feeds.count }}개
+        </div>
         <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
         {% else %}
         <a href="{% url 'signup' %}">회원가입</a>
@@ -24,6 +27,7 @@
         {% endif %}
       </div>
     </header>
-    {% block content %} {% endblock %}
+    {% block content %}
+    {% endblock %}
   </body>
 </html>
