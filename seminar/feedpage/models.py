@@ -3,6 +3,8 @@
 from django.db import models
 from django.utils import timezone # 장고는 created_at과 updated_at을 알아서 만들어 주지 않음. id는 만들어 줌
 
+
+
 # Create your models here.
 class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x) Feed(O))
     # id는 자동 추가
@@ -17,3 +19,11 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
 
     def __str__(self):
         return self.title
+
+class FeedComment(models.Model):
+    content =models.TextField()
+    feed= models.ForeignKey(Feed, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self):
+        return str(self.id)

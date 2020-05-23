@@ -18,9 +18,14 @@ from django.contrib import admin
 from django.urls import path
 import feedpage.views      #추가
 from django.conf.urls import include # 새로 추가
+import accounts.views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', feedpage.views.index, name='index'),   #추가
     path('feeds/', include('feedpage.urls')),
-]
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', accounts.views.signup, name='signup'),
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
