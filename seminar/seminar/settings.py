@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feedpage.apps.FeedpageConfig',
-    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +125,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'seminar', 'static'),
 )
 LOGIN_REDIRECT_URL = "/feeds/"
+LOGOUT_REDIRECT_URL = None
