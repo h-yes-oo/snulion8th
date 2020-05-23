@@ -20,6 +20,9 @@ class Profile(models.Model):
     birthday = models.DateField(blank = True, null=True)
     address = models.CharField(max_length=100, blank = True)
 
+    follows = models.ManyToManyField('self', through = 'Follow', \
+            blank=True, related_name = 'followed', symmetrical=False)
+
     def __str__(self):   
         ''' 
         string fommatting 
@@ -62,3 +65,14 @@ class Profile(models.Model):
             Profile.objects.filter(user=user).update(college=college,\
                 major=major, email=email, birthday=birthday, address=address)
         
+
+class Follow(models.Model): 
+    # 서로 연결해주기 위해서는 related_name이 반대되는 것이어야 한다. 
+    follow_to = models.ForeignKey(Profile, related_name = 'follow_from', on_delete=models.CASCADE)
+    follow_from = models.ForeignKey(Profile, related_name = 'follow_to', on_delete=models.CASCADE)
+    follows = models.ManyToManyField('self', through = 'Follow', blank=True, \
+                                        related_name = 'followed', symmetrical=False)
+                                        # symmetrical이 true일 때에는 양방향으로 모두 친구여야한다. 
+                                        # 여기서는 단방향이 가능하므로 false로 설정
+    def __str__(self):
+        return '{} follows {}'.format(self.follow_from, self.follow_to)
