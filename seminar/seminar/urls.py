@@ -27,4 +27,5 @@ urlpatterns = [
     path('feeds/', include('feedpage.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', accounts.views.signup, name='signup'),
+    path('accounts/myinfoedit/', accounts.views.myinfoedit, name='myinfoedit')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

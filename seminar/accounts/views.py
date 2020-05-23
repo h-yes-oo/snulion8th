@@ -21,6 +21,18 @@ def signup(request):
             return redirect('/feeds/')
     return render(request, 'accounts/signup.html')
 
+def myinfoedit(request):
+    if request.method == 'POST':
+        user = request.user
+        profile = user.profile
+        profile.college = request.POST['college']
+        profile.major = request.POST['major']
+        profile.birthday = request.POST['birthday']
+        profile.sns = request.POST['sns']
+        user.save()
+        return redirect('/feeds')
+    return render(request, 'accounts/myinfoedit.html')
+
 # def login(request):
 #     if request.method == 'POST':
 #         username = request.POST['username']

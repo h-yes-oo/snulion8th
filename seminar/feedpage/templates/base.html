@@ -17,6 +17,8 @@
                 <br>
                 SNS 계정: {{user.profile.sns}}
                 <br>
+                <a href="{% url 'myinfoedit' %}">내 정보 수정</a>
+                <br>
                 <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
             {% else %}
                 <a href="{% url 'signup' %}">회원가입</a>
