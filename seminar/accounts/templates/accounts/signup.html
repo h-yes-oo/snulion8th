@@ -1,0 +1,41 @@
+<h1> Sign Up! </h1>
+
+<form method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+    사용자 이름:
+    <br>
+    <input name="username" type="text" value="김개똥">
+    <br>
+    <br>
+    비밀번호:
+    <br>
+    <input name="password1" type="password" value="*******">
+    <br>
+    <br>
+    비밀번호 확인:
+    <br>
+    <input name="password2" type="password" value="*******">
+    <br>
+    <br>
+    학교:
+    <br>
+    <input name="college" type="text" placeholder="서울대학교">
+    <br>
+    <br>
+    전공:
+    <br>
+    <input name="major" type="text" placeholder="멋쟁이 사자처럼">
+    <br>
+    <br>
+    생년월일:
+    <br>
+    <input name="birth" type="text" placeholder="1990/01/01">
+    <br>
+    <br>
+    SNS 주소:
+    <br>
+    <input name="sns" type="text" placeholder="snulion@instagram.com">
+    <br>
+    <br>
+    <input type="submit" value="Sign Up!" onclick="return confirm('가입 ㅊㅋㅊㅋ 수정이 필요하면 취소를 누르세여~')"">
+</form>

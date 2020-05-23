@@ -1,0 +1,8 @@
+<h1>로그인</h1>
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="{% url 'index' %}">홈페이지</a>
+    <input type="hidden" name="next" value="{{next}}">
+    <input type="submit" value="로그인">
+</form>
