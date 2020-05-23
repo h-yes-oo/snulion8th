@@ -16,7 +16,9 @@
                학교: {{ user.profile.college }}
               <br>
               전공: {{ user.profile.major }}
-              <br>
+              <br>               
+              내가 좋아한 글 : {{ user.like_feeds.count }}개    
+              <br>                                
               <a href="{% url 'logout'%}">로그아웃</a>
               <a href="/accounts/{{ user.id }}/changeinfo">정보 수정</a>
           {% else %}
