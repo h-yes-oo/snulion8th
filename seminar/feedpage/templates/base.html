@@ -23,6 +23,9 @@
             {{ user.get_username }}님, 안녕하세요
             </li>
             <li>
+            이메일: {{ user.email }}
+            </li>
+            <li>
             학교: {{ user.profile.college }}
             </li>
             <li> 
@@ -30,8 +33,13 @@
             </li>
             <li>
             생일: {{ user.profile.birthday }}
-            </li> 
+            </li>
+            <li>
+            <a href="{% url 'user_info' user.id %}">유저 정보</a> 
+            </li>
           </ul>
+          <div style = "text-align : left">
+            내가 좋아한 글: {{ user.like_feeds.count }}개
         </div> 
       </div>
     {% else %}
@@ -41,7 +49,7 @@
         </div>
         <div class="link">        
           <a href="{% url 'signup' %}">회원가입</a>
-          <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+          <a href="{% url 'login' %}?next={{request.path}}">로그인</a>
         </div>
       </div>
     {% endif %}
