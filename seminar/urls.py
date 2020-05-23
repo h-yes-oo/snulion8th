@@ -24,5 +24,6 @@ urlpatterns = [
     path('',feedpage.views.index,name='index'),
     path('feeds/', include('feedpage.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/',accounts.views.signup, name='signup')
+    path('accounts/signup/',accounts.views.signup, name='signup'),
+    path('accounts/<int:id>/changeinfo/',accounts.views.changeinfo,name='changeinfo'),
 ]

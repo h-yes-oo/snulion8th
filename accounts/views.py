@@ -30,3 +30,13 @@ def login(request):
 
 def logout(request):
     return render(request, 'accounts/logged_out.html')
+
+def changeinfo(request, id):
+    user=User.objects.get(id=id)
+    if request.method=='POST':
+        User.objects.filter(id=id).update(username=request.POST['username'])
+        Profile.objects.filter(user=user).update(college=request.POST['college'], major=request.POST['major'])
+        user.refresh_from_db()
+        return redirect('/feeds')
+    else:
+        return render(request, 'accounts/changeinfo.html')

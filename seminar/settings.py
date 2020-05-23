@@ -123,3 +123,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL="/feeds/"
+
+STATIC_URL = '/static/'
+STATIC_ROOT =  os.path.join(BASE_DIR, 'static') # 추가
+STATICFILES_DIRS = (
+	os.path.join(BASE_DIR, 'seminar', 'static'),
+)
