@@ -19,7 +19,11 @@
             <br>
             전공: {{ user.profile.major }}
             <br>
+            <div style="text-align: right">
+              내가 좋아한 글 : {{ user.like_feeds.count }}개
+            </div> 
             <a href="{% url 'logout' %}?next={{request.path}}">로그아웃</a>
+            {% comment %} <a href="{% url 'profile_update'%}">정보 수정</a> {% endcomment %}
           {% else %}
             <a href="{% url 'signup' %}">회원가입</a>
             <a href="{% url 'login' %}?next={{request.path}}">로그인</a>
