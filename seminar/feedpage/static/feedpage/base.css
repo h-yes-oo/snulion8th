@@ -10,6 +10,7 @@ a {
 .header {
     top:0;
     width:100%; 
+    height: 150px;
     background-color: #fff; 
     color:  mediumslateblue; 
     text-align: left;
@@ -21,8 +22,40 @@ a {
 
 }
 
+.title {
+    width: 20%;
+    margin-left:40%;
+    font-size: 30px;
+}
+
 .welcome {
     text-align:right;
+    margin-right:20px;
+    margin-top:10px;
+    font-size:14px;
+    
+
+}
+
+.logout {
+    border-radius: 22px !important;
+    margin-left:1200px;
+    
+}
+
+.logout:hover {
+    background-color: rgb(220, 220, 220);
+   
+}
+
+.logtext {
+  
+    margin-right:5px;
+    
+}
+
+.logtext:hover {
+    text-decoration-color: #fff;
 }
 
 .editview {

@@ -10,11 +10,11 @@ class Profile(models.Model):   # 추가
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     college = models.CharField(max_length=20, blank=True)
     major = models.CharField(max_length=20, blank=True)
-    birthday = models.CharField(max_length=20, blank=True)
-    snsaddress = models.CharField(max_length=20, blank=True)
+    hobby = models.CharField(max_length=20, blank=True)
+    instaid = models.CharField(max_length=20, blank=True)
 
     def __str__(self):   # 추가
-        return 'id=%d, user_id=%d, college=%s, major=%s, birthday=%s, snsaddress=%s' % (self.id, self.user.id, self.college, self.major, self.birthday, self.snsaddress)
+        return 'id=%d, user_id=%d, college=%s, major=%s, hobby=%s, instaaddress=%s' % (self.id, self.user.id, self.college, self.major, self.hobby, self.instaaddress)
         # return f'id={self.id}, user_id={sefl.user_id}, college={self.college}, major={self.major}'
         # 아래 코드와 동일함
         # return 'id=' + self.id + 'user_id=' + self.user.id + ', ' + 'college=' + self.college + ', ' + 'major=' + self.major
