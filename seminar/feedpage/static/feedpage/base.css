@@ -1,0 +1,35 @@
+* {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+   }
+
+.header {
+    top:0;
+    width:100%; 
+    background-color: #fff; 
+    color:  mediumslateblue; 
+    text-align: left;
+    position: fixed;
+    border-bottom: 0.5px solid rgb(220, 220, 220);
+    box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, 0.02) ;
+    z-index: 5;
+
+
+}
+
+.welcome {
+    text-align:right;
+}
+
+.editview {
+    top : 200px;
+}
+
+.showview {
+    position: absolute;
+    top:100px;
+}

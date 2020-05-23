@@ -23,11 +23,11 @@ def show(request, id):
         feed=Feed.objects.get(id=id)
         return render(request, 'feedpage/show.html', {'feed':feed})
     elif request.method == 'POST':
-        feed = Feed.objects.get(id=id)
-        feed.title = request.POST['title']
-        feed.content = request.POST['content']
-        feed.update_date()
-        return render(request, 'feedpage/show.html', {'feed':feed})
+        # Feed.objects.all()
+        title = request.POST['title']
+        content = request.POST['content']
+        Feed.objects.filter(id=id).update(title=title, content=content)
+        return redirect("/feeds/%d/" %id)
 
 def delete(request, id):
     feed = Feed.objects.get(id=id)
