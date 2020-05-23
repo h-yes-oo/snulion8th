@@ -26,10 +26,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('',feedpage.views.index, name='index'),
-    path('feeds/', include('feedpage.url')), #feed/까지 자르고 feedpage.url.py 로 보냄
-    # path('accounts/', include('accounts.urls')), #추가
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', accounts.views.signup, name='signup'),
-    path('accounts/modify/', accounts.views.modify, name='modify'),
+    path('',feedpage.views.index, name='index'),
+    path('feeds/', include('feedpage.urls')), #feed/까지 자르고 feedpage.url.py 로 보냄
+    path('accounts/', include('django.contrib.auth.urls')) , #추가
+    path('accounts/', include('accounts.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 

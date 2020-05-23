@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from accounts.models import Profile
+from accounts.models import Profile, Follow
 from django.contrib import auth
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
@@ -27,7 +27,7 @@ def signup(request):
     return render(request, 'accounts/signup.html')
 
 
-def modify(request):
+def mypage(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
             user = request.user
@@ -36,7 +36,7 @@ def modify(request):
             if request.POST['password1']==request.POST['password2']:
                 password=request.POST['password1']
             else:
-                return render(request, 'accounts/modify_pwfail.html')
+                return render(request, 'accounts/mypage_pwfail.html')
             user.save()
 
             user.profile.college=request.POST['college']
@@ -45,7 +45,27 @@ def modify(request):
             user.profile.email=request.POST['email']
             user.profile.save()
         return redirect('/feeds/')
-    return render(request, 'accounts/modify.html')
+    return render(request, 'accounts/mypage.html')
+
+
+def follow_manager(request, pk):
+    follow_from = Profile.objects.get(user_id = request.user.id)
+    follow_to = Profile.objects.get(user_id = pk)
+
+    try:
+        following_already = Follow.objects.get(follow_from=follow_from, follow_to=follow_to)
+    except Follow.DoesNotExist:
+        following_already = None
+
+    if following_already:
+        following_already.delete()
+    else:
+        # Follow.objects.create(follow_from=follow_from, follow_to=follow_to)
+        f = Follow()
+        f.follow_from, f.follow_to = follow_from, follow_to
+        f.save()
+
+    return redirect('/feeds')
 
 
 # def login(request):
