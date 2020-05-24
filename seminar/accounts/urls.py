@@ -4,10 +4,8 @@ from accounts import views
 
 urlpatterns = [
     path('signup/', views.signup, name='signup'),
+    path('edit/', views.edit, name='mypage'),
+    path('<int:pk>/follow/', views.follow_manager, name='follow'),  ##<-추가
     # path('login/', views.login, name='login'),
     # path('logout/', views.logout, name='logout'),
-    path('mypage/', views.mypage, name='mypage'),
-    path('<int:pk>/follow/', views.follow_manager, name='follow'),  ##<-추가
-
-    # path('login/', views.edit, name='edit'),
 ]

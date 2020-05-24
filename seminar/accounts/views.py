@@ -27,7 +27,7 @@ def signup(request):
     return render(request, 'accounts/signup.html')
 
 
-def mypage(request):
+def edit(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
             user = request.user
@@ -36,7 +36,7 @@ def mypage(request):
             if request.POST['password1']==request.POST['password2']:
                 password=request.POST['password1']
             else:
-                return render(request, 'accounts/mypage_pwfail.html')
+                return render(request, 'accounts/edit_pwfail.html')
             user.save()
 
             user.profile.college=request.POST['college']
@@ -45,7 +45,7 @@ def mypage(request):
             user.profile.email=request.POST['email']
             user.profile.save()
         return redirect('/feeds/')
-    return render(request, 'accounts/mypage.html')
+    return render(request, 'accounts/edit.html')
 
 
 def follow_manager(request, pk):

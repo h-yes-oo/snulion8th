@@ -28,14 +28,11 @@ def show(request, id):
         return render(request, 'feedpage/show.html', {'feed':feed})
     
     elif request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        # Feed.objects.update(id=id, title=title, content=content)
+        feed.title = request.POST['title']
+        feed.content = request.POST['content']
         feed.update_date()
         feed.save()
-        # Feed.objects.update(title=feed.title, content=feed.content)
         return render(request, 'feedpage/show.html', {'feed':feed})
-        # return redirect('/feeds/%d' %feed.id)
 
 def delete(request, id):
     feed = Feed.objects.get(id=id)
