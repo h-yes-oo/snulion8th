@@ -27,17 +27,26 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
     def editContent(self,ncontent):
         self.content=ncontent
         self.save()
+    
+    def like_list(self):
+        for c in feed.feedcomment_set.all:
+            a=[]
+            a.append(c.like_users.count)
+            a.sort(False)
+        return a
 
 class FeedComment(models.Model):
     content = models.TextField()
     feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    like_users = models.ManyToManyField(User, blank=True, related_name='like_comment', through='Like')
 
     def __str__(self):
         return str(self.id)
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
+    feed = models.ForeignKey(Feed, blank=True, null=True, on_delete=models.CASCADE)
+    comment=models.ForeignKey(FeedComment,blank=True,null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

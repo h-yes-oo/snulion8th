@@ -26,6 +26,7 @@
         {% endif %}
       </p>
         {% for c in feed.feedcomment_set.all %}
+        <a href="/feeds/{{ c.id }}/like_comment">{{ c.like_users.count }} Likes</a>
       <p>{{ c.content }}</p>
       {% if request.user == feed.author %} 
       <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">

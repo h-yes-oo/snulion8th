@@ -53,3 +53,12 @@ def feed_like(request, pk):
     else:
         Like.objects.create(user_id=request.user.id, feed_id=feed.id)
     return redirect('/feeds')
+
+def comment_like(request, pk):
+    comment=FeedComment.objects.get(id=pk)
+    comment_like_list=comment.like_set.filter(user_id=request.user.id)
+    if comment_like_list.count()>0:
+        comment.like_set.get(user_id=request.user.id).delete()
+    else:
+        Like.objects.create(user_id=request.user.id, comment_id=comment.id)
+    return redirect('/feeds')
