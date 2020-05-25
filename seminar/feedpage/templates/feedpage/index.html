@@ -21,10 +21,8 @@
                     (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }})
                     {% if user.is_authenticated %}
                         {% if request.user != feed.author %}
-                            
                             {% comment %} <p>{{ request.user.profile }}</p>
                             <p>{{ feed.author.profile.followed.all}}</p> {% endcomment %}
-                            
                             <a href="/accounts/{{ feed.author.id }}/follow">
                             {% if request.user.profile not in feed.author.profile.followed.all %}
                                 팔로우
@@ -38,8 +36,8 @@
                 </p>
 
                 {%for c in feed.feedcomment_set.all%}
-                    <p>{{c.content}}</p>
-                    {% if request.user == feed.author %} 
+                    <p>{{c.author}}: {{c.content}}</p>
+                    {% if request.user == c.author %} 
                         <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
                             {% csrf_token %}
                             <button>댓글 삭제</button>
