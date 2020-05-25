@@ -21,15 +21,18 @@
                     (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }})
                     {% if user.is_authenticated %}
                         {% if request.user != feed.author %}
+                            
+                            {% comment %} <p>{{ request.user.profile }}</p>
+                            <p>{{ feed.author.profile.followed.all}}</p> {% endcomment %}
+                            
                             <a href="/accounts/{{ feed.author.id }}/follow">
-                            {% if request.user.profile not in feed.author.profile.follows.all %}
-                                <p>{{ request.user.profile }}</p>
-                                <p>{{ feed.author.profile.follows }}</p>
+                            {% if request.user.profile not in feed.author.profile.followed.all %}
                                 팔로우
                             {% else %}
                                 팔로우 취소
                             {% endif %}
                             </a>
+                            <p>제목</p>
                         {% endif %}
                     {% endif %}
                 </p>
