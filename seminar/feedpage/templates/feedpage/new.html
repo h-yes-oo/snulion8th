@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <body>
+    <h1>new feed</h1>
+    {% comment %} /feeds/ 가 url.py 에서 index.html로 넘어가게 한다. {% endcomment %}
+    <form action="/feeds/" method="POST"> 
+      {% csrf_token %}
+      <p>title</p>
+      <input name="title" /> <br />
+      <p>content</p>
+      <input name="content" /> <br />
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+{% endblock content %}

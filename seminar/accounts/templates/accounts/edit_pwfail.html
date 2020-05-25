@@ -1,0 +1,44 @@
+<!-- accounts/templates/accounts/signup.html -->
+<h1> Modify </h1>
+
+<form method="POST" action="{%url 'mypage' %}">
+    {% csrf_token %}
+    사용자 이름 변경:
+    <br>
+    <input name="username" type="text" value="{{ user.get_username }}" placeholder="{{ user.get_username }}">
+    <br>
+    <br>
+    비밀번호 변경:
+    <br>
+    <input name="password1" type="password" value="{{ user.get_password }}" placeholder="********">
+    <br>
+    <br>
+    비밀번호 확인:
+    <br>
+    <input name="password2" type="password" value="" placeholder="********">
+    <br>
+    <br>
+    학교:
+    <br>
+    <input name="college" type="text" value="{{ user.profile.college }}" placeholder="{{ user.profile.college }}" >
+    <br>
+    <br>
+    전공:
+    <br>
+    <input name="major" type="text" value="{{ user.profile.major }}" placeholder="{{ user.profile.major }}" >
+    <br>
+    <br>
+    생년월일:
+    <br>
+    <input name="birth" type="date" value="{{ user.profile.birth }}" placeholder="{{ user.profile.birth }}" >
+    <br>
+    <br>
+    이메일:
+    <br>
+    <input name="email" type="email" value="{{ user.profile.email }}" placeholder="{{ user.profile.email }}" >
+    <br>
+    <br> 
+    <input type="submit" value="Modify!">
+    비밀번호가 틀립니다!
+
+</form>

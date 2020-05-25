@@ -1,0 +1,37 @@
+<!-- feedpage/templates/base.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>snulion</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'feedpage/style.css' %}"> <!-- 추가 --> 
+    
+  </head>
+  <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">Snulion Feed Page</header>
+  
+  <header>
+    <div style="text-align: right;">
+        {% if user.is_authenticated %}
+            <p> {{ user.get_username }}님, 안녕하세요 </p>
+            <p> 학교: {{ user.profile.college }} </p>
+            <p> 전공: {{ user.profile.major }} </p>
+            <p> 생일: {{ user.profile.birth }} </p>
+            <p> 이메일: {{ user.profile.email }} </p>
+            <p> 내가 좋아한 글 : {{ user.like_feeds.count }}개 </p>
+            <a href="{% url 'mypage' %}?next={{request.path}}">정보수정</a>
+            <a href="{% url 'logout' %}?next={{request.path}}">로그아웃</a>
+        {% else %}
+             <a href="{% url 'signup' %}">회원가입</a>
+             <a href="{% url 'login' %}?next={{request.path}}">로그인</a>
+        {% endif %}
+    </div>
+    <div class="title">Snulion Feeds</div>
+  </header>
+  
+  <body>
+  {% block content %}
+  {% endblock %}
+  </body>
+</html>
