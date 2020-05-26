@@ -10,9 +10,9 @@
 
       <form action="/feeds/{{ feed.id }}/" method="POST"> 
         {% csrf_token %}
-        <p>title</p>
+        <p><strong>TITLE</strong></p>
         <input name="title" value="{{ feed.title }}">
-        <p>content</p>
+        <p><strong>CONTENT</strong></p>
         <input name="content" value="{{ feed.content }}"><br />
         <input type="submit" value="submit" />
       </form>

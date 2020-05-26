@@ -7,15 +7,17 @@
         {%endif%}
         {% for feed in feeds %}
             <div class="">
+        
+                <p><strong>TITLE</strong></p>
+                <p>{{ feed.title }}</p>
+                <p><strong>CONTENT</strong></p>
+                <p>{{ feed.content }}</p>
+                
                 <a href="/feeds/{{ feed.id }}/like">{{ feed.like_users.count }} Likes</a>
                 <a href="/feeds/{{ feed.id }}">더보기</a>
-
                 {% if request.user == feed.author %} 
                     <a href="/feeds/{{ feed.id }}/delete" onClick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
                 {%endif%}
-                
-                <p>{{ feed.title }}</p>
-                <p>{{ feed.content }}</p>
                 
                 <p>작성자:<strong>{{feed.author.username}}</strong>
                     (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }})
@@ -30,7 +32,6 @@
                                 팔로우 취소
                             {% endif %}
                             </a>
-                            <p>제목</p>
                         {% endif %}
                     {% endif %}
                 </p>
