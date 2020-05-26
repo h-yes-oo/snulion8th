@@ -26,8 +26,9 @@ class FeedComment(models.Model):
     content = models.TextField()
     feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
-
     author = models.ForeignKey(User, null=True, on_delete= models.CASCADE)
+    
+    like_users = models.ManyToManyField(User, blank=True, related_name='like_comments', through='LikeComment')
 
     def __str__(self):
         return str(self.id)
@@ -36,4 +37,9 @@ class FeedComment(models.Model):
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class LikeComment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    feedcomment = models.ForeignKey(FeedComment, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -36,14 +36,21 @@
                 </p>
 
                 {%for c in feed.feedcomment_set.all%}
-                    <p>{{c.author}}: {{c.content}}</p>
-                    <a href="/feeds/{{ feed.id }}/like">{{ c.like_users.count }} Likes</a>
+                    <p>{{c.author}}: {{c.content}}
+
+                    <a href="/feeds/{{ feed.id }}/likecomment/{{c.id}}">{{ c.like_users.count }} Likes</a>
+                    
                     {% if request.user == c.author %} 
+                        <a href="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">댓글삭제</a>
+                    {%endif%}
+                    </p>
+                    {% comment %} {% if request.user == c.author %} 
                         <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
                             {% csrf_token %}
                             <button>댓글 삭제</button>
                         </form>
-                    {%endif%}
+                    {%endif%} {% endcomment %}
+                    
                 {% endfor %}
 
                 {%if user.is_authenticated%}

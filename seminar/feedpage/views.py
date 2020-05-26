@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Feed, FeedComment, Like
+from .models import Feed, FeedComment, Like, LikeComment
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
@@ -12,7 +12,8 @@ def index(request):
         title = request.POST['title']
         content = request.POST['content']
         feed=Feed.objects.create(title=title, content=content, author=request.user)
-        return redirect('/feeds/%d' %feed.id)
+        # return redirect('/feeds/%d' %feed.id)
+        return redirect('/feeds/')
 
     feeds = Feed.object.all()
     return render(request, 'feedpage/index.html', {'feeds':feeds})
@@ -63,4 +64,13 @@ def feed_like(request, pk):
         feed.like_set.get(user_id = request.user.id).delete()
     else:
         Like.objects.create(user_id = request.user.id, feed_id=feed.id)
+    return redirect('/feeds')
+
+def comment_like(request, pk, cid):
+    feedcomment = FeedComment.objects.get(id=cid)
+    like_list = feedcomment.likecomment_set.filter(user_id = request.user.id)
+    if like_list.count() > 0:
+        feedcomment.likecomment_set.get(user_id = request.user.id).delete()
+    else:
+        LikeComment.objects.create(user_id = request.user.id, feedcomment_id=feedcomment.id)
     return redirect('/feeds')
