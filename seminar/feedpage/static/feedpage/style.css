@@ -97,6 +97,12 @@ header .user-info .user-name {
     margin-top: -30px;
     margin-bottom: 10px;
 }
+
+.feed-block .comment-box {
+    display: flex;
+    flex-direction: column;
+}
+
 .new-feed .head {
     color:  #9400D3;
 }

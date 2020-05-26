@@ -30,7 +30,7 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
 class FeedComment(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-
+    like_users = models.ManyToManyField(User, blank=True, related_name='like_comments', through='CommentLike')
     feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
     # feed comment와 feed 연결로 feed가 삭제되는 경우에 댓글들로 다 삭제되도록,
     # => on_delete = models,CASCADE를 해준다. ㅎㅅㅎ
@@ -44,3 +44,7 @@ class Like(models.Model):
     feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+class CommentLike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.ForeignKey(FeedComment, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)

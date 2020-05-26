@@ -4,7 +4,6 @@ from django.contrib import auth
 from .models import Profile, Follow
 from django.shortcuts import redirect
 
-# Create your views here.
 def signup(request):
     if request.method  == 'POST':
         password1 = request.POST['password1']

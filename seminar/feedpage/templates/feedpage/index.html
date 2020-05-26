@@ -42,14 +42,23 @@
                     {% endif %}
                 {% endif %}
             </div>
-            {% for c in feed.feedcomment_set.all %}
-                <p>{{ c.content }}</p>
-                {% if request.user == c.author %}    
-                    <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
-                        {% csrf_token %}
-                        <button>댓글 삭제</button>
-                    </form>
-                {% endif %}                           
+            {% for c in feed.feedcomment_set.all|dictsortreversed:'like_users.count' %}
+                <div class="comment-box">
+                    <div>{{ c.content }}</div>
+                    <div>
+                        {% if request.user == c.author %}    
+                            <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                                {% csrf_token %}
+                                <button>댓글 삭제</button>
+                            </form>
+                        {% endif %}   
+                    </div>
+                    <div>
+                        <a href="/feeds/{{ feed.id }}/comment_like/{{c.id}}/">
+                            <button>{{ c.like_users.count }} likes</button>
+                        </a>  
+                    </div>
+                </div>                      
             {% endfor %}
             {% if user.is_authenticated %}
                 <form action="/feeds/{{ feed.id }}/comments/" method="POST">

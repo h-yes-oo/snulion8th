@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .models import Feed, FeedComment, Like
+from .models import Feed, FeedComment, Like, CommentLike
 # 추가. (참고: .models == feedpage.models)
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+
 # feedpage/view.py
 ...
 def index(request):
@@ -58,3 +59,13 @@ def feed_like(request, pk):
     else:
         Like.objects.create(user_id = request.user.id, feed_id = feed.id)
     return redirect ('/feeds')
+
+def comment_like(request, id, cid):
+    comment = FeedComment.objects.get(id=cid)
+    like_list = comment.commentlike_set.filter(user_id = request.user.id)
+    if like_list.count() > 0:
+        comment.commentlike_set.get(user_id = request.user.id).delete()
+    else:
+        CommentLike.objects.create(user_id = request.user.id, comment_id = comment.id)
+    return redirect ('/feeds')
+
