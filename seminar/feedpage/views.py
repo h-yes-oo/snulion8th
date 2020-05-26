@@ -52,12 +52,13 @@ def delete_comment(request, id, cid):
     return redirect('/feeds')
 
 def feed_like(request, pk):
-    feed = Feed.objects.get(id = pk)
+    feed = Feed.objects.get(id=pk)
     like_list = feed.like_set.filter(user_id = request.user.id)
     if like_list.count() > 0:
         feed.like_set.get(user_id = request.user.id).delete()
     else:
-        Like.objects.create(user_id = request.user.id, feed_id = feed.id)
+        if request.user.id:
+            Like.objects.create(user_id = request.user.id, feed_id = feed.id)
     return redirect ('/feeds')
 
 def comment_like(request, id, cid):
@@ -66,6 +67,7 @@ def comment_like(request, id, cid):
     if like_list.count() > 0:
         comment.commentlike_set.get(user_id = request.user.id).delete()
     else:
-        CommentLike.objects.create(user_id = request.user.id, comment_id = comment.id)
+        if request.user.id:
+            CommentLike.objects.create(user_id = request.user.id, comment_id = comment.id)
     return redirect ('/feeds')
 

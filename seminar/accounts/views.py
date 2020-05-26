@@ -31,7 +31,7 @@ def login(request):
         password = request.POST['password']
         user = auth.authenticate(request, username = username, password = password)
 
-        if user is not None:
+        if user:
             auth.login(request, user)
             return redirect('/feeds')
         else:

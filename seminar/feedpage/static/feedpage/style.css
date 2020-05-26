@@ -8,6 +8,7 @@ button {
     margin-left: 10px;
     color: #800080;
     background-color: #FFF0F5;
+    outline: 0;
 }
 
 button:hover {
@@ -30,7 +31,6 @@ header .user-info {
 
 header .user-info .user-button {
     display: flex;
-    flex-direction: row;
     justify-content: left;
     color: #800080;
     background-color: transparent;
@@ -54,7 +54,6 @@ header .user-info .user-name {
 
 .feed-head {
     display: flex;
-    flex-direction: row;
     justify-content: center;
 }
 
@@ -100,7 +99,6 @@ header .user-info .user-name {
 
 .feed-block .comment-box {
     display: flex;
-    flex-direction: column;
 }
 
 .new-feed .head {
@@ -116,6 +114,7 @@ header .user-info .user-name {
 input {
     border-radius: 10px;
     padding: 10px;
+    min-width: 300px;
     border: 3px solid #FFF0F5;
 }
 

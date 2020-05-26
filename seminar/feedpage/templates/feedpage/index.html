@@ -28,8 +28,8 @@
             </div>
             <div class="content">{{ feed.content }}</div>
             <div class="content">작성자:<strong>{{feed.author.username}}</strong>
-                (following: {{ feed.author.profile.follow_to.all.count }}
-                / follower: {{ feed.author.profile.follow_from.all.count }})
+                ({{ feed.author.profile.follow_to.all.count }} following,
+                {{ feed.author.profile.follow_from.all.count }} follower)
                 {% if user.is_authenticated %}
                     {% if request.user != feed.author %}
                         <a href="/accounts/{{ feed.author.id }}/follow">
@@ -44,7 +44,11 @@
             </div>
             {% for c in feed.feedcomment_set.all|dictsortreversed:'like_users.count' %}
                 <div class="comment-box">
-                    <div>{{ c.content }}</div>
+                    <div class ="comment-box">
+                        <div class="comment">
+                            ↳{{c.author.username}}- {{ c.content }}
+                        </div>
+                    </div>
                     <div>
                         {% if request.user == c.author %}    
                             <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
@@ -53,17 +57,15 @@
                             </form>
                         {% endif %}   
                     </div>
-                    <div>
-                        <a href="/feeds/{{ feed.id }}/comment_like/{{c.id}}/">
-                            <button>{{ c.like_users.count }} likes</button>
-                        </a>  
-                    </div>
+                    <a href="/feeds/{{ feed.id }}/comment_like/{{c.id}}/">
+                        <button>{{ c.like_users.count }} likes</button>
+                    </a> 
                 </div>                      
             {% endfor %}
             {% if user.is_authenticated %}
                 <form action="/feeds/{{ feed.id }}/comments/" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="content" />
+                    <input type="text" name="content" required />
                     <button type="submit">댓글 달기</button>
                 </form>
             {% endif %}
