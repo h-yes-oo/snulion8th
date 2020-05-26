@@ -30,6 +30,9 @@
     <br/>
     {% for c in feed.feedcomment_set.all %}
       <p>{{ c.content }}</p>
+      <p>작성자:<strong>{{c.author.username}}</strong>
+        <a href="/feeds/{{feed.id}}/comments/{{c.id}}/like">{{ c.like_users.count }} Likes</a>
+      </p>
       {% if request.user == c.author %}
         <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
           {% csrf_token %}
