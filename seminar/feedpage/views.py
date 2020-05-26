@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Feed, FeedComment
 from django.contrib.auth.models import User
-from .models import Feed, FeedComment, Like
+from .models import Feed, FeedComment, Like, FeedCommentLike
 
 # Create your views here.
 ...
@@ -55,4 +55,13 @@ def feed_like(request, pk):
         feed.like_set.get(user_id = request.user.id).delete()
     else:
         Like.objects.create(user_id = request.user.id, feed_id = feed.id)
+    return redirect ('/feeds')
+
+def feedcomment_like(request, pk, cid):
+    feedcomment = FeedComment.objects.get(id = cid)
+    feedcommentlike_list = feedcomment.feedcommentlike_set.filter(user_id = request.user.id)
+    if feedcommentlike_list.count() > 0:
+        feedcomment.feedcommentlike_set.get(user_id = request.user.id).delete()
+    else:
+        FeedCommentLike.objects.create(user_id = request.user.id, feedcomment_id = feedcomment.id)
     return redirect ('/feeds')

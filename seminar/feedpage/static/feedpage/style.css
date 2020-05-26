@@ -43,18 +43,23 @@ a {
     text-align: right;
     margin-right: 100px;
     margin-bottom : 50px;
-    margin-top: 80px;
+    margin-top: 50px;
 }
 
 .feeds {
     margin-left: 100px;
     margin-right: 100px;
     display: flex;
-    height: 140px;
+    height: 200px;
     flex-flow: column wrap;
     align-content: flex-start;
 
     
+}
+
+#more {
+    margin-left: 100px;
+    margin-bottom: 20px;
 }
 
 #delete {
