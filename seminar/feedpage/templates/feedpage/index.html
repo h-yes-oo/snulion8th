@@ -43,8 +43,11 @@
             {% endif %}
           {% endif %}
         </p>
-        {% for c in feed.feedcomment_set.all %}
+        {% for c in feed.feedcomment_set.all|dictsortreversed:'like_users.count' %}
         <p>{{ c.content }}</p>
+        <a href="/feeds/{{ feed.id }}/comments/{{ c.id }}/like/">
+          <input class="bts" type="button" value="{{ c.like_users.count }} Likes">
+        </a>
         {% if request.user == c.author %}
         <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
           {% csrf_token %}
@@ -56,9 +59,9 @@
         <form action="/feeds/{{ feed.id }}/comments/" method="POST">
           {% csrf_token %}
           <input type="text" name="content" />
-            <button type="submit">댓글 달기</button>
-          </form>
-          {% endif %}
+          <button type="submit">댓글 달기</button>
+        </form>
+        {% endif %}
       </div>
     </div>
     {% endfor %} <!-- for를 end시킨다는 뜻! 여기서는 들여쓰기로 끝을 못 내니 -->

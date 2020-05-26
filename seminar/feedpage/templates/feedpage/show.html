@@ -21,11 +21,13 @@
           <button>댓글 삭제</button>
         </form>
       {% endfor %}
-      <form action="/feeds/{{ feed.id }}/comments/" method="POST">
-        {% csrf_token %}
-        <input type="text" name="content" />
-        <button type="submit">댓글 달기</button>
-      </form>
+      {% if user.is_authenticated %}
+        <form action="/feeds/{{ feed.id }}/comments/" method="POST">
+          {% csrf_token %}
+          <input type="text" name="content" />
+          <button type="submit">댓글 달기</button>
+        </form>
+      {% endif %}
     </div>
 </div>
 </body>

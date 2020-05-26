@@ -35,7 +35,7 @@ def login(request):
 def logout(request):
     return render(request, 'accounts/logged_out.html')
 
-def editaccount(request):
+def pwchange(request):
     if request.method  == 'POST':
         passwordbefore = request.POST['passwordbefore']
         passwordafter1 = request.POST['passwordafter1']
@@ -44,6 +44,15 @@ def editaccount(request):
         if check_password(passwordbefore, user.password) and passwordafter1 == passwordafter2:
             user.set_password(passwordafter1)
             user.save()
+            return redirect('/feeds')
+    return render(request, 'accounts/editaccount.html')
+
+
+def editaccount(request):
+    if request.method  == 'POST':
+        passwordbefore = request.POST['passwordbefore']
+        user = request.user
+        if check_password(passwordbefore, user.password):
             Profile.objects.filter(user=user).update(college = request.POST['college'], major= request.POST['major'])
             return redirect('/feeds')
     return render(request, 'accounts/editaccount.html')
