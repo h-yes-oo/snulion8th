@@ -22,3 +22,14 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+    def make_fake_user(count):
+        fake = Faker('ko_KR')
+        college_list = ['서울대', '낙성대', '서울사이버대']
+        major_list = ['식공', '컴공', '정보', 'AI']
+
+        for i in range(count):
+            user = User.objects.create_user(
+                username=fake.name(), password=fake.text())
+            Profile.objects.filter(user=user).update(college=fake.word(
+                ext_word_list=college_list), major=(fake.word(ext_word_list=major_list)))
