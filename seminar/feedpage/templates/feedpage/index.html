@@ -1,19 +1,46 @@
 {% extends 'base.html' %} {% block content %}
 <header>
 	<h1>feedpage</h1>
+	{% if user.is_authenticated %}
 	<a href="{% url 'new' %}">new feed</a>
-	{% for feed in feeds %}
+	{% endif %} {% for feed in feeds %}
 	<div style="border: 1px solid grey;">
-		<a href="/feeds/{{ feed.id }}">더보기</a>
+		<a href="/feeds/{{ feed.id }}/like"
+			>{{ feed.like_users.count }} Likes
+		</a>
+		<a href="/feeds/{{ feed.id }}/">더보기</a>
+		{% if request.user == feed.author %}
 		<a
-			href="/feeds/{{ feed.id }}/delete"
+			href="/feeds/{{ feed.id }}/delete/"
 			onclick="return confirm('정말 삭제하시겠습니까?')"
 		>
 			삭제
 		</a>
+		{% endif %}
 		<p>{{ feed.title }}</p>
 		<p>{{ feed.content }}</p>
+		{% for comment in feed.feedcomment_set.all %}
+		<p>{{ comment.content }}</p>
+		{% if request.user == comment.author %}
+		<form
+			action="/feeds/{{ feed.id }}/comments/{{ comment.id }}/"
+			method="POST"
+		>
+			{% csrf_token %}
+			<button>댓글 삭제</button>
+		</form>
+		{% endif %}
+		<br />
+		{% endfor %}
+		<br />
+		{% if user.is_authenticated %}
+		<form action="/feeds/{{ feed.id }}/comments/" method="POST">
+			{% csrf_token %}
+			<input type="text" name="content" />
+			<button type="submit">댓글 달기</button>
+		</form>
+		{% endif %}
 	</div>
 	{% endfor %}
 </header>
-{% endblock content %}.
+{% endblock content %}

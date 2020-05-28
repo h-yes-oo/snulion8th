@@ -14,6 +14,9 @@
 				<span>{{ user.get_username }}님, 안녕하세요.</span>
 				<span>학교: {{ user.profile.college }}</span>
 				<span>전공: {{ user.profile.major }}님, 안녕하세요.</span>
+				<div style="text-align: right;"
+					>내가 좋아한 글 : {{ user.like_feeds.count }}</div
+				>
 				<a href="{% url 'profile_edit' user.id %}">정보수정</a>
 				<a href="{% url 'logout' %}?next={{ request.path }}">
 					로그아웃

@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <h1>edit feed</h1>
-<form action="/feeds/{{ feeds.id }}/" method="POST">
+<form action="/feeds/{{ feed.id }}/" method="POST">
 	{% csrf_token %}
 	<p>title</p>
 	<input name="title" />
