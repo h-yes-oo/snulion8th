@@ -44,10 +44,8 @@
             </div>
             {% for c in feed.feedcomment_set.all|dictsortreversed:'like_users.count' %}
                 <div class="comment-box">
-                    <div class ="comment-box">
-                        <div class="comment">
-                            ↳{{c.author.username}}- {{ c.content }}
-                        </div>
+                    <div class="comment">
+                        ↳{{c.author.username}}- {{ c.content }}
                     </div>
                     <div>
                         {% if request.user == c.author %}    

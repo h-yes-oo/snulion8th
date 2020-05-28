@@ -99,6 +99,11 @@ header .user-info .user-name {
 
 .feed-block .comment-box {
     display: flex;
+    align-items: center;
+}
+
+.feed-block .comment-box .comment {
+    font-size : 12px;
 }
 
 .new-feed .head {
@@ -114,7 +119,7 @@ header .user-info .user-name {
 input {
     border-radius: 10px;
     padding: 10px;
-    min-width: 300px;
+    min-width: 50%;
     border: 3px solid #FFF0F5;
 }
 
