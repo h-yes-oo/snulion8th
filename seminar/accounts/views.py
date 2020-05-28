@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import redirect
-from .models import Profile
+from .models import Profile, Follow
 from faker import Faker
 
 
@@ -29,15 +29,33 @@ def profile_edit(request, id):
     return render(request, 'accounts/profile_edit.html')
 
 
-# def login(request):
-#     if request.method == 'POST':
-#         user = auth.authenticate(
-#             request, username=request.POST['username'], password=request.POST['password'])
-#         if user is not None:
-#             return redirect('/feeds')
+def follow_manager(request, pk):
+    follow_from = Profile.objects.get(user_id=request.user.id)
+    follow_to = Profile.objects.get(user_id=pk)
 
-#     return render(request, 'accounts/login.html')
+    try:
+        following_already = Follow.objects.get(
+            follow_from=follow_from, follow_to=follow_to)
+    except Follow.DoesNotExist:
+        following_already = None
 
+    if following_already:
+        following_already.delete()
+    else:
+        Follow.objects.create(follow_from=follow_from, follow_to=follow_to)
+        # f = Follow()
+        # f.follow_from, f.follow_to = follow_from, follow_to
+        # f.save()
 
-# def logout(request):
-#     return render(request, 'accounts/logout.html')
+    return redirect('/feeds')
+
+    # def login(request):
+    #     if request.method == 'POST':
+    #         user = auth.authenticate(
+    #             request, username=request.POST['username'], password=request.POST['password'])
+    #         if user is not None:
+    #             return redirect('/feeds')
+
+    #     return render(request, 'accounts/login.html')
+    # def logout(request):
+    #     return render(request, 'accounts/logout.html')

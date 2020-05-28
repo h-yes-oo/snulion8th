@@ -28,4 +28,5 @@ urlpatterns = [
     path('accounts/signup/', accounts.views.signup, name='signup'),
     path('accounts/profile_edit/<int:id>/',
          accounts.views.profile_edit, name='profile_edit'),
+    path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
