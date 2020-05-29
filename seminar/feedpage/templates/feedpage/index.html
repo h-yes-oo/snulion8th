@@ -12,7 +12,6 @@
           <p class="title">{{ feed.title }}</p>
           <p class="content">{{ feed.content }}</p>
           <p>작성자:<strong>{{ feed.author.username }}</strong>
-          (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }})
           (following: {{ feed.author.profile.followed.all.count }} / follower: {{ feed.author.profile.follows.count }})
           {% if user.is_authenticated %}
             {% if request.user != feed.author %}
@@ -28,7 +27,10 @@
       </p>
 
           {% for c in feed.feedcomment_set.all %}
-            <p>{{ c.content }}</p>
+            <span>{{ c.content }}</span>
+            <span>
+               <a href = "/feeds/{{ feed.id }}/comments/{{ c.id }}/like/">{{ c.like_users.count }} Likes</a>
+            </span>
             {% if request.user == c.author %}
               <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
                 {% csrf_token %}
