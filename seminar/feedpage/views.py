@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Feed,FeedComment,Like, CommentLike
+from django.db.models import Count
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
@@ -68,4 +69,5 @@ def comment_like(request,id,cid):
         feedcomment.commentlike_set.get(user_id=request.user.id).delete()
     else:
         CommentLike.objects.create(user_id=request.user.id,comment_id=feedcomment.id)
+    like_count=Count('like_users')
     return redirect('/feeds')

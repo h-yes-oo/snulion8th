@@ -30,7 +30,7 @@
         </p>
       </div>
       <div class='comment'>
-        {% for c in feed.feedcomment_set.all %}
+        {% for c in feed.feedcomment_set.all%}
           <p>{{ c.content }}</p>
           {% if user.is_authenticated %}
             <a href="/feeds/{{ feed.id }}/comments/{{c.id}}/like">{{ c.like_users.count }} Likes</a>
