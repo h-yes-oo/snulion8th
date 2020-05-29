@@ -28,7 +28,7 @@
       {% endif %}
     </p>
     <br/>
-    {% for c in feed.feedcomment_set.all %}
+    {% for c in feed.feedcomment_set.all|dictsortreversed:"like_users.count" %}
       <p>{{ c.content }}</p>
       <p>작성자:<strong>{{c.author.username}}</strong>
         <a href="/feeds/{{feed.id}}/comments/{{c.id}}/like">{{ c.like_users.count }} Likes</a>
