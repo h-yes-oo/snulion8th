@@ -8,6 +8,7 @@ button {
     margin-left: 10px;
     color: #800080;
     background-color: #FFF0F5;
+    outline: 0;
 }
 
 button:hover {
@@ -30,7 +31,6 @@ header .user-info {
 
 header .user-info .user-button {
     display: flex;
-    flex-direction: row;
     justify-content: left;
     color: #800080;
     background-color: transparent;
@@ -54,7 +54,6 @@ header .user-info .user-name {
 
 .feed-head {
     display: flex;
-    flex-direction: row;
     justify-content: center;
 }
 
@@ -97,6 +96,16 @@ header .user-info .user-name {
     margin-top: -30px;
     margin-bottom: 10px;
 }
+
+.feed-block .comment-box {
+    display: flex;
+    align-items: center;
+}
+
+.feed-block .comment-box .comment {
+    font-size : 12px;
+}
+
 .new-feed .head {
     color:  #9400D3;
 }
@@ -110,6 +119,7 @@ header .user-info .user-name {
 input {
     border-radius: 10px;
     padding: 10px;
+    min-width: 50%;
     border: 3px solid #FFF0F5;
 }
 

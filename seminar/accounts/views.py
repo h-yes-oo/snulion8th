@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib import auth
-from .models import Profile
+from .models import Profile, Follow
 from django.shortcuts import redirect
 
-# Create your views here.
 def signup(request):
     if request.method  == 'POST':
         password1 = request.POST['password1']
@@ -32,7 +31,7 @@ def login(request):
         password = request.POST['password']
         user = auth.authenticate(request, username = username, password = password)
 
-        if user is not None:
+        if user:
             auth.login(request, user)
             return redirect('/feeds')
         else:
@@ -56,3 +55,21 @@ def profile_edit(request, id):
     elif request.method == 'GET':
         return render(request, 'accounts/profile_edit.html')
 
+def follow_manager(request, pk):
+    follow_from = Profile.objects.get(user_id = request.user.id)
+    follow_to = Profile.objects.get(user_id = pk)
+
+    try:
+        following_already = Follow.objects.get(follow_from=follow_from, follow_to=follow_to)
+    except Follow.DoesNotExist:
+        following_already = None
+
+    if following_already:
+        following_already.delete()
+    else:
+        # Follow.objects.create(follow_from=follow_from, follow_to=follow_to)
+        f = Follow()
+        f.follow_from, f.follow_to = follow_from, follow_to
+        f.save()
+
+    return redirect('/feeds')

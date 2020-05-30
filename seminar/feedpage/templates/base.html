@@ -13,10 +13,12 @@
         <div class="user-info">
             {% if user.is_authenticated %}
                 <div class="user-button">
-                    <div class="user-name"> {{ user.get_username }}님, 안녕하세요 </br></div>
+                    <div class="user-name">
+                        {{ user.get_username }}님, 안녕하세요</br>
+                    </div>
                     <a href="{% url 'profile_edit' user.id %}">
                         <button>정보수정</button></a> </br>
-                    <a href="{% url 'logout' %}">
+                    <a href="{% url 'logout' %}?next={{request.path}}">
                         <button>로그아웃</button></a> </br>
                 </div>
                 <div class="user-profile">
@@ -25,6 +27,7 @@
                     이메일: {{ user.profile.email }} </br>
                     생일: {{ user.profile.birthday }} </br> 
                     주소: {{ user.profile.address }} </br>
+                    내가 좋아한 글 : {{ user.like_feeds.count }}개
                 </div>
                 {% comment %} 
                     ?next={{request.path}}를 지우면, 만든 logout page로 redirect. 
@@ -34,7 +37,7 @@
                     <a href="{% url 'signup' %}">
                         <button>회원가입</button>
                     </a>
-                    <a href="{% url 'login'%}?next={{request.path}}">
+                    <a href="{% url 'login'%}">
                         <button>로그인</button>
                     </a>
                     {% comment %} 
@@ -45,7 +48,7 @@
         </div>
     </header>
     <body>
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
     </body>
 </html>

@@ -2,24 +2,71 @@
 {% block content %}
     <div class="feed-head">
         <div class="feed-name2">SNULION FEED</div>
-        <a href="{% url 'new' %}">
-            <button>new feed</button>
-        </a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'new' %}">
+                <button>new feed</button>
+            </a>
+        {% endif %}
     </div>
     <div class="feeds">
         {% for feed in feeds %} 
         <div class="feed-block">
             <div class="title">"{{ feed.title }}"</div>
             <div class="feed-button">
+                <a href="{% url 'like' feed.id %}">
+                    <button>{{ feed.like_users.count }} likes</button>
+                </a>
                 <a href="{% url 'show' feed.id %}">
                     <button>더보기</button>
                 </a>
-                <a href="{% url 'delete' feed.id %}" 
-                    onclick="return confirm('정말 삭제하시겠습니까?')">
-                    <button>삭제</button>
-                </a>
+                {% if request.user == feed.author %}                                      
+                    <a href = "{% url 'delete' feed.id %}"
+                        onclick="return confirm('정말 삭제하시겠습니까?')">
+                        <button>삭제</button>
+                    </a>
+                {% endif %}   
             </div>
             <div class="content">{{ feed.content }}</div>
+            <div class="content">작성자:<strong>{{feed.author.username}}</strong>
+                ({{ feed.author.profile.follow_to.all.count }} following,
+                {{ feed.author.profile.follow_from.all.count }} follower)
+                {% if user.is_authenticated %}
+                    {% if request.user != feed.author %}
+                        <a href="/accounts/{{ feed.author.id }}/follow">
+                            {% if request.user.profile not in feed.author.profile.follows.all %}
+                                <button>팔로우</button>
+                            {% else %}
+                                <button>팔로우 취소</button>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% for c in feed.feedcomment_set.all|dictsortreversed:'like_users.count' %}
+                <div class="comment-box">
+                    <div class="comment">
+                        ↳{{c.author.username}}- {{ c.content }}
+                    </div>
+                    <div>
+                        {% if request.user == c.author %}    
+                            <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                                {% csrf_token %}
+                                <button>댓글 삭제</button>
+                            </form>
+                        {% endif %}   
+                    </div>
+                    <a href="/feeds/{{ feed.id }}/comment_like/{{c.id}}/">
+                        <button>{{ c.like_users.count }} likes</button>
+                    </a> 
+                </div>                      
+            {% endfor %}
+            {% if user.is_authenticated %}
+                <form action="/feeds/{{ feed.id }}/comments/" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="content" required />
+                    <button type="submit">댓글 달기</button>
+                </form>
+            {% endif %}
         </div>
         {% endfor %} <!-- for를 end시킨다는 뜻! 여기서는 들여쓰기로 끝을 못 내니 -->
     </div>
