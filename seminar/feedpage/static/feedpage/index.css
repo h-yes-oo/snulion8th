@@ -1,14 +1,42 @@
 header {
     width: 100%;
-    height: 40px;
-    font-size: 30px;
-    background-color: tan;
-    color: white;
-    text-align: center;
+    background-color: darkgrey;
+    color: black;
+    overflow: hidden;
 }
+
+.headerinner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.headertitle {
+    margin-right: 224px;
+    width: 600px;
+    height: 100%;
+    font-size: 60px;
+}
+
+.headerinfo{
+    width: 300px;
+    height: 100%;
+    font-size: 18px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 1%;
+}
+
 
 body {
     width: 100;
+}
+
+.Feedcontainer{
+    display: center;
 }
 
 .Feedheader {
@@ -23,9 +51,7 @@ body {
 }
 
 .bts {
-    margin-top: 5px;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin: 10px;
 }
 
 
@@ -34,8 +60,27 @@ body {
     margin-top: 10px;
     width: 40%;
     margin: auto;  
+    padding: 2px 20px;
 }
 
 .feednumber {
     font-size: 20px;
+} 
+
+
+.showcontainer{
+    width: 40%;
+    border: 1px black solid;
+    margin: auto;
+    padding-left: 20px;
+}
+
+.contentbox{
+    width: 80%;
+    height: 30px;
+}
+
+.headerbts{
+    margin: 10px;
+    background-color: darkgrey;
 }

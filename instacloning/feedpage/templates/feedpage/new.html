@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'feedpage/index.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <title>Lionstagram</title>
+  </head>
+
+  <body>
+    <div class="header">
+        <div class="header_inner">
+            <div class="logo">
+                <a href=" ">
+                    <img class="logo_img" src={% static "images/logo_img.png" %} >
+                </a>
+            </div>
+            <div class="search">
+                <input class="search_box" type="text" placeholder="검색"/>
+            </div>
+            <div class="button">
+                <div class="icon">
+                    <a href="https://www.instagram.com">
+                        <!-- <img src={% static "images/bell-regular.svg" %}> -->
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <!-- <img src={% static "images/heart-regular.svg" %}> -->
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <!-- <img src={% static "images/user-solid.svg" %}> -->
+                    </a>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="feed">
+        <div class="feed_inner">
+            <h1>New feed</h1>
+        </div>
+        <form enctype="multipart/form-data" action="/feeds/" method="POST">
+            {% csrf_token %}
+            <h3>Title</h3>
+            <input name="title" /> <br>
+            <h3>Content</h3>
+            <input name="content" /><br> 
+            <h3>photo</h3>
+            <input name="photo" type="file" /> <br />
+            <input class="bts" type="submit" value="submit">
+        </form>
+    </div>
+    </body>
+</html>

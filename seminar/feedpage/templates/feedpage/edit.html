@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Feed</title>
-</head>
-<body>
-    <h1>Edit page</h1>
-    <form action="/feeds/{{ feed.id }}/update/" method="POST">
-        {% csrf_token %}
-        <p>title</p>
-        <input name="title" / value='{{ feed.title }}'> <br>
-        <p>content</p>
-        <input name="content" value="{{ feed.content }}"/><br> 
-        <input type="submit" value="submit">
-    </form>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="Feedcontainer">
+    <div class="Feedheader">
+        <h1>Edit Feed No.{{ feed.id }}</h1>
+    </div>
+    <div class="showcontainer">
+        <form action="/feeds/{{ feed.id }}/update/" method="POST">
+            {% csrf_token %}
+            <p>title</p>
+            <input name="title" / value='{{ feed.title }}'> <br>
+            <p>content</p>
+            <input class="contentbox" name="content" value="{{ feed.content }}"/><br> 
+            <input class="bts" type="submit" value="submit">
+        </form>
+    </div>
 </body>
+{% endblock content %}
 </html>

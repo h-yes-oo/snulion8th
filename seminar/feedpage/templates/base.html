@@ -1,13 +1,42 @@
+<!-- feedpage/templates/base.html -->
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=d, initial-scale=1.0">
-    <title>Snulion</title>
-</head>
-<header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">Snulion Feed Page</header>
-<body>
-    {% block content %}
-    {% endblock %}
-</body>
-</html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=d, initial-scale=1.0">
+        <title>Snulion</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'feedpage/index.css' %}">
+    </head>
+    <body>
+        <header>
+            <div class="headerinner">
+                <div class="headertitle">SNU LION FEED</div>
+                <div class="headerinfo">
+                    {% if user.is_authenticated %}
+                        {{ user.get_username }}님, 안녕하세요<br>
+                        대학: {{ user.profile.college }}<br>
+                        전공: {{ user.profile.major }}<br>
+                        <div style="text-align: right">
+                            내가 좋아한 글 : {{ user.like_feeds.count }}개
+                        </div>           
+                        <a href="{% url 'editaccount'%}?next={{request.path}}">
+                            <input class="bts" type="button" value="Edit Account">
+                        </a>
+                        <a href="{% url 'logout'%}?next={{request.path}}">
+                            <input class="bts" type="button" value="Logout">
+                        </a>
+                        {% else %}
+                    <a href="{% url 'signup' %}">
+                        <input class="bts" type="button" value="Signup">
+                    </a>
+                    <a href="{% url 'login'%}?next={{request.path}}">
+                        <input class="bts" type="button" value="Login">
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+{% block content %}
+{% endblock %}
