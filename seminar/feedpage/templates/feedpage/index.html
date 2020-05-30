@@ -3,13 +3,50 @@
 
 {% block content %}
     <h1>feed page</h1>
-    <a href ="/feeds/new">new feed</a>
+    {% if user.is_authenticated %} 
+      <a href ="/feeds/new">new feed</a>
+    {% endif %}
     {% for feed in feeds %} 
       <div style="border: 1px solid grey;">
+        <a href="/feeds/{{ feed.id }}/like">{{ feed.like_users.count }} Likes</a>
         <a href="/feeds/{{ feed.id }}">더보기</a>
-        <a href="/feeds/{{feed.id}}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+        {% if request.user == feed.author %} 
+          <a href="/feeds/{{feed.id}}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+        {% endif %} 
         <p>{{ feed.title }}</p>
         <p>{{ feed.content }}</p>
-      </div>
+        <p>작성자:<strong>{{feed.author.username}}</strong>
+          (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }})
+          {% if user.is_authenticated %}
+            {% if request.user != feed.author %}
+              <a href="/accounts/{{ feed.author.id }}/follow">
+                {% if request.user.profile not in feed.author.profile.follows.all %}
+                    팔로우
+                {% else %}
+                    팔로우 취소
+                {% endif %}
+              </a>
+            {% endif %}
+          {% endif %}
+        </p>
+      {% for c in feed.feedcomment_set.all%} <!--feed.feedcomment_set feed가 관계를 맺은 모든 feedcomment객체를 가져옴-->
+        <p>{{ c.content }}
+          <a href="/feeds/{{ c.id }}/commentlike/">&emsp;({{ c.like_users.count }} Likes)</a>
+        </p>
+        {% if request.user == feed.author %} 
+          <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+              {% csrf_token %}
+              <button>댓글 삭제</button>
+          </form>
+        {% endif %}  
+      {% endfor %}
+      {% if user.is_authenticated %}   
+        <form action="/feeds/{{ feed.id }}/comments/" method="POST">
+          {% csrf_token %}
+          <input type="text" name="content" />
+          <button type="submit">댓글 달기</button>
+        </form>
+      {% endif %}
+        </div>
     {% endfor %} <!-- for를 end시킨다는 뜻! 여기서는 들여쓰기로 끝을 못 내니 -->
 {% endblock content%}

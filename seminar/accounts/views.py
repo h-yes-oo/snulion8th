@@ -4,9 +4,9 @@ from django.contrib import auth
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout as custom_logout
-from .models import Profile
+from .models import Profile, Follow
 
-# Create your views here.
+
 def signup(request):
     if request.method == 'POST':
         if (request.POST['password1'] == request.POST['password2']) & (request.POST['seed'] == '0'):
@@ -26,6 +26,7 @@ def signup(request):
 
     return render(request, 'accounts/signup.html')
 
+
 def myedit(request):
     if request.method == 'POST':
         user = request.user
@@ -39,16 +40,22 @@ def myedit(request):
         return redirect('/feeds')
     return render(request, 'accounts/myedit.html')
 
-# def login(request):
-#     if request.method == 'POST':
-#         user = authenticate(username=request.POST['username'],password=request.POST['password'])
-#         if user is not None:
-#             auth.login(request, user)
-#             return redirect('/feeds/')
 
-#     return render(request, 'accounts/login.html')
+def follow_manager(request, pk):
+    follow_from = Profile.objects.get(user_id = request.user.id)
+    follow_to = Profile.objects.get(user_id = pk)
 
+    try:
+        following_already = Follow.objects.get(follow_from=follow_from, follow_to=follow_to)
+    except Follow.DoesNotExist:
+        following_already = None
 
-# def logout(request):
-#     custom_logout(request)
-#     return redirect('/feeds/')
+    if following_already:
+        following_already.delete()
+    else:
+        # Follow.objects.create(follow_from=follow_from, follow_to=follow_to)
+        f = Follow()
+        f.follow_from, f.follow_to = follow_from, follow_to
+        f.save()
+
+    return redirect('/feeds')
