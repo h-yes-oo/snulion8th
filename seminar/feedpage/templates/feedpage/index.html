@@ -29,8 +29,10 @@
             {% endif %}
           {% endif %}
         </p>
-      {% for c in feed.feedcomment_set.all %} <!--Feed.feedcomment_set feed가 관계를 맺은 모든 feedcomment객체를 가져옴-->
-        <p>{{ c.content }}</p>
+      {% for c in feed.feedcomment_set.all%} <!--feed.feedcomment_set feed가 관계를 맺은 모든 feedcomment객체를 가져옴-->
+        <p>{{ c.content }}
+          <a href="/feeds/{{ c.id }}/commentlike/">&emsp;({{ c.like_users.count }} Likes)</a>
+        </p>
         {% if request.user == feed.author %} 
           <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
               {% csrf_token %}
