@@ -22,6 +22,7 @@ import accounts.views
 from django.conf.urls import include
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', feedpage.views.index, name='index'),
@@ -30,5 +31,6 @@ urlpatterns = [
     path('accounts/signup/', accounts.views.signup, name='signup'),
     path('accounts/user_info/<int:id>/', accounts.views.user_info, name='user_info'),
     path('accounts/<int:pk>/follow/' , accounts.views.follow_manager, name='follow')
-]
-#static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
