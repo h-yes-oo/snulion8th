@@ -34,15 +34,14 @@
       </p>
 
 
-
-
-
-
-    {% for c in feed.feedcomment_set.all %}
+    
+    {% comment %} {% for c in feed.feedcomment_set.all|dictsortreversed: "like_users.count"%}{% endcomment %}
+    {% for c in feed.feedcomment_set.all%}
       <p>{{ c.content }}</p>
       {% if request.user == c.author %}  
         <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
           {% csrf_token %}
+          <a href="/feeds/{{ feed.id }}/comments/{{ c.id }}/clike"> {{ c.like_users.count }} Likes</a> 
           <button>댓글 삭제</button>
         </form>
       {% endif %}

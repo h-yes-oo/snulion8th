@@ -11,6 +11,9 @@ def signup(request):
             user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
             user.profile.college = request.POST['college']
             user.profile.major = request.POST['major']
+            user.profile.hobby = request.POST['hobby']
+            user.profile.insta_id = request.POST['insta_id']
+            
             # Profile.objects.all()
             # Profile.objects.update(user=user, college=request.POST['college'], major=request.POST['major'])
             # Profile.objects.update(user=user, college=request.POST['college'], major= request.POST['major'])

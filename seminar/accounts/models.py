@@ -11,11 +11,11 @@ class Profile(models.Model):   # 추가
     college = models.CharField(max_length=20, blank=True)
     major = models.CharField(max_length=20, blank=True)
     hobby = models.CharField(max_length=20, blank=True)
-    instaid = models.CharField(max_length=20, blank=True)
+    insta_id = models.CharField(max_length=20, blank=True)
     follows = models.ManyToManyField('self', through = 'Follow', blank=True, related_name = 'followed', symmetrical=False)
 
     def __str__(self):   # 추가
-        return 'id=%d, user_id=%d, college=%s, major=%s, hobby=%s, instaaddress=%s' % (self.id, self.user.id, self.college, self.major, self.hobby, self.instaaddress)
+        return 'id=%d, user_id=%d, college=%s, major=%s, hobby=%s, insta_id=%s' % (self.id, self.user.id, self.college, self.major, self.hobby, self.insta_id)
         # return f'id={self.id}, user_id={sefl.user_id}, college={self.college}, major={self.major}'
         # 아래 코드와 동일함
         # return 'id=' + self.id + 'user_id=' + self.user.id + ', ' + 'college=' + self.college + ', ' + 'major=' + self.major

@@ -12,15 +12,12 @@
         {% if user.is_authenticated %}
              {{ user.get_username }}님, 안녕하세요
               {% comment %} <br>  {% endcomment %}
-             학교 : {{ user.profile.college }}
+             학교 : {{ profile.college }}
                {% comment %} <br>  {% endcomment %}
-             전공 : {{ user.profile.major }} 
+             전공 : {{ profile.major }} 
               {% comment %} <br>   {% endcomment %}
               <div style="text-align: right">                
                 내가 좋아한 글 : {{ user.like_feeds.count }}개   
-
-
-              {% comment %} 이거 나중에 무조건 살려라!!!!!! {% endcomment %}
                </div>  
             <div class="logout">
              <div class="logtext"> 

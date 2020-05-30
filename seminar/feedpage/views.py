@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Feed, FeedComment, Like
+from .models import Feed, FeedComment, Like, CommentLike
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
@@ -13,7 +13,7 @@ def index(request): # 원래 있던 index 함수 수정
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        Feed.objects.create(title=title,content=content, author=request.user)
+        Feed.objects.create(title=title, content=content, author=request.user)
         return redirect('/feeds')
 
 def new(request):
@@ -42,7 +42,7 @@ def edit(request, id):
 
 def create_comment(request, id):
     content = request.POST['content']
-    FeedComment.objects.create(feed_id=id, content=content ,author = request.user)
+    FeedComment.objects.create(feed_id=id, content=content, author = request.user)
     return redirect('/feeds')
 
 def delete_comment(request, id, cid):
@@ -58,3 +58,15 @@ def feed_like(request, pk):
     else:
         Like.objects.create(user_id = request.user.id, feed_id = feed.id)
     return redirect ('/feeds')
+
+
+def comment_like(request, id, cid):
+    feedComment = FeedComment.objects.get(id = cid)
+    like_list = feedComment.commentlike_set.filter(user_id = request.user.id)
+    if like_list.count() > 0:
+        feedComment.commentlike_set.get(user_id = request.user.id).delete()
+    else:
+        CommentLike.objects.create(user_id = request.user.id, feedComment_id = feedComment.id)
+    return redirect ('/feeds')
+
+
