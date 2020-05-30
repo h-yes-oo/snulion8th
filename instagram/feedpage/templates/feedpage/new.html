@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST" action="/feeds/">
+    {% csrf_token %}
+    title: <input type="text" name="title" placeholder="제목"> </br>
+    content: <input type="text" name="content" placeholder="내용"> </br>
+    <input type="submit" value="저장">
+</form>
+{% endblock content %}
