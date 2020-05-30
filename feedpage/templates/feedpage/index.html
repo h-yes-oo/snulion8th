@@ -25,7 +25,7 @@
           {% endif %}
         {% endif %}
       </p>
-        {% for c in feed.feedcomment_set.all %}
+        {% for c in feed.feedcomment_set.all|dictsortreversed:"like_users.count" %}
         <a href="/feeds/{{ c.id }}/like_comment">{{ c.like_users.count }} Likes</a>
       <p>{{ c.content }}</p>
       {% if request.user == feed.author %} 
