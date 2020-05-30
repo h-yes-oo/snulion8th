@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Liongram</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'feed/style.css' %}">
+    {% comment %} <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap&subset=korean" rel="stylesheet"> {% endcomment %}
+  </head>
+  <body>
+    <div class = "header">
+        <div class = "header_inner">
+            <div class = "logo">
+                <a href = "https://www.instagram.com/">
+                    <img class="logo_img" src="{% static 'feed/images/logo_img.png' %}">
+                </a>
+            </div>
+            
+            <div class = "search">
+                    <input class = "search_box" type ="text" placeholder="검색">
+            </div>
+
+            <div class = "button">
+                <div class = "icon">
+                    <a href="https://www.instagram.com/">
+                        <img src="{% static 'feed/images/bell-regular.svg'%}">
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src="{% static 'feed/images/heart-regular.svg'%}">
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href="https://www.instagram.com/">
+                        <img src="{% static 'feed/images/user-solid.svg'%}">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>  
+
+    <div class = "hello">
+    {% if user.is_authenticated %}
+        {{ user.get_username }}님, 안녕하세요
+        <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+    {% else %}
+        <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+        <a href="{% url 'signup' %}">회원가입</a>
+    {% endif %}
+    </div>
+
+  {% block content %}
+  {% endblock %}
+
+  </body>
+</html>

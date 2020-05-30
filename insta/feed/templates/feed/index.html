@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    
+
+    <div class = "feed">
+    {% if user.is_authenticated %} 
+    <div class = "new"> <a href="/feeds/new">new feed</a> </div>
+    {% endif %}  
+    {%for feed in feeds%}
+        <div class = "article">
+            <div class = "id">
+                <p class ="name">stillyoung_sumin<h3>
+            </div>
+            <div class = "image">
+            {% if  feed.photo %}
+                <img class="realimage" src="{{ feed.photo.url }}"  alt="" > 
+                {% comment %} width="30%" height="20%" {% endcomment %}
+            {% endif %}
+            </div>
+            
+            <div class = "like">
+                <a href="/feeds/{{ feed.id }}">더보기</a>
+                {% if request.user == feed.author %}  
+                    <a href="/feeds/{{ feed.id }}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+                {% endif %}     
+                                                                          
+                {% comment %} <img class="icon" src="{% static 'feed/images/heart-regular.svg'%}"> {% endcomment %}
+                  {% comment %} width= "22px" height="22px" {% endcomment %}
+            </div>
+            <div class = "comment">
+                <div class = "context">
+                    {% for c in feed.feedcomment_set.all %}
+                        <p>{{ c.content }}</p>
+                        <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                            {% csrf_token %}
+                            <button>댓글 삭제</button>
+                        </form>
+                        {% endfor %}
+                        <form action="/feeds/{{ feed.id }}/comments/" method="POST">
+                            {% csrf_token %}
+                        <input type="text" name="content" />
+                        <button type="submit">댓글 달기</button>
+                        </form>
+                </div>
+                {% comment %} <div class ="post">
+                    <p> 게시 <p>
+                </div> {% endcomment %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+{% endblock content %}

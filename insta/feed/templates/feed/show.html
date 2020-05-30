@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div>
+      <a href="/feeds">home</a>
+      <p>{{ feed.title }}</p>
+      <p>{{ feed.content }}</p>
+      {% if  feed.photo %}
+       <img  src="{{ feed.photo.url }}"  alt="">
+        {% comment %} width="30%" height="20%" {% endcomment %}
+        
+     {% endif %}
+    </div>
+
+{% endblock content %}
