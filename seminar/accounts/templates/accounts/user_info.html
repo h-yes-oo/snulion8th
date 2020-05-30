@@ -1,0 +1,40 @@
+<h1> User Info </h1>
+
+<form method="POST" action="{% url 'user_info' user.id %}">
+    {% csrf_token %}
+    사용자 이름:
+    <br>
+    <input name="new_username" type="text" value="{{ user.get_username }}" required>
+    <br>
+    <br>
+    이메일:
+    <br>
+    <input name="new_email" type="text" value="{{ user.email }}">
+    <br>
+    <br>
+    새 비밀번호:
+    <br>
+    <input name="new_password" type="password" value="" >
+    <br>
+    <br>
+    학교:
+    <br>
+    <input name="new_college" type="text" value="{{ user.profile.college }}" required>
+    <br>
+    <br>
+    전공:
+    <br>
+    <input name="new_major" type="text" value="{{ user.profile.major }}" required>
+    <br>
+    <br>
+    생년월일:
+    <br>
+    <input name="new_birthday" type="text" value="{{ user.profile.birthday }}">
+    <br>
+    <br>
+
+    <input type="submit" value="Adjust Change">
+    <input type="reset" value="Reset">
+
+
+</form>
