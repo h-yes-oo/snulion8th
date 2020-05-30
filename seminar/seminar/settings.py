@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feedpage.apps.FeedpageConfig',
-    'accounts.apps.AccountsConfig'  #추가, 줄여서 'feedpage'라고만 적어도 된다는 비밀 아닌 비밀
+    'accounts.apps.AccountsConfig',  #추가, 줄여서 'feedpage'라고만 적어도 된다는 비밀 아닌 비밀
+    'sass_processor'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,9 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT =  os.path.join(BASE_DIR, 'static') # 추가
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, 'seminar', 'static'),
-) # 추가
+STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'seminar', 'static'),) 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = "/feeds/"
+
+SASS_PROCESSOR_ENABLED =  True
+SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'feedpage', 'static')

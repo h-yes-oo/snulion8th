@@ -12,7 +12,8 @@ def index(request):
     elif request.method == 'POST': # create(form을 이용하여 submit한 형태) 
         title = request.POST['title']
         content = request.POST['content']
-        Feed.objects.create(title = title, content = content, author = request.user)  ##<--수정
+        photo =  request.FILES.get('photo', False)
+        Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
         return redirect('/feeds')
     
     feeds = Feed.objects.all()

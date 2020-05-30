@@ -1,9 +1,13 @@
 <!-- feedpage/templates/base.html -->
+{% load  static %} 
+{% load sass_tags %}
+<link href="{% sass_src 'feedpage/main.scss' %}" rel="stylesheet" type="text/css" /> 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>django_yunny</title>
+    <link  rel="stylesheet"  href="{% static 'feedpage/style.css' %}" />
   </head>
   <header style="padding: 10px; width: 95%; height: 100px; background-color: #96A5FF; color: white; text-align: left;">
      <div style="text-align: right;">
