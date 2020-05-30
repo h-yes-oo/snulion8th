@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+{%block content%}
+<h1>edit feed</h1>
+    <form  action="/feeds/{{feed.id}}/edit/" method="POST">
+      {% csrf_token %}
+      <p>content</p>
+      <input name="content" /> <br/>
+      <input name="photo" type="file" /> <br />
+      <input type="submit" value="수정하기" />
+    </form>
+{% endblock content%}

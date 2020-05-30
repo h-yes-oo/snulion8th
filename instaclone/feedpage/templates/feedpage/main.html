@@ -1,0 +1,63 @@
+{% extends 'base.html'%}
+{%block content%}
+<header>
+    <div class = "header">
+      <div class = "header_inner">
+        <div class = "logo">
+            <a href = " ">
+              <img class="logo_img" src="..\..\static\feedpage\images\logo_img.png">
+            </a>
+        </div>
+        <div class = "search">
+            <input class="search_box" type="text" placeholder="검색">
+        </div>
+        <div class = "button">
+          <div class = "icon">
+            <a href = " ">
+              <img src="..\..\static\feedpage\images\bell-regular.svg"/>
+            </a>
+          </div>
+          <div class = "icon">
+            <a href = " ">
+              <img src="..\..\static\feedpage\images\heart-regular.svg"/>
+            </a>
+          </div>
+          <div class = "icon">
+            <a href = " ">
+              <img src="..\..\static\feedpage\images\user-solid.svg"/>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+  </header>
+  <a href="/feeds/create">new feed</a>
+<div class = "feed">
+    <section class="feed-inner">
+        {% for feed in feeds%}
+        <div class="profile">
+            <p>author</p>
+        </div>
+        <a class="delete" href="/feeds/{{ feed.id }}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+        <a href="/feeds/{{ feed.id }}">
+        <article>
+            {% if feed.photo %}
+                <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%">
+            {% endif %}
+            <p class='content'>{{ feed.content }}</p>
+        </article>
+        <section class="icon-banner">
+            <div class="icon">
+                <img src="..\..\static\feedpage\images\heart-regular.svg">
+            </div>
+        </section>
+        <form action="/feeds/{{ feed.id }}/comments/" method="POST">
+            {% csrf_token %}
+            <input type="text" name="feedcomment"/>
+            <button type="submit">게시</button>
+        </form>
+        </a>
+        {% endfor %}
+    </section>
+</div>
+{%endblock content%}

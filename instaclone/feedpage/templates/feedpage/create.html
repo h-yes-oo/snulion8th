@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{%block content%}
+  <div class='create-form'>
+    <h1 class="create-message">new feed</h1>
+    <form enctype="multipart/form-data" action="/feeds/" method="POST">
+      {% csrf_token %}
+      <div class="content-input">
+        <p>content</p>
+        <input class="type-in" name="content" /> <br />
+        <p>photo</p>
+        <input name="photo" type="file" /> <br />
+      </div>
+      <div class="submit"><input type="submit" value="올리기" /></div>
+    </form>
+  </div>
+    
+{% endblock content%}
