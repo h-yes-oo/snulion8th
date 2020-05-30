@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST" action="{% url 'profile_update' %}">
+    이름:
+    학교:
+    전공:
+    생년월일:
+    SNS 주소: 
+    <input type="submit" value="저장">
+    </form>
+{% endblock content %}

@@ -1,4 +1,4 @@
-"""seminar URL Configuration
+"""instagram URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -15,8 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import feedpage.views
-import accounts.views
+import feedpage.views 
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,8 +24,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', feedpage.views.index, name='index'),
     path('feeds/', include('feedpage.urls')),
-    path('accounts/<int:id>/update/', accounts.views.profile_update, name='profile_update'),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', accounts.views.signup, name='signup'),
-    path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

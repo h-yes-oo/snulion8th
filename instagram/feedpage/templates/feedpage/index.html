@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <header id="header">
+        <div class="header-inner">
+            <div class="logo">
+                <a href="https://www.instagram.com/">
+                    <img class="logo-img" src="{% static 'feedpage/images/logo_img.png' %}">
+                </a>
+            </div>
+            <div class="search">
+                <input class="search-box" type="text" placeholder="검색">
+            </div>
+            <div class="button">
+                <div class="icon">
+                    <a href="https://www.instagram.com/">
+                        <img src="{% static 'feedpage/images/bell-regular.svg' %}">
+                    </a>
+                </div>
+                <div class="icon">
+                    <a href="https://www.instagram.com/">
+                        <img src="{% static 'feedpage/images/heart-regular.svg' %}">
+                    </a>
+                </div>
+                <div class="icon">
+                    <a href="https://www.instagram.com/">
+                        <img src="{% static 'feedpage/images/user-solid.svg' %}">
+                    </a>
+                </div>
+            </div>
+        </div>
+        </header>
+    <h1>Feedpage</h1>
+        <a href="/feeds/new/">새 피드 작성</a>
+        {% for feed in feeds %}
+            <div style="border: 1px solid grey;">
+                <a href="/feeds/{{ feed.id }}/show/">더보기</a>
+                <a href="/feeds/{{ feed.id }}/delete/">삭제</a>
+                <p>title: {{ feed.title }}</p>
+                <p>content: {{ feed.content }}</p>
+            </div>
+    {% endfor%}
+{% endblock content %}
