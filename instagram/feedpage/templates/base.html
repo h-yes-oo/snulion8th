@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html> 
+    <head>
+        <meta charset="utf-8"/>
+        <title>Liongram</title>
+        {% load static %}
+        {% load sass_tags %} 
+        <link href="{% sass_src 'feedpage/main.scss' %}" rel="stylesheet" type="text/css" />
+    </head>
+    <!-- HEADER -->
+    <header>
+        <div class="header_inner">
+            <div class="logo">
+                <a href = "https://www.instagram.com/">
+                    <img class="logo_img" src="{% static "images/logo_img.png" %}"/>
+                </a>
+            </div>
+            <div class="search">
+                <input class="search_box" type="text" placeholder="검색">
+            </div>
+            <div class="icons">
+                <div class="icon">
+                    <a href="https://www.instagram.com/">
+                        <img src="{% static "images/bell-regular.svg" %}"/>
+                    </a>
+                </div>
+                <div class="icon">
+                    <a href="https://www.instagram.com/">
+                        <img src="{% static "images/heart-regular.svg" %}">
+                    </a>
+                </div>
+                <div class="icon">
+                    <img src="{% static "images/user-solid.svg" %}">
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="user-button">
+                        <div class="user-name">{{ user.get_username }}님, </div>
+                        <a href="{% url 'profile_edit' user.id %}">
+                            <button>정보수정<button/>
+                        </a>
+                        <a href="{% url 'logout' %}?next={{request.path}}">
+                            <button>로그아웃<button/>
+                        </a> 
+                    </div>
+                {% else %}
+                    <div class="user-button">
+                        <a href="{% url 'signup' %}">
+                            <button>회원가입<button/>
+                        </a>
+                        <a href="{% url 'login' %}">
+                            <button>로그인<button/>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    <body> 
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

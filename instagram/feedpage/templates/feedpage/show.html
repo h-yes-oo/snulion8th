@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    
+    <div class="feed-block">
+        <a href="{% url 'index' %}"><button>home</button></a>
+        {% if user.is_authenticated %}
+            {% if request.user == feed.author %}
+                <a href="{% url 'edit' feed.id %}"><button>edit</button></a>
+                <a href = "{% url 'delete' feed.id %}"
+                    onclick="return confirm('정말 삭제하시겠습니까?')">
+                    <button>삭제</button>
+                </a>
+            {% endif %}
+        {% endif %}
+        <div class="content">
+            <p>{{ feed.content }}</p>
+        </div>
+        {% if feed.photo %}
+            <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
+        {% endif %}
+    </div>
+{% endblock content %}

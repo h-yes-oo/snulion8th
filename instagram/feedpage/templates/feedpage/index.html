@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <!-- FEED SECTION -->
+    <section class="feeds">
+        <div class="new-feed">
+            {% if user.is_authenticated %}
+                <a href="{% url 'new' %}">
+                    <button>new feed</button> 
+                </a> 
+            {% endif %}
+        </div>
+        <div class="feed-section" id ="feed">
+        {% for feed in feeds %}
+            <div class="inner">
+                <div class="user-id">{{feed.author.username}}
+                    <a href="{% url 'show' feed.id %}">
+                        <button>+</button>
+                    </a>
+                </div>
+
+                {% if feed.photo %}
+                    <img class="feed-photo" src="{{ feed.photo.url }}">
+                {% endif %}
+
+                <div class="feed-like">
+                    <a href="{% url 'like' feed.id %}">
+                        {% if request.user in feed.like_users.all %}
+                            <img src="{% static "images/heart-liked.png" %}">
+                        {% else %}
+                            <img src="{% static "images/heart-regular.svg" %}">
+                        {% endif %}
+                    </a>
+                    <div class="like-count">
+                        {% if feed.like_users.count > 0 %}
+                            {% if request.user in feed.like_users.all %}
+                                {% if feed.like_users.count == 1 %}
+                                    {{ feed.like_users.first.username }}님이 좋아합니다.
+                                {% else %}
+                                    {{ feed.like_users.first.username }}외 {{ feed.like_users.count|add:-1 }}명이 좋아합니다. 
+                                {% endif %}
+                            {% else %}
+                                좋아요 {{ feed.like_users.count }} 개
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="words">{{ feed.content }}</div>
+                </div>
+                
+                {% for c in feed.feedcomment_set.all %}
+                    <div class="comment-box">
+                        <div class="comment">
+                            <div class="author">{{c.author.username}}</div>
+                            <div class="value">{{ c.content }}</div>
+                            <div class="heart-img">
+                                <a href="/feeds/{{ feed.id }}/comment_like/{{c.id}}/">
+                                    {% if request.user in c.like_users.all %}
+                                        <img src="{% static "images/heart-liked.png" %}">
+                                    {% else %}
+                                        <img src="{% static "images/heart-regular.svg" %}">
+                                    {% endif %}
+                                </a> 
+                            </div>
+                        </div>
+                        <div class="comment-info">
+                            {% if request.user == c.author %}    
+                                <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                                    {% csrf_token %}
+                                    <button>댓글 삭제</button>
+                                </form>
+                            {% endif %}   
+                            {% if c.like_users.count > 0 %}
+                                좋아요 {{ c.like_users.count }}개
+                            {% endif %}
+                        </div>
+                    </div>                      
+                {% endfor %}
+
+                <div class="new-comment">  
+                {% if user.is_authenticated %}
+                    <form action="/feeds/{{ feed.id }}/comments/" method="POST"> 
+                        {% csrf_token %}
+                        <input name="content" type="text" placeholder="댓글 달기..." required/>
+                        <button type="submit">게시</button>
+                    </form>
+                {% endif %}
+                </div>
+            </div> 
+        {% endfor %}
+        </div>
+    </section>
+{% endblock content %}

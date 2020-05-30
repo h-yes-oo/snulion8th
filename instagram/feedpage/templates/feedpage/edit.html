@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="feed-block">
+        <div class="content">EDIT FEED</div>
+        <form enctype="multipart/form-data" action="{% url 'show' feed.id %}" method="POST">
+            {% csrf_token %}
+            <div class="title">content</div>
+            <input type="text" name="content" value = "{{ feed.content }}"
+                style = "width:90%; height:50px;" required/><br/>
+            <input name="photo" type="file"/> 
+            {% if feed.photo %} 
+                <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
+            {% endif %} <br />
+            <button class="submit" type="submit">수정하기</button>
+        </form>
+    </div>
+{% endblock content %}
