@@ -2,12 +2,21 @@
 {% block content %}
   <body>
     <div>
+      <p><strong>TITLE</strong></p>
+      <p>{{ feed.title }}</p>
+      <p><strong>CONTENT</strong></p>
+      <p>{{ feed.content }}</p>
+
+      {% if  feed.photo %}
+        <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%"><br/>
+      {% endif %}
+
+
+
+      <p>{{ feed.like_users.count }} Likes
       <a href="/feeds">home</a>
       <a href="/feeds/{{ feed.id }}/edit">edit</a>
-      <p>title</p>
-      <p>{{ feed.title }}</p>
-      <p>content</p>
-      <p>{{ feed.content }}</p>
+      </p>
     </div>
   </body>
 {% endblock content %}

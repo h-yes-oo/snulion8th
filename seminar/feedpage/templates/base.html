@@ -8,6 +8,9 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'feedpage/style.css' %}"> <!-- 추가 --> 
     
+    {% load sass_tags %}
+    <link href="{% sass_src 'feedpage/main.scss' %}" rel="stylesheet" type="text/css" />
+
   </head>
   <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">Snulion Feed Page</header>
   

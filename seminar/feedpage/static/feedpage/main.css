@@ -1,0 +1,20 @@
+header {
+  background-color: #ffb13b;
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  display: inline-block; }
+
+body {
+  background-color: lightgray; }
+
+.box {
+  font-weight: bold;
+  font-size: 10px;
+  font-family: sans-serif;
+  margin-top: 10px;
+  margin-left: 20px;
+  padding-bottom: 40px;
+  padding-right: 30px; }
+
+/*# sourceMappingURL=main.css.map */
