@@ -26,7 +26,7 @@ def signup(request):
             user.save()
             auth.login(request, user)
             return redirect('/feeds')
-    return render(request, 'accounts/signup.html')
+    return render(request, 'accounts/signup.html/')
 
 
 def login(request):
@@ -42,8 +42,18 @@ def logout(request):
     return render(request, 'accounts/login.html')
 
 
-def profile_update(request):
-    return none
+def profile_update(request, id):
+    # 마이페이지에서 보냈을 때 실행
+    if request.method == "POST":
+        user = User.objects.get(id=id)
+        user.username = request.POST['username']
+        user.major = request.POST['major']
+        user.college = request.POST['college']
+        user.sns = request.POST['sns']
+        user.save()
+        return redirect('/feeds/')
+    # 베이스에서 눌렀을 때 링크 타고 가는 것 
+    return render(request, 'accounts/mypage.html')
 
 
 def follow_manager(request, pk):

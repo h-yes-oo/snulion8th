@@ -25,8 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', feedpage.views.index, name='index'),
     path('feeds/', include('feedpage.urls')),
+    path('accounts/<int:id>/update/', accounts.views.profile_update, name='profile_update'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/<int:id>/update', accounts.views.profile_update, name="profile_update"),
     path('accounts/signup/', accounts.views.signup, name='signup'),
     path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

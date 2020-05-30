@@ -31,6 +31,7 @@
         </p>
         {% for c in feed.feedcomment_set.all %}
           <p>{{ c.content }}</p>
+          <a href="/feeds/{{feed.id}}/comments/{{ c.id }}/like/">{{ c.like_users.count }} Likes</a>
           {% if request.user == feed.author %}
             <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
               {% csrf_token %}
