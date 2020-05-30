@@ -1,0 +1,21 @@
+<h1> Change your info! </h1>
+
+<form method="POST" action="/accounts/{{ user.id }}/changeinfo/">
+    {% csrf_token %}
+    사용자 이름:
+    <br>
+    <input name="username" type="text" value="">
+    <br>
+    <br>
+    소속 대학교:
+    <br>
+    <input name="college" type="text" value="">
+    <br>
+    <br>
+    소속 전공:
+    <br>
+    <input name="major" type="text" value="">
+    <br>
+    <br>
+    <input type="submit" value="Change!">
+</form>
