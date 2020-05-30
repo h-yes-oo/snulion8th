@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>feed page</h1>
+        <a href="/feed/new">new feed</a>
+    {% comment %} {% for feed in feeds %} {% endcomment %}
+        <div class = "feed">
+            <a href="/feeds/{{ feed.id }}">더보기</a>
+            <a href="/feeds/{{ feed.id }}/delete">삭제</a>
+            <div class = "username"> dahyoung.yoo </div>
+            
+            {% if  feed.photo %}
+                <div class = "photo">
+                    <img class = "myphoto" src="{{ feed.photo.url }}">
+                </div>
+            {% endif %}
+            <div class = "content">
+                {{feed.content}}
+            </div>
+
+            <div class = "like">
+                <i class="far fa-heart" style="color: black; font-size: 24px;"></i>
+            </div>
+            <div class = "comments">
+                <input class="comments_box1" type="text" placeholder="댓글 달기...">
+                <div class="comments_box2"> 게시 </div>
+            </div>
+        </div>
+    {% comment %} {% endfor %} {% endcomment %}
+{% endblock content %}

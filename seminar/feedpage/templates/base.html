@@ -7,19 +7,29 @@
     <link rel="stylesheet" href="{% static 'feedpage/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Gaegu&family=Hi+Melody&family=Poor+Story&family=Sunflower:wght@500&display=swap" rel="stylesheet">
   
-  <header style="width: 100%; background-color: lightpink; color: black;">
+  <header style="width: 100%; background-color: lightpink; color: black; text-align: center;">
+    <div style="font-size: 30px; font-weight: bold;">
+      Snulion Feeds
+    </div>
     <div style="text-align: right;">
       {% if user.is_authenticated %}
         {{ user.get_username }}님, 안녕하세요 <br>
           학교: {{ user.profile.college }} <br>
           전공: {{ user.profile.major }} <br>
+          <br>
+          <div>
+            내가 좋아한 글: {{user.like_feeds.count}}개
+          <div>
+          <br>
+            팔로잉: {{ user.profile.follow_to.all.count }} <br>
+            팔로워: {{ user.profile.follow_from.all.count }} <br>
+          <br>
           <a href="{% url 'logout'%}">로그아웃</a>
         {% else %}
           <a href="{% url 'signup' %}">회원가입</a>
           <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
         {% endif %}
     </div>
-    Snulion Feeds
   </header>
   
   <body>
