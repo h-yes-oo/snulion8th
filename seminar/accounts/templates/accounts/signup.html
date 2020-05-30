@@ -1,0 +1,41 @@
+<!-- accounts/templates/accounts/signup.html -->
+<h1> Sign Up! </h1>
+
+<form method="POST" action="{%url 'signup'%}">
+    {% csrf_token %}
+    사용자 이름:
+    <br>
+    <input name="username" type="text" value="">
+    <br>
+    <br>
+    비밀번호:
+    <br>
+    <input name="password1" type="password" value="">
+    <br>
+    <br>
+    비밀번호 확인:
+    <br>
+    <input name="password2" type="password" value="">
+    <br>
+    <br>
+    학교:
+    <br>
+    <input name="college" type="text" value="">
+    <br>
+    <br>
+    전공:
+    <br>
+    <input name="major" type="text" value="">
+    <br>
+    <br>
+    취미:
+    <br>
+    <input name="hobby" type="text" value="">
+    <br>
+    <br>
+    인스타 아이디(없으면 입력해주시지 않으셔도 됩니다):
+    <br>
+    <input name="insta_id" type="text" value="">
+    <br>
+    <input type="submit" value="Sign Up!">
+</form>
