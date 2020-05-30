@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>edit page</h1>
+    <form action="/feeds/{{feed.id}}/edit/update" method="POST">
+      {% csrf_token %}
+      <p>photo</p>
+      <input name="photo" value="{{ feed.photo.url }}"/>  <br />
+      <p>content</p>
+      <input name="content" value="{{ feed.content }}"/> <br />
+      <input type="submit" value="edit" />
+    </form>
+{% endblock content %}

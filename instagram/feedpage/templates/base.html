@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Daramgram</title>
+        {% load  static %} 
+        <link rel="stylesheet" href="{% static 'feedpage/style.css' %}">
+        <script src="https://kit.fontawesome.com/703f0f4079.js" crossorigin="anonymous"></script>
+    </head>
+    
+    <body>
+        <div class = "header">
+            <div class = "header_inner">
+                <div class = "logo">
+                    <a href = "https://www.instagram.com/">
+                        <i class="fab fa-instagram" style="color: black; font-size: 40px;"></i>
+                    </a>
+                </div>
+                <div class = "search">
+                    <input class="search_box" type="text" placeholder="검색">
+                </div>
+                <div class = "button">
+                    <div class = "icon">
+                        <a href = "https://www.instagram.com/">
+                            <i class="far fa-bell" style="color: black; font-size: 24px;"></i>
+                        </a>
+                    </div>
+                    <div class = "icon">
+                        <a href = "https://www.instagram.com/">
+                            <i class="far fa-heart" style="color: pink; font-size: 24px;"></i>
+                        </a>
+                    </div>
+                    <div class = "icon">
+                        <a href = "https://www.instagram.com/">
+                            <i class="fas fa-user" style="color: black; font-size: 24px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

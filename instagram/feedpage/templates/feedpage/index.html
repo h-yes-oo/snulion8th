@@ -1,45 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Daramgram</title>
-        <link rel="stylesheet" type="text/css" href="instagram.css" />
-        <script src="https://kit.fontawesome.com/703f0f4079.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div class = "header">
-            <div class = "header_inner">
-                <div class = "logo">
-                    <a href = "https://www.instagram.com/">
-                        <i class="fab fa-instagram" style="color: black; font-size: 40px;"></i>
-                    </a>
-                </div>
-                <div class = "search">
-                    <input class="search_box" type="text" placeholder="검색">
-                </div>
-                <div class = "button">
-                    <div class = "icon">
-                        <a href = "https://www.instagram.com/">
-                            <i class="far fa-bell" style="color: black; font-size: 24px;"></i>
-                        </a>
-                    </div>
-                    <div class = "icon">
-                        <a href = "https://www.instagram.com/">
-                            <i class="far fa-heart" style="color: pink; font-size: 24px;"></i>
-                        </a>
-                    </div>
-                    <div class = "icon">
-                        <a href = "https://www.instagram.com/">
-                            <i class="fas fa-user" style="color: black; font-size: 24px;"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+{% extends 'base.html' %}
+{% block content %}
+    <h1>feed page</h1>
+        <a href="/feed/new">new feed</a>
+    {% comment %} {% for feed in feeds %} {% endcomment %}
         <div class = "feed">
-            <div class = "username"> dheveloper </div>
-            <div class = "photo">
-                <img class = "myphoto" src = "https://images-gmi-pmc.edge-generalmills.com/6935db52-d355-4cb7-8b2e-b3cb770c66b6.jpg">
+            <a href="/feeds/{{ feed.id }}">더보기</a>
+            <a href="/feeds/{{ feed.id }}/delete">삭제</a>
+            <div class = "username"> dahyoung.yoo </div>
+            
+            {% if  feed.photo %}
+                <div class = "photo">
+                    <img class = "myphoto" src="{{ feed.photo.url }}">
+                </div>
+            {% endif %}
+            <div class = "content">
+                {{feed.content}}
             </div>
+
             <div class = "like">
                 <i class="far fa-heart" style="color: black; font-size: 24px;"></i>
             </div>
@@ -48,5 +25,5 @@
                 <div class="comments_box2"> 게시 </div>
             </div>
         </div>
-    </body>
-</html>
+    {% comment %} {% endfor %} {% endcomment %}
+{% endblock content %}
