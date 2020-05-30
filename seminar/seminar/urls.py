@@ -13,12 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
-# seminar/urls.py
 from django.contrib import admin
-from django.urls import path
-import feedpage.views
-from django.conf.urls import include
+from django.urls import path, include
 import feedpage.views
 import accounts.views
 from django.conf import settings
@@ -30,5 +26,7 @@ urlpatterns = [
     path('feeds/', include('feedpage.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', accounts.views.signup, name='signup'),
-    path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),
+    path('accounts/profile_edit/<int:id>/',
+         accounts.views.profile_edit, name='profile_edit'),
+    path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

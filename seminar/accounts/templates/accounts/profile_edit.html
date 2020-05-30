@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content%}
+<div>
+	<div>
+		<span>MYPAGE. 정보를 수정해주세요</span>
+	</div>
+	<br />
+	<div>
+		<form method="POST" action="/accounts/profile_edit/{{ user.id }}">
+			{% csrf_token %} 학교: {{ user.profile.college }}
+			<input name="college" type="text" />
+			<br />
+			전공: {{ user.profile.major }}
+			<input name="major" type="text" />
+			<br />
+			<input type="submit" value="submit" />
+		</form>
+	</div>
+</div>
+{% endblock content%}

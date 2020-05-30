@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#-y9^5^+^@evsn)@w)9o1y*18e6$&5508q(oq3d2_z4sdyh95p'
+SECRET_KEY = 'utrge(%)4jawakffl@e4^ou5!6%@1s5y&=#akgjcu=01-@-k#t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -29,8 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
-LOGIN_REDIRECT_URL = "/feeds/"
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -107,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE =  'ko'
+LANGUAGE_CODE = 'ko'
 
-TIME_ZONE =  'Asia/Seoul'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -123,6 +121,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, 'seminar', 'static'),
-)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'seminar', 'static'),
+]
+
+
+LOGIN_REDIRECT_URL = "/feeds/"

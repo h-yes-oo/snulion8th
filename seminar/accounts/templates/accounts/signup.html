@@ -1,40 +1,31 @@
-<!-- accounts/templates/accounts/signup.html -->
-{% extends 'base.html' %}
-{% block content %}
-<h1> Sign Up! </h1>
-
-<form method="POST" action="{%url 'signup'%}">
-    {% csrf_token %}
-    사용자 이름:
-    <br>
-    <input name="username" type="text" value="">
-    <br>
-    <br>
-    학교:
-    <br>
-    <input name="college" type="text" value="">
-    <br>
-    <br>
-    전공:
-    <br>
-    <input name="major" type="text" value="">
-    <br>
-    <br>
-    나이:
-    <br>
-    <input name="age" type="text" value="">
-    <br>
-    <br>
-    비밀번호:
-    <br>
-    <input name="password1" type="password" value="">
-    <br>
-    <br>
-    비밀번호 확인:
-    <br>
-    <input name="password2" type="password" value="">
-    <br>
-    <br>
-    <input type="submit" value="Sign Up!">
+{% extends 'base.html' %} {% block content %}
+<h1>Sign up!</h1>
+<form method="POST" action="{% url 'signup' %}">
+	{% csrf_token %} 사용자 이름:
+	<br />
+	<input name="username" type="text" value="" />
+	<br />
+	<br />
+	학교:
+	<br />
+	<input name="college" type="text" value="" />
+	<br />
+	<br />
+	전공:
+	<br />
+	<input name="major" type="text" value="" />
+	<br />
+	<br />
+	비밀번호:
+	<br />
+	<input name="password1" type="password" value="" />
+	<br />
+	<br />
+	비밀번호 확인:
+	<br />
+	<input name="password2" type="password" value="" />
+	<br />
+	<br />
+	<input type="submit" value="Sign Up!" />
 </form>
-{% endblock content %}
+{% endblock content%}

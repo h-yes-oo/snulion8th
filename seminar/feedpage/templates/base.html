@@ -1,33 +1,32 @@
-<!-- feedpage/templates/base.html -->
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>snulion</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'feedpage/style.css' %}">
-    <link rel="stylesheet" href="{% static 'feedpage/reset.css' %}">
-  </head>
-
-  <body>
-    <header>
-      <div class="top">
-        {% if user.is_authenticated %}
-        <div>{{ user.get_username }}님, 안녕하세요</div>
-        <div>학교: {{ user.profile.college }}</div>
-        <div>전공: {{ user.profile.major }}</div>
-        <div>나이: {{ user.profile.age }}</div>
-        <div style="text-align: right">              
-          내가 좋아한 글 : {{ user.like_feeds.count }}개
-        </div>
-        <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
-        {% else %}
-        <a href="{% url 'signup' %}">회원가입</a>
-        <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
-        {% endif %}
-      </div>
-    </header>
-    {% block content %}
-    {% endblock %}
-  </body>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<title>snulion</title>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'feedpage/style.css' %}" />
+		<link rel="stylesheet" href="{% static 'feedpage/reset.css' %}" />
+	</head>
+	<body>
+		<header>
+			<div>
+				{% if user.is_authenticated%}
+				<span>{{ user.get_username }}님, 안녕하세요.</span>
+				<span>학교: {{ user.profile.college }}</span>
+				<span>전공: {{ user.profile.major }}님, 안녕하세요.</span>
+				<div style="text-align: right;">
+					내가 좋아한 글 : {{ user.like_feeds.count }}
+				</div>
+				<a href="{% url 'profile_edit' user.id %}">정보수정</a>
+				<a href="{% url 'logout' %}?next={{ request.path }}">
+					로그아웃
+				</a>
+				{% else %}
+				<a href="{% url 'signup' %}">회원가입</a>
+				<a href="{% url 'login' %}?next={{request.path}}">로그인</a>
+				{% endif %}
+			</div>
+		</header>
+		{% block content %} {% endblock %}
+	</body>
 </html>
