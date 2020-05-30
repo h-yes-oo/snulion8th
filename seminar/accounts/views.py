@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserChangeForm
+from .models import Profile,Follow
 #from accounts import CustomUserChangeForm
 
 def signup(request):
@@ -32,6 +33,24 @@ def login (request):
 
 def logout(request):
     return render(request, 'accounts/logout.html')
+
+def follow_manager(request, pk):
+    follow_from=Profile.objects.get(user_id=request.user.id)
+    follow_to=Profile.objects.get(user_id=pk)
+
+    try:
+        following_already=Follow.objects.get(follow_from=follow_from,follow_to=follow_to)
+    except Follow.DoesNotExist:
+        following_already=None
+    
+    if following_already:
+        following_already.delete()
+    else:
+        f=Follow()
+        f.follow_from,f.follow_to=follow_from,follow_to
+        f.save()
+    return redirect('/feeds')
+
 
 '''@login_required
 def update(request):
