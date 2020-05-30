@@ -1,0 +1,187 @@
+
+.logo {
+    height: 46px;
+    width: auto; /* 위에서 지정해준 높이에 맞게 넓이를 자동으로 맞추어주는 속성 */
+    flex: 1 9999 0%; /* flex 속성에 대해서는 아래 css 이모저모 파트에서 자세하게 다룸 */
+}
+
+.logo_img {
+    height: 100%; /* 해당 요소가 속한 div 의 height의 100% 크기로 높이를 설정함 */
+    width: auto;
+}
+
+.search {
+    height: 28px;
+    width: 215px;
+    margin: auto;
+}
+
+.search_box {
+    height: 100%;
+    width: 100%;
+    background: #fafafa; /* 배경색 지정 */
+    border: solid 1px #dbdbdb; /* 테두리의 패턴/ 굵기/ 색상 지정 */
+    border-radius: 3px; /* 박스의 모서리 곡률 지정 */
+    color: #999; /* 글씨체 색상 지정 */
+    cursor: text;
+    font-size: 14px; /* 글씨체 크기 지정 */
+    font-weight: 300; /* 글씨체 굵기 지정 */
+    text-align: center; /* 글 나열 방식 지정 */
+}
+
+.button {
+    height: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.icon {
+    width: 22px;
+    height: 22px;
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.button {
+    display: flex; /* 추가 */
+    flex-direction: row; /* 추가 : 정렬 방향이 row 형태로 되게 하는 속성 */
+    flex: 1; /* 추가 : 컨텐츠들의 크기를 전체 div에 맞게 크기를 조절해주는 속성  */
+    justify-content: flex-end; /* 추가 :  cotents들을 div 끝에 맞춰 정렬해주는 속성 */
+    height: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.header {
+    height: 77px; 
+    width: 100%; /* 화면 넓이에 꽉 차게 하는 속성 */
+    position: fixed; /*스크롤해도 항상 위에 고정시키는 속성 */
+    top: 0; /*화면 가장 위에 위치시키는 속성 */
+    z-index: 1; /* 배치 순서를 나타내는 속성, 숫자가 클 수록 앞에 보이게 됨 */
+    background-color: white;
+    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1); /*1px은 테두리의 크기,solid는 테두리의 패턴,rgba~는 색상정보*/
+}
+
+.header_inner {
+    max-width: 1010px;
+    padding: 16px; 
+    margin: auto;
+    width: 100%;
+    display: flex;
+}
+.feed {
+    width: 1120px;
+    margin: auto;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.feed_inner {
+    width: 100%;
+    height: auto;
+    margin: 20px, 50px;
+    padding: 5px 70px;
+    box-sizing: border-box;
+}
+
+.userid {
+    width: 600px;
+    height: 60px;
+    border: solid lightgray 1px;
+
+}
+.userid_inner{
+    padding-top: 5px;
+    padding-left: 40px;
+    text-align: left;
+    font-family: 'Rubik';
+    font-weight: bold;
+    box-sizing:content-box;
+}
+
+.article {
+    height: 400px;
+    width: 600px;
+}
+.article_img {
+    width: 600px;
+    height: 400px;
+    border-bottom: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;    
+}
+
+.article_button {
+    width: 600px;
+    height: 40px;
+    border: 1px solid lightgrey;
+}
+
+.like_button {
+    width: 20px;
+    height: 20px;
+    padding: 10px 20px;
+}
+
+.content {
+    width: 600px;
+    border: 1px solid lightgrey;
+    height: auto;
+}
+
+.content_inner {
+    text-align: left;
+    font-family: 'Rubik';
+    padding-left: 40px;
+    box-sizing:content-box;
+}
+
+.comment {
+    width: 600px;
+    border: 1px solid lightgrey;
+}
+
+.comment_box {
+    width: 475px;
+    height: 15px;
+    border: white;
+}
+
+.submit_button {
+    display: inline-block;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: white 1px solid;
+    font-size: 14px;
+    background-color: white;
+}
+
+.submit_button:hover {
+    border: pink 1px solid;
+}
+
+.newbt{
+    padding-left: 70px;
+}
+
+.delbt{
+    width: 70px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    margin: 15px 10px;
+    border: white 1px solid;
+    background-color: white;
+    font-size: 14px;
+}
+
+
+.cmtel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}

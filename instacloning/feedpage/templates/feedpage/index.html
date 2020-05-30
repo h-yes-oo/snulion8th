@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'feedpage/index.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <title>Lionstagram</title>
+  </head>
+
+  <body>
+    <div class="header">
+        <div class="header_inner">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    <img class="logo_img" src={% static "images/logo_img.png" %} >
+                </a>
+            </div>
+            <div class="search">
+                <input class="search_box" type="text" placeholder="검색"/>
+            </div>
+            <div class="button">
+                <div class="icon">
+                    <a href=" ">
+                        <img src={% static "images/bell-regular.svg" %}>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = " ">
+                        <img src={% static "images/heart-regular.svg" %}>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = " ">
+                        <img src={% static "images/user-solid.svg" %}>
+                    </a>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="feed">
+        <div class="newbt">
+            <a href="/feeds/new/">New Feed</a>
+        </div>
+        {% for feed in feeds %}
+        <div class="feed_inner">
+            <div class="delbt">
+                <a href="/feeds/{{ feed.id }}/delete">
+                    <input type="button", value="Delete">
+                </a>
+            </div>
+            <div class="userid">
+                <div class="userid_inner">
+                    <p>{{ feed.title }}</p>
+                </div>
+            </div>
+            {% if feed.photo %}
+            <div class="article">
+                <img class="article_img" src="{{ feed.photo.url }}"/>
+            </div>
+            {% endif %}
+            <div class= "content">
+                <div class="content_inner">
+                    <p>{{ feed.content }}</p>
+                </div>
+            </div>
+            <div class="article_button">
+                <a href=" ">
+                    <img class="like_button" src={% static "images/heart-regular.svg" %}>
+                </a>
+            </div>
+            <div class="comment">
+                {% for c in feed.feedcomment_set.all %}
+                    <div class="cmtel">
+                        <p>{{ c.content }}</p>
+                        <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                            {% csrf_token %}
+                            <button>댓글 삭제</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                    <div class="cmtel">
+                        <form action="/feeds/{{ feed.id }}/comments/" method="POST">
+                            {% csrf_token %}
+                            <input class="comment_box" type="text" placeholder="댓글" name="content">
+                            <button class="submit_button" type="submit">댓글 달기</button>
+                        </form>
+                    </div>
+            </div>            
+        </div>
+    {% endfor %}
+    </div>
+  </body>
+</html>
