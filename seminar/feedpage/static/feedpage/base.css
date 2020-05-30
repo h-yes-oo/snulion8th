@@ -1,0 +1,16 @@
+* {
+  font-family: "Nanum Godic", sans-serif, Circular, -apple-system,
+    BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  margin: 0;
+}
+body {
+}
+header {
+  width: 100vw;
+  background-color: mediumslateblue;
+  color: white;
+  text-align: left;
+}
+.header-inner {
+  text-align: right;
+}

@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>snulion</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'feedpage/base.css' %}"/>
   </head>
-  <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">
-    <div style="text-align: right;">
+  <header>
+    <div class="header-inner">
       {% if user.is_authenticated %}
         {{ user.get_username }}님, 안녕하세요<br>
         학교: 
@@ -24,8 +26,10 @@
         {%if user.profile.sns %}{{ user.profile.sns }}
         {% else %}-
         {% endif %}<br>
-        
-        <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+        <div style="text-align: right">                 
+          내가 좋아한 글 : {{ user.like_feeds.count }}개   
+        </div>           
+        <a href="{% url 'logout'%}?next={{request.path}}" onclick="return confirm('정말로 로그아웃 하시겠습니까?');">로그아웃</a>
       {% else %}
         <a href="{% url 'signup' %}">회원가입</a>
         <a href="{% url 'login'%}?next={{request.path}}">로그인</a>

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import redirect
-from .models import Profile
+from .models import Profile, Follow
 
 
 def signup(request):
@@ -22,20 +22,20 @@ def signup(request):
     return render(request, 'accounts/signup.html')
 
 
-"""
-def login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(request, username=username, password=password)
-        if user:
-            auth.login(request, user)
-            return redirect('feeds')
-        else:
-            return render(request, 'accounts/login.html', {'error': 'username or password is incorrect'})
-    return render(request, 'accounts/login.html')
+def follow_manager(request, pk):
+    follow_from = Profile.objects.get(user_id=request.user.id)
+    follow_to = Profile.objects.get(user_id=pk)
 
+    try:
+        following_already = Follow.objects.get(
+            follow_from=follow_from, follow_to=follow_to)
+    except Follow.DoesNotExist:
+        following_already = None
 
-def logout(request):
-    return render(request, 'accounts/logout.html')
-"""
+    if following_already:
+        following_already.delete()
+    else:
+        f = Follow()
+        f.follow_from, f.follow_to = follow_from, follow_to
+        f.save()
+    return redirect('/feeds')
