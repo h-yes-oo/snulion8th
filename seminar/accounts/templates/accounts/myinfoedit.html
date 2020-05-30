@@ -1,0 +1,27 @@
+<h1>내 정보 수정</h1>
+
+<form method="POST" action="{%url 'myinfoedit'%}">
+    {%csrf_token%}
+    <input type="hidden" name="username" value="{{ user.get_username }}" />
+    학교:
+    <br>
+    <input name="college" type="text" value={{ user.profile.college }}>
+    <br>
+    <br>
+    전공:
+    <br>
+    <input name="major" type="text" value={{ user.profile.major }}>
+    <br>
+    <br>
+    생일:
+    <br>
+    <input name="birthday" type="text" value={{ user.profile.birthday }}>
+    <br>
+    <br>
+    sns 계정:
+    <br>
+    <input name="sns" type="text" value={{ user.profile.sns }}>
+    <br>
+    <br>
+    <input type="submit" value="내 정보 수정">
+</form>
