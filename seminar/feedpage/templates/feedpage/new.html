@@ -3,13 +3,18 @@
 {% block content %}
   <body>
     <h1>new feed</h1>
+    <form enctype="multipart/form-data" action="/feeds/" method="POST">
     {% comment %} /feeds/ 가 url.py 에서 index.html로 넘어가게 한다. {% endcomment %}
     <form action="/feeds/" method="POST"> 
       {% csrf_token %}
-      <p>title</p>
+      <p><strong>TITLE</strong></p>
       <input name="title" /> <br />
-      <p>content</p>
-      <input name="content" /> <br />
+      <p><strong>CONTENT</strong></p>
+      <input name="content" /> <br/>
+      
+      <p>photo</p>
+      <input name="photo" type="file"/><br/>
+
       <input type="submit" value="submit" />
     </form>
   </body>

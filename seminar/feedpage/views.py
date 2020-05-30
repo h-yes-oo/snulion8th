@@ -11,7 +11,8 @@ def index(request):
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        feed=Feed.objects.create(title=title, content=content, author=request.user)
+        photo =  request.FILES.get('photo', False)
+        feed=Feed.objects.create(title=title, content=content, author=request.user, photo=photo)
         # return redirect('/feeds/%d' %feed.id)
         return redirect('/feeds/')
 

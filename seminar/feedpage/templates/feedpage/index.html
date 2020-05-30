@@ -13,6 +13,10 @@
                 <p><strong>CONTENT</strong></p>
                 <p>{{ feed.content }}</p>
                 
+                {% if  feed.photo %}
+                    <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%"><br/>
+                {% endif %}
+                
                 <a href="/feeds/{{ feed.id }}/like">{{ feed.like_users.count }} Likes</a>
                 <a href="/feeds/{{ feed.id }}">더보기</a>
                 {% if request.user == feed.author %} 
