@@ -1,0 +1,51 @@
+{% load  static %} 
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>Yunny!gram</title>
+    <link  rel="stylesheet"  href="{% static 'feedpage/style.css' %}" />>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap&subset=korean" rel="stylesheet">
+    <meta charset="utf-8">
+</head>
+  <body>
+  <div class = "header">
+        <div class = "header_inner">
+            <div class = "logo">
+                <a href = "https://www.instagram.com/">
+                    <img class="logo_img" src="{% static 'images/logo_img.png' %}" />
+                </a>
+            </div>
+            <div class = "search">
+                <input class="search_box" type="text" placeholder="검색">
+            </div>
+            <div class = "button">
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src="{% static 'images/bell-regular.svg'%}"/>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src"{% static 'images/bell-regular.svg'%}"/>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src="{% static 'images/user-solid.svg'%}"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+      <a href="/feeds">home</a>
+      <p>{{ feed.title }}</p>
+      <p>{{ feed.content }}</p>
+      <div>
+      {% if  feed.photo %}
+       <img  src="{{ feed.photo.url }}"  alt="" width="10%" height="10%">
+     {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

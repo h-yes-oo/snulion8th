@@ -1,18 +1,25 @@
 <!-- feedpage/templates/base.html -->
+{% load  static %} 
+{% load sass_tags %}
+<link href="{% sass_src 'feedpage/main.scss' %}" rel="stylesheet" type="text/css" /> 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>django_yunny</title>
+    <link  rel="stylesheet"  href="{% static 'feedpage/style.css' %}" />
   </head>
-  <header style="width: 100%; height: 50px; background-color: #96A5FF; color: white; text-align: left;">
+  <header style="padding: 10px; width: 95%; height: 100px; background-color: #96A5FF; color: white; text-align: left;">
      <div style="text-align: right;">
        {% if user.is_authenticated %}
-             {{ user.get_username }}님, 안녕하세요
-             <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+             Hello, {{ user.get_username }}! 
+             <div style = "text-align: right">
+              No. of Feeds that I liked : {{ user.like_feeds.count }}
+             </div>
+             <a href="{% url 'logout'%}?next={{request.path}}">Log out</a>
         {% else %}
-             <a href="{% url 'signup' %}">회원가입</a>
-             <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+             <a href="{% url 'signup' %}">Register in</a>
+             <a href="{% url 'login'%}?next={{request.path}}">Sign in</a>
         {% endif %} 
     </div>
     Yunny Feed Page

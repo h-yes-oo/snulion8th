@@ -1,0 +1,10 @@
+$myorange: #f2afff;
+
+header {
+    // background-color: #ffb03b; // 아래 코드로 대체! 
+    background-color: $myorange;
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    display: inline-block;
+}

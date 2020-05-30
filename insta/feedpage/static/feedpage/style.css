@@ -1,0 +1,142 @@
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 77px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+}
+
+.header_inner {
+    max-width: 1010px;
+    padding: 16px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+}
+
+.logo {
+    height: 46px;
+    width: auto;
+    flex: 1 9999 0%;
+}
+
+.logo_img {
+    height: 100%;
+    width: auto;
+}
+
+.search {
+    height: 28px;
+    width: 215px;
+    margin: auto;
+}
+
+.search_box {
+    height: 100%;
+    width: 100%;
+    background: #fafafa;
+    border: solid 1px #dbdbdb;
+    border-radius: 3px;
+    color: #999;
+    cursor: text;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.button {
+    flex-direction: row;
+    flex: 1 0 0%;
+    justify-content: flex-end;
+    height: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+}
+
+.icon {
+    width: 22px;
+    height: 22px;
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.feed {
+    background-color: rgba(var(--b3f,250,250,250),1);
+    margin-top: 77px;
+    height: 100%;
+}
+
+.article {
+    position: absolute;
+    width: 614px;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #e6e6e6;
+    margin-left: 96px;
+    margin-top: 60px;
+    float: left;
+}
+
+.article_header {
+    height: 16px;
+    padding: 25px 30px;
+    font-size: 15px;
+    font-weight: bold;
+    float: left;
+}
+
+.photo {
+    width: 100%;
+    height: auto;
+}
+
+.article_button {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 8px;
+    height: 40px;
+    display: flex;
+}
+
+.like {
+    height: 22px;
+    width: 22px;
+    border: none;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.article_comment {
+    height: 56px;
+    margin-top: 6px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-top: 1px #dbdbdb solid;
+    display: flex;
+}
+
+.commentbox {
+    border: 0 solid;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 13px;
+    resize: none;
+    text-emphasis: none;
+    width: 600px;
+}
+
+.submit {
+    border: 0 solid;
+    font-size: 13px;
+    color: palevioletred;
+}

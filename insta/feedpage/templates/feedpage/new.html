@@ -1,0 +1,71 @@
+<!-- ./feedpage/templates/feedpage/new.html -->
+{% load  static %} 
+<!DOCTYPE html>
+<html>
+ <head> 
+    <title>Yunny!gram</title>
+    <link  rel="stylesheet"  href="{% static 'feedpage/style.css' %}" />>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap&subset=korean" rel="stylesheet">
+    <meta charset="utf-8">
+</head>
+  <body>
+   <div class = "header">
+        <div class = "header_inner">
+            <div class = "logo">
+                <a href = "https://www.instagram.com/">
+                    <img class="logo_img" src="{% static 'images/logo_img.png' %}" />
+                </a>
+            </div>
+            <div class = "search">
+                <input class="search_box" type="text" placeholder="검색">
+            </div>
+            <div class = "button">
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src="{% static 'images/bell-regular.svg'%}"/>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src"{% static 'images/bell-regular.svg'%}"/>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src="{% static 'images/user-solid.svg'%}"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>new feed</h1>
+    
+    <div class = "article">
+            <div class = "article_header">
+                <div class = "username">yunnysunnyshiny</div>
+            </div>
+                <form enctype="multipart/form-data" action="/feeds/" method="POST">
+                {% csrf_token %}
+      
+                <p>title</p>
+                 <input name="title" /> <br />
+                 <p>content</p>
+                 <input name="content" /> <br />
+                 <p>photo</p>
+                 <div class = "article_photo">
+                <input name="photo" type="file" /> <br />
+                </div>
+                <input type="submit" value="submit" />
+             </form>
+            </div>
+            <div class = "article_button">
+                <button class = "like">
+                    <img src="{% static 'images/heart-regular.svg' %}"/>
+                </button>
+            </div>
+            <div class = "article_comment">
+                <textarea class="commentbox" placeholder="댓글 달기..." style="height: 18px;"></textarea>
+                <input class="submit" type ="submit" value ="게시">
+            </div>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+ <!DOCTYPE html>
+ {% load  static %} 
+  <html>
+<head> 
+    <title>Yunny!gram</title>
+    <link  rel="stylesheet"  href="{% static 'feedpage/style.css' %}" />>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap&subset=korean" rel="stylesheet">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div class = "header">
+        <div class = "header_inner">
+            <div class = "logo">
+                <a href = "https://www.instagram.com/">
+                    <img class="logo_img" src="{% static 'images/logo_img.png' %}" />
+                </a>
+            </div>
+            <div class = "search">
+                <input class="search_box" type="text" placeholder="검색">
+            </div>
+            <div class = "button">
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src="{% static 'images/bell-regular.svg'%}"/>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src"{% static 'images/bell-regular.svg'%}"/>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src="{% static 'images/user-solid.svg'%}"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class = "feed">
+         <a href = "/feeds/new"> NEW FEED </a>
+         {% for feed in feeds %} 
+          
+          <div class = "article">
+            <div class = "article_header">
+                <div class = "username">yunnysunnyshiny</div>
+                <a href="/feeds/{{ feed.id }}/delete">삭제</a>
+            </div>
+            <div class = "article_photo">
+                {% if  feed.photo %}
+                <a a href="/feeds/{{ feed.id }}"><img class = "photo" src="{{ feed.photo.url }}"></a>
+                {% endif %}
+                <p>{{ feed.title }}</p>
+                <p>{{ feed.content }}</p>
+            </div>
+            <div class = "article_button">
+                <button class = "like">
+                    <img src="{% static 'images/heart-regular.svg' %}"/>
+                </button>
+            </div>
+            <div class = "article_comment">
+                <textarea class="commentbox" placeholder="댓글 달기..." style="height: 18px;"></textarea>
+                <input class="submit" type ="submit" value ="게시">
+            </div>
+        </div>
+      {% endfor %} 
+       </div>
+        <div class = "article">
+            <div class = "article_header">
+                <div class = "username">yunnysunnyshiny</div>
+            </div>
+            <div class = "article_photo">
+                <img class = "photo" src="{% static 'images/article_img.jpg' %}">
+            </div>
+            <div class = "article_button">
+                <button class = "like">
+                    <img src="{% static 'images/heart-regular.svg' %}"/>
+                </button>
+            </div>
+            <div class = "article_comment">
+                <textarea class="commentbox" placeholder="댓글 달기..." style="height: 18px;"></textarea>
+                <input class="submit" type ="submit" value ="게시">
+            </div>
+        </div>
+</body>
+  </html>
