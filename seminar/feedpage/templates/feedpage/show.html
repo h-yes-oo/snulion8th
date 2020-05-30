@@ -13,5 +13,8 @@
         <div class="content">
             <p>내용: {{ feed.content }}</p>
         </div>
+        {% if feed.photo %}
+            <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
+        {% endif %}
     </div>
 {% endblock content %}

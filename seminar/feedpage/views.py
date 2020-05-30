@@ -14,6 +14,8 @@ def index(request):
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
+        photo =  request.FILES.get('photo', False) #사진 field가 비어있어도 되도록! 
+        Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
         Feed.objects.create(title=title, content=content, author=request.user)
         return redirect('/feeds')
     

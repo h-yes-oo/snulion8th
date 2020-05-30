@@ -27,6 +27,9 @@
                 {% endif %}   
             </div>
             <div class="content">{{ feed.content }}</div>
+            {% if feed.photo %}
+                <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
+            {% endif %}
             <div class="content">작성자:<strong>{{feed.author.username}}</strong>
                 ({{ feed.author.profile.follow_to.all.count }} following,
                 {{ feed.author.profile.follow_from.all.count }} follower)

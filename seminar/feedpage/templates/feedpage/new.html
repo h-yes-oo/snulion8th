@@ -3,12 +3,14 @@
 {% block content %}
     <div class="feed-block">
         <div class="content">NEW FEED</div>
-        <form action="{% url 'index' %}" method="POST">
+        <form enctype="multipart/form-data" action="{% url 'index' %}" method="POST">
                 {% csrf_token %}
             <div class="title">title</div>
                 <input name="title"/ required> <br />
             <div class="title">content</div>
                 <input name="content"/ required> <br />
+            <div class="title">photo</div> 
+            <input name="photo" type="file"/> <br />
             <button class="submit" type="submit">submit</button>
         </form>
     </div>

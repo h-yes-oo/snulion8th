@@ -14,7 +14,8 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
 
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)
-
+    photo = models.ImageField(blank=True, upload_to='feed_photos')
+    
     def update_date(self): # 나중에 수정할 때 사용
         self.updated_at = timezone.now()
         self.save()

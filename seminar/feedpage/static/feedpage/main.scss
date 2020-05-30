@@ -1,0 +1,138 @@
+* {
+    background-color:white; 
+}
+$mypurple: rgb(126, 36, 165);
+// color pick으로 원하는 rgb 색상 검색해서 사용하쟈! 
+
+button {
+    border-radius: 15px;
+    border: none;
+    margin-left: 10px;
+    color: $mypurple;
+    background-color: #FFF0F5;
+    outline: 0;
+}
+
+button:hover {
+    background-color: $mypurple;
+    color: white;
+}
+
+header {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+
+
+    .user-info {
+        display: flex;
+        margin-top: -20px;
+        align-items: flex-end;
+        flex-direction: column;
+
+        .user-button {
+            display: flex;
+            justify-content: left;
+            color: $mypurple;
+            background-color: transparent;
+        }
+
+        .user-profile {
+            color: $mypurple;
+            font: {
+                size: 12px;
+                weight: bold; 
+            }
+            border: 3px solid #FFF0F5;
+            border-radius: 15px;
+            margin-top: 5px;
+            padding: 10px;
+        }
+
+        .user-name {
+            font: {
+                size: 13px;
+                weight: bold;
+            }
+            margin-top: 4px;
+        }  
+    }
+}   
+
+.feed-head {
+    display: flex;
+    justify-content: center;
+
+    button {
+        margin-left: 10px;
+    }
+}
+
+.feed-name {
+    color:  $mypurple;
+    font-size: 20px;
+}
+
+.feed-name2 {
+    color:  $mypurple;
+    font-size: 20px;
+    justify-content: center;
+}
+.feed-block {
+    border: 2px solid $mypurple;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 5px;
+
+    .title {
+        color: $mypurple;
+        font-weight: bold; 
+        padding: 5px;
+    }
+
+    .content {
+        color: #708090;
+        font-weight: bold;
+        padding: 5px;
+    }
+
+    .feed-button {
+        display: flex;
+        justify-content: flex-end;
+        margin: {
+            top: -30px;
+            margin-bottom: 10px;
+        }
+    }
+
+
+    .comment-box {
+        display: flex;
+        align-items: center;
+
+        .comment {
+            font-size : 12px;
+        }
+    }
+}
+
+.new-feed .head {
+    color:  $mypurple;
+}
+
+.submit {
+    display: flex;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+input {
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 50%;
+    border: 3px solid #FFF0F5;
+}
+
+input:focus {
+    outline: none;
+}
