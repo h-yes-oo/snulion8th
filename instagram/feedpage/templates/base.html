@@ -35,20 +35,20 @@
                 {% if user.is_authenticated %}
                     <div class="user-button">
                         <div class="user-name">{{ user.get_username }}님, </div>
-                        <a href="{% url 'profile_edit' user.id %}">
-                            <button>정보수정<button/>
-                        </a>
-                        <a href="{% url 'logout' %}?next={{request.path}}">
-                            <button>로그아웃<button/>
-                        </a> 
+                        <!-- PROFILE EDIT -->
+                        <a href="{% url 'profile_edit' user.id %}"><button>정보수정</button></a>
+                        <!-- SIGN OUT -->
+                        <a href="{% url 'logout' %}?next={{request.path}}"><button>로그아웃</button></a> 
                     </div>
                 {% else %}
                     <div class="user-button">
+                        <!-- SIGN UP -->
                         <a href="{% url 'signup' %}">
-                            <button>회원가입<button/>
+                            <button>회원가입</button>
                         </a>
+                        <!-- SIGN IN-->
                         <a href="{% url 'login' %}">
-                            <button>로그인<button/>
+                            <button>로그인</button>
                         </a>
                     </div>
                 {% endif %}

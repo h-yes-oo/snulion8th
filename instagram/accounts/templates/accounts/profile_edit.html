@@ -5,7 +5,7 @@
         {{ error }}
         <form method="POST" action="{%url 'profile_edit' user.id %}">
             {% csrf_token %}
-            <div class="password"> password </div>
+            <div class="title"> password </div>
             <input name="password" type="password" required> 
             <div class="title"> e-mail </div>
             <input name="email" type="text" value="{{ user.profile.email }}" required><br><br>

@@ -6,6 +6,7 @@
     button {
         border: none;
         background: none; 
+        border-radius: 15px;
         padding:5px;
         margin: {
             top: -5px;
@@ -16,6 +17,10 @@
     button:focus {
         outline: 0;
         background: none;
+    }
+
+    a {
+        text-decoration: none;
     }
 }
 
@@ -109,114 +114,131 @@ header {
     margin-top: 150px;
     .new-feed {
         button {
-            display: flex;
-            justify-content: center;
-            margin:auto;
-        }
-        button:hover {
+            margin-left: 350px;
+            font-size: 15px;
             background-color: black;
             color: white;
-            outline: 0;
-            border-radius: 15px;
         }
     }
-    .feed-section {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+}
 
-        .inner {
-            margin: 50px;
-            width: 50%;
-            background: #fafafa;
-            border: solid 1px  #dbdbdb;
-            border-radius: 3px;
-            
-            .user-id {
-                font-weight: bold;
-                font: 20px;
-                padding: 20px;
-                display: flex;
-                justify-content: space-between;
-            }
-            
-            .feed-photo {
-                width: 100%;
-            }
-    
-            .feed-like {
-                display: flex;
-                align-items: center;
+.feed-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-                img {
-                    width: 25px;
-                    padding: 10px;
-                }
-            }
-            
-            .content {
-                .words {
-                    margin: 15px;
-                }
-            }
+    .inner {
+        margin: 50px;
+        width: 60%;
+        max-width: 700px;
+        background: #fafafa;
+        border: solid 1px  #dbdbdb;
+        border-radius: 3px;
+        
+        .user-id {
+            font-weight: bold;
+            font: 20px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .feed-photo {
+            width: 100%;
+        }
 
-            .comment-box {
+        .feed-like {
+            display: flex;
+            align-items: center;
+
+            img {
+                width: 25px;
                 padding: 10px;
-                outline: none;
-                background: #fafafa;
-                border: none;
-                margin-left: 5px;
+            }
+        }
+        
+        .content {
+            .words {
+                margin: 15px;
+            }
+        }
 
-                .comment {
+        .comment-box {
+            padding: 10px;
+            outline: none;
+            background: #fafafa;
+            border: none;
+            margin-left: 5px;
+
+            .comment {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-content: center;
+                font-size: 14px;
+
+                .content {
                     display: flex !important;
-                    font-size: 14px;
+                    justify-content: flex-start !important;
 
                     .author {
                         font-weight: bold;
                         margin-right: 10px;
                     }
-                    .heart-img {  
-                        justify-content: flex-end !important;
-                        float: right !important;
-                        margin-left: 10px;
-                        img {
-                            width: 15px;
-                        }
-                    }   
                 }
-                
-                .comment-info {
-                    display: flex;
-                    font-size: 12px;
+                .heart-img {  
                     margin: {
-                        left:15px;
-                        top: 5px;
+                        left: 10px;
+                        right: 10px;
                     }
-
-                    button {
-                        font-size: 12px;
-                        margin-right: 5px;
+                    img {
+                        width: 15px;
                     }
-                }
+                }   
             }
             
-            .new-comment {
-                padding: 10px;
-
-                input {
-                    width: 80%;
-                    padding-right: 10px;
-                    background: #fafafa;
-                    outline: none;
-                    border: none;
+            .comment-info {
+                display: flex;
+                font-size: 12px;
+                margin: {
+                    left:15px;
+                    top: 5px;
                 }
 
                 button {
-                    align-self: flex-end !important;
+                    font-size: 12px;
+                    margin-right: 5px;
                 }
             }
         }
-    }  
+        
+        .new-comment {
+            padding: 10px;
+            margin: 5px;
+            input {
+                width: 80%;
+                padding-right: 10px;
+                background: #fafafa;
+                outline: none;
+                border: none;
+            }
+
+            form {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+.feed-head {
+    margin: {
+        top: 150px;
+        left: 350px;
+    }
+    button {
+        background-color: black;
+        color: white;
+    }
 }
 
 .feed-block {
@@ -252,5 +274,11 @@ header {
 
     input:focus {
         outline: none;
+    }
+
+    img {
+        width: 50%;
+        height: 30%;
+        border-radius: 15px;
     }
 }

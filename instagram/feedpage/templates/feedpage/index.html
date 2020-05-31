@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% load static %}
+{% load sass_tags %} 
+{% load static %}
     <!-- FEED SECTION -->
     <section class="feeds">
+        <!-- NEW FEED --> 
         <div class="new-feed">
             {% if user.is_authenticated %}
                 <a href="{% url 'new' %}">
@@ -10,19 +12,21 @@
                 </a> 
             {% endif %}
         </div>
-        <div class="feed-section" id ="feed">
+        <!-- FEEDS -->
+        <div class="feed-section">
         {% for feed in feeds %}
             <div class="inner">
-                <div class="user-id">{{feed.author.username}}
+                <div class="user-id">
+                    {{feed.author.username}}
                     <a href="{% url 'show' feed.id %}">
                         <button>+</button>
                     </a>
                 </div>
-
+                <!-- FEED PHOTO -->
                 {% if feed.photo %}
                     <img class="feed-photo" src="{{ feed.photo.url }}">
                 {% endif %}
-
+                <!-- FEED LIKE -->
                 <div class="feed-like">
                     <a href="{% url 'like' feed.id %}">
                         {% if request.user in feed.like_users.all %}
@@ -37,7 +41,7 @@
                                 {% if feed.like_users.count == 1 %}
                                     {{ feed.like_users.first.username }}님이 좋아합니다.
                                 {% else %}
-                                    {{ feed.like_users.first.username }}외 {{ feed.like_users.count|add:-1 }}명이 좋아합니다. 
+                                    {{ feed.like_users.first.username }}님 외에 {{ feed.like_users.count|add:-1 }}명이 좋아합니다. 
                                 {% endif %}
                             {% else %}
                                 좋아요 {{ feed.like_users.count }} 개
@@ -45,16 +49,19 @@
                         {% endif %}
                     </div>
                 </div>
-
+                <!-- FEED CONTENT -->
                 <div class="content">
                     <div class="words">{{ feed.content }}</div>
                 </div>
-                
+                <!-- FEED COMMENTS -->
                 {% for c in feed.feedcomment_set.all %}
                     <div class="comment-box">
                         <div class="comment">
-                            <div class="author">{{c.author.username}}</div>
-                            <div class="value">{{ c.content }}</div>
+                            <div class="content">
+                                <div class="author">{{c.author.username}}</div>
+                                <div class="value">{{ c.content }}</div>
+                            </div>
+                            <!-- LIKE COMMENT -->
                             <div class="heart-img">
                                 <a href="/feeds/{{ feed.id }}/comment_like/{{c.id}}/">
                                     {% if request.user in c.like_users.all %}
@@ -66,8 +73,10 @@
                             </div>
                         </div>
                         <div class="comment-info">
+                            <!-- DELETE COMMENT -->
                             {% if request.user == c.author %}    
-                                <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                                <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/"
+                                    method="POST" onclick="return confirm('정말 삭제하시겠습니까?')">
                                     {% csrf_token %}
                                     <button>댓글 삭제</button>
                                 </form>
@@ -78,7 +87,7 @@
                         </div>
                     </div>                      
                 {% endfor %}
-
+                <!-- ADD COMMENT -->
                 <div class="new-comment">  
                 {% if user.is_authenticated %}
                     <form action="/feeds/{{ feed.id }}/comments/" method="POST"> 

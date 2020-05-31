@@ -6,9 +6,9 @@
         <form enctype="multipart/form-data" action="{% url 'index' %}" method="POST">
                 {% csrf_token %}
             <div class="title">content</div>
-            <input name="content"/ required> <br />
+            <input name="content" /> <br />
             <div class="title">photo</div> 
-            <input name="photo" type="file"/> <br />
+            <input name="photo" type="file" required/> <br />
             <button class="submit" type="submit">submit</button>
         </form>
     </div>

@@ -3,12 +3,10 @@ from .models import Feed, FeedComment, Like, CommentLike
 from django.shortcuts import redirect 
 from django.contrib.auth.models import User
 
-# Create your views here.
-
 def index(request):
     if request.method == 'POST':
         content = request.POST['content']
-        photo =  request.FILES.get('photo', False) #사진 field가 비어있어도 되도록! 
+        photo =  request.FILES.get('photo', False) 
         Feed.objects.create(content=content, author= request.user, photo=photo)
         return redirect('/feeds')
     
@@ -27,7 +25,11 @@ def show(request, id):
     feed=Feed.objects.get(id=id)
     if request.method == 'POST':
         feed.content = request.POST['content']
-        feed.photo = request.FILES.get('photo', False)
+        if request.FILES.get('photo') is None:
+            feed.photo = feed.photo
+        else:
+            feed.photo = request.FILES.get('photo', False)
+
         feed.save()
         # Feed.objects.filter(id=id).update(content=feed.content, photo=feed.photo)
         # -> save로 하면 저장이되고, filter로 update하면 반영이 안되는 이유는...????ㅠ
@@ -36,7 +38,7 @@ def show(request, id):
 
 def edit(request, id):
     feed = Feed.objects.get(id=id)
-    return render(request, 'feedpage/edit.html', {'feed': feed})
+    return render(request, 'feedpage/edit.html', {'feed':feed})
 
 def create_comment(request, id):
     content = request.POST.get('content')

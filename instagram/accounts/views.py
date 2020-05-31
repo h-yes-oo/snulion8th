@@ -59,4 +59,3 @@ def profile_edit(request, id):
 
     elif request.method == 'GET':
         return render(request, 'accounts/profile_edit.html')
-
