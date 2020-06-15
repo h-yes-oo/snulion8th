@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="POST" action="/feeds/">
+<form enctype="multipart/form-data" method="POST" action="/feeds/">
     {% csrf_token %}
-    title: <input type="text" name="title" placeholder="제목"> </br>
-    content: <input type="text" name="content" placeholder="내용"> </br>
+    <p>content: <input type="text" name="content" placeholder="내용"></p>
+    <p>photo: <input name="photo" type="file"></p>
+
     <input type="submit" value="저장">
 </form>
 {% endblock content %}

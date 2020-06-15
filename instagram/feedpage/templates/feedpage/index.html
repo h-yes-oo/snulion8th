@@ -5,7 +5,7 @@
     <header id="header">
         <div class="header-inner">
             <div class="logo">
-                <a href="https://www.instagram.com/">
+                <a href="{% url 'index' %}">
                     <img class="logo-img" src="{% static 'feedpage/images/logo_img.png' %}">
                 </a>
             </div>
@@ -14,31 +14,105 @@
             </div>
             <div class="button">
                 <div class="icon">
-                    <a href="https://www.instagram.com/">
+                    <a href="{% url 'index' %}">
                         <img src="{% static 'feedpage/images/bell-regular.svg' %}">
                     </a>
                 </div>
                 <div class="icon">
-                    <a href="https://www.instagram.com/">
+                    <a href="{% url 'index' %}">
                         <img src="{% static 'feedpage/images/heart-regular.svg' %}">
                     </a>
                 </div>
-                <div class="icon">
-                    <a href="https://www.instagram.com/">
-                        <img src="{% static 'feedpage/images/user-solid.svg' %}">
-                    </a>
-                </div>
+                {% if user.is_authenticated %}
+                    <div style="font-size: 13px; line-height: 24px;">
+                        {{ user.get_username }}님, 안녕하세요
+                        <a href="{% url 'logout' %}?next={{ request.path }}">로그아웃</a>
+                    </div>
+                {% else %}
+                    {% comment %} <div class="icon">
+                        <a href="https://www.instagram.com/">
+                            <img src="{% static 'feedpage/images/user-solid.svg' %}">
+                        </a>
+                    </div> {% endcomment %}
+                    <div style="font-size: 13px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <a href="{% url 'signup' %}">회원가입</a>
+                        <a style="text-align: right;" href="{% url 'login' %}?next={{ request.path }}">로그인</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
-        </header>
-    <h1>Feedpage</h1>
-        <a href="/feeds/new/">새 피드 작성</a>
+    </header>
+
+    <section class="feed">
+        {% if user.is_authenticated %}
+            <a href="/feeds/new/" style="margin-left: 170px; ">새 피드 작성</a>
+        {% endif %}
         {% for feed in feeds %}
-            <div style="border: 1px solid grey;">
-                <a href="/feeds/{{ feed.id }}/show/">더보기</a>
-                <a href="/feeds/{{ feed.id }}/delete/">삭제</a>
-                <p>title: {{ feed.title }}</p>
-                <p>content: {{ feed.content }}</p>
+            <div class="feed-inner">
+                <div class="feed-header">
+                    <p class="author-name">{{ feed.author.username }} (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }}) </p>
+                    {% if user.is_authenticated %}
+                        {% if request.user != feed.author %}
+                            <a class="feed-header-follow" href="/accounts/{{ feed.author.id }}/follow/">
+                                {% if request.user.profile not in feed.author.profile.follows.all %}
+                                    팔로우
+                                {% else %}
+                                    팔로우 취소
+                                {% endif %}
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+                <div class="feed-content">
+                    <div class="content-img">
+                        {% if feed.photo %}
+                            <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
+                        {% endif %}
+                    </div>
+                    <div class="content-banner">
+                        <div class="content-like">
+                            {% if user.is_authenticated %}
+                                {% if request.user != feed.author %}
+                                    <a style="height: 22px;" href="/feeds/{{ feed.id }}/like">
+                                        <img class="icon" src="{% static 'feedpage/images/heart-regular.svg' %}"> 
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                            <p style="font-weight: 600; line-height: 22px;">좋아요 {{ feed.like_users.count }}개</p>
+                        </div>
+                        {% if request.user == feed.author %}
+                            <div class="content-manage">
+                                <a href="/feeds/{{ feed.id }}/update/">수정</a>
+                                <a href="/feeds/{{feed.id}}/delete/">삭제</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="content-text">
+                        <span style="font-weight: 600; padding-right: 5px;"> {{feed.author.username}} </span> {{ feed.content }}
+                    </div>
+                </div>
+
+                <div class="feed-comment">
+                    {% for comment in feed.feedcomment_set.all %}
+                        <div class="comment-already">
+                            <p> <span style="font-weight: 600; padding-right: 5px;">{{ comment.author }} </span> {{ comment.content }} </p>
+                            {% if request.user == comment.author or request.user == feed.author %}
+                                <p>
+                                    <a href="/feeds/{{ feed.id }}/comment/{{ comment.id }}/delete"> 삭제 </a>
+                                </p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    {% if user.is_authenticated %}
+                        <form class="feed-comment-input" method="POST" action="/feeds/{{ feed.id }}/comment/">
+                            {% csrf_token %}
+                            <p><input type="text" name="content" placeholder="댓글 달기..." style="border: none; height: 40px; font-size: 15px;"> </p>
+                            <input class="comment-submit" type="submit" value="게시">
+                        </form>
+                    {% endif %}
+                </div>
             </div>
-    {% endfor%}
+        {% endfor %}
+    </section>
 {% endblock content %}

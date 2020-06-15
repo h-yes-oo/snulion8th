@@ -1,6 +1,51 @@
-<form method="POST" action="/feeds/{{ feed.id }}/update/">
-    {% csrf_token %}
-    title: <input type="text" value="{{ feed.title }}" name="title"> </br>
-    content: <input type="text" value="{{ feed.content }}" name="content"> </br>
-    <input type="submit" value="수정">
-</form>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<header id="header">
+    <div class="header-inner">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img class="logo-img" src="{% static 'feedpage/images/logo_img.png' %}">
+            </a>
+        </div>
+        <div class="search">
+            <input class="search-box" type="text" placeholder="검색">
+        </div>
+        <div class="button">
+            <div class="icon">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'feedpage/images/bell-regular.svg' %}">
+                </a>
+            </div>
+            <div class="icon">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'feedpage/images/heart-regular.svg' %}">
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+                <div style="font-size: 13px; line-height: 24px;">
+                    {{ user.get_username }}님, 안녕하세요
+                    <a href="{% url 'logout' %}?next={{ request.path }}">로그아웃</a>
+                </div>
+            {% else %}
+                <div style="font-size: 13px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <a href="{% url 'signup' %}">회원가입</a>
+                    <a style="text-align: right;" href="{% url 'login' %}?next={{ request.path }}">로그인</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</header>
+        
+        <form class="feed-inner" method="POST" action="/feeds/{{ feed.id }}/update/" enctype="multipart/form-data" style="font-size: 13px;">
+            {% csrf_token %}
+            {% if feed.photo %}
+                <img src="{{ feed.photo.url }}", alt="" style="width: 100%; height: 643px;">
+            {% endif %}
+            <p>사진 수정: <input name="photo_edit" type="file"> (사진을 바꾸지 않더라도, 다시 등록해주어야 합니다.)</p>
+            <p>내용 수정: <input type="text" value="{{ feed.content }}" name="content" style="border: none;"></p>
+            <input type="submit" value="수정">
+        </form>
+
+{% endblock content %}

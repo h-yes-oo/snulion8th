@@ -4,6 +4,11 @@
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+    color: rgba(239, 0, 0, 0.5);
+}
+
 /* header */
 header {
     height: 77px;
@@ -91,7 +96,7 @@ header {
     padding: 20px;
 }
 
-.feed-image {
+.feed-content {
     height: 60%;
 }
 
