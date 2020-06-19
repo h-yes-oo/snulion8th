@@ -69,17 +69,22 @@
     margin-left: 15px;
     margin-right: 15px;
 }
+
 .feed{
     width:450px;
     height:auto;
     margin:0 auto;
 }
+
 .profile{
     width:448px;
     height:40px;
     border: solid 1px gray;
     line-height: 40px;
     font-size: 12px;
+}
+#vienna {
+    width:450px;
 }
 
 article {

@@ -44,6 +44,11 @@ def delete(request, id):
     return redirect('/feeds')
 
 def create_comment(request,id):
-    content=request.POST['content']
-    FeedComment.objects.create(feed_id=id,content=content,author=request.user)
+    comment=request.POST['comment']
+    FeedComment.objects.create(feed_id=id,comment=comment)
+    return redirect('/feeds')
+
+def delete_comment(request,id,cid):
+    comment= Feedcomment.objects.get(id=cid)
+    comment.delete()
     return redirect('/feeds')
