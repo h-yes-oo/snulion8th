@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<a href="{% url 'new' %}">새로운 글 작성</a>
+{% for feed in feeds %}
+<div>
+    <a href="/feeds/{{ feed.id}}">더보기</a>
+    <p>{{ feed.title }}</p>
+    <p>{{ feed.content }}</p>
+</div>
+{% endfor %}
+<div class="feed">
+    <div class="feed_inner">
+        <div class="feed_top">
+            <a href="https://www.instgram.com">
+                jaehwan
+            </a>
+        </div>
+        <div class="feed_center">
+            <a href="https://www.instgram.com">
+                <img class="picture" src="{% static 'feedpage/images/article_img.jpg' %}">
+            </a>
+        </div>
+        <div class="feed_bottom1">
+            <div class="emotion">
+                <a href="https://www.instgram.com">
+                    <img class="feed_icon" src="{% static 'feedpage/images/heart-regular.svg' %}" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="feed_bottom2">
+            <div class="comment">
+                <input class="comment_box" type="text" placeholder="댓글 달기..">
+            </div>
+            <div class="submit">
+                <a href="">
+                    게시
+                </a>
+            </div>
+        </div>
+    </div>
+    </>
+    {% endblock content %}
