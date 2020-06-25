@@ -18,6 +18,9 @@ from django.urls import path
 from django.conf.urls import include
 import feedpage.views
 import accounts.views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +28,8 @@ urlpatterns = [
     path('feeds/',include('feedpage.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', accounts.views.signup, name='signup'),
-]
+    path('accounts/mypage/', accounts.views.mypage, name='mypage'),
+    path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
