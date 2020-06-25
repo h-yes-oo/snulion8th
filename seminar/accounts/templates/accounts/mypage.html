@@ -1,0 +1,21 @@
+<!-- accounts/templates/accounts/signup.html -->
+<h1> 개인 정보 수정하기 </h1>
+
+<form method="POST" action="{%url 'mypage'%}">
+    {% csrf_token %}
+    사용자 이름:
+    <br>
+    <input name="username" type="text" value="{{ user.username }}">
+    <br>
+    <br>
+    학교:
+    <br>
+    <input name="college" type="text" value="{{user.profile.college}}">
+    <br>
+    <br>
+    전공:
+    <br>
+    <input name="major" type="text" value="{{user.profile.major}}">
+    <br>
+    <input type="submit" value="수정하기">
+</form>
