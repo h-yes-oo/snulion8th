@@ -21,13 +21,6 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
     def __str__(self):
         return self.title
 
-    def seed(count): # 추가
-        myfake = Faker('ko_KR')
-        for i in range(count):
-            Feed.objects.create(
-                title=myfake.bs(),
-                content=myfake.text()
-            )
 
 class FeedComment(models.Model):
     content = models.TextField()
