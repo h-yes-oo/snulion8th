@@ -8,7 +8,7 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
     # id는 자동 추가
     title = models.CharField(max_length=256)
     content = models.TextField()
-    photo = models.ImageField(blank=True, upload_to='feed_photds')
+    photo = models.ImageField(blank=True, upload_to='feed_photos')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)
     author = models.ForeignKey(User, null=True, on_delete = models.CASCADE)

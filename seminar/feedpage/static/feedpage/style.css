@@ -1,3 +1,52 @@
 body  {
-	background-color:  lightgray;
+	background-color:  lightgoldenrodyellow;
+}
+
+.demo-card-square.mdl-card.mdl-shadow--2dp {
+	display:  inline-block;
+	width:  350px;
+	margin:  10px;
+	vertical-align:  top;
+}
+
+.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored {
+	z-index:  2;
+	position:  fixed;
+	bottom:  20px;
+	right:  40px;
+}
+
+.button-wrapper {
+	padding: 16px;
+	text-align: right;
+}
+
+.button-wrapper > a {
+	text-decoration: none;
+}
+
+.button-wrapper > span {
+	float: left;
+}
+
+.button-wrapper > span > i {
+	vertical-align: -25%;
+}
+
+.comment-wrapper {
+    padding: 16px;
+}
+
+.toggle-comment > p, form {
+    display: inline;
+}
+
+.mdl-textfield.mdl-js-textfield > button  {
+	margin-left:  260px;
+}
+
+.scroll-up {
+	position: fixed;
+	bottom: 84px !important;
+	right: 40px !important;
 }
