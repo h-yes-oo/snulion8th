@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'feedpage.apps.FeedpageConfig',
     'accounts.apps.AccountsConfig',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -124,4 +125,9 @@ STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
 	os.path.join(BASE_DIR, 'seminar', 'static'),
 ) 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL='/feeds/'
+
+SASS_PROCESSOR_ENABLED =  True
+SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'feedpage', 'static')

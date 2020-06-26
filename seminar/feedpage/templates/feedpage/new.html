@@ -2,7 +2,7 @@
 {%block content%}
   <div class='new-form'>
     <h1 class="new-message">new feed</h1>
-    <form action="/feeds/" method="POST">
+    <form enctype="multipart/form-data" action="/feeds/" method="POST">
       {% csrf_token %}
       <div class="title-input">
         <p>title</p>
@@ -11,6 +11,8 @@
       <div class="content-input">
         <p>content</p>
         <input class="type-in" name="content" /> <br />
+        <p>photo</p>
+        <input name="photo" type="file" /> <br />
       </div>
       <div class="submit"><input type="submit" value="submit" /></div>
     </form>

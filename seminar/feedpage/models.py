@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
+
 from django.utils import timezone # 장고는 created_at과 updated_at을 알아서 만들어 주지 않음. id는 만들어 줌
 from django.contrib.auth.models import User
 from django.db.models import Count
@@ -15,15 +15,14 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
     updated_at = models.DateTimeField(blank=True, null=True)
     author=models.ForeignKey(User,null=True,on_delete=models.CASCADE) 
     like_users=models.ManyToManyField(User, blank=True, related_name='like_feeds', through="Like")
-    
+    photo = models.ImageField(blank=True, upload_to='feed_photos')
+
     def update_date(self): # 나중에 수정할 때 사용
         self.updated_at = timezone.now()
         self.save()
 
     def __str__(self):
         return self.title
-
-
 
 class FeedComment(models.Model):
     content=models.TextField()
@@ -38,9 +37,7 @@ class FeedComment(models.Model):
 
     def __str__(self):
         return str(self.id)
-
-    
-
+        
 #feed_id feed의 id고 filter의 역할 속성 (user__id="younjoo")
 
 class Like(models.Model):

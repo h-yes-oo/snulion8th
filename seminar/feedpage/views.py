@@ -12,10 +12,11 @@ def index(request):
     elif request.method=='POST':
         title=request.POST['title']
         content= request.POST['content']
-        Feed.objects.create(title=title, content=content, author=request.user)
+        photo =  request.FILES.get('photo', False)
+        Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
         return redirect ('/feeds')
 
-    fees=Feed.objects.all()
+    feeds=Feed.objects.all()
     return render(request,'feedpage/index.html',{'feeds':feeds})
 
 def new(request):
