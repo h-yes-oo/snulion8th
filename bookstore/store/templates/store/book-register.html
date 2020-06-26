@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> 책 등록하기 </h1>
+
+<form action="/store/books/register/" method = "POST">
+    {% csrf_token %}
+    제목: <input type="text" name="title" placeholder="제목"></input> <br>
+    저자: <input type="text" name="author" placeholder="저자"></input> <br>
+    출판 연도:<input type="number" name="published_year" placeholder="출판 연도"></input> <br>
+    권수: <input type="text" name="stock" placeholder="권수" min="1" max="100"></input> <br>
+    <input type="submit" value="등록">
+</form>
+
+{% endblock %}

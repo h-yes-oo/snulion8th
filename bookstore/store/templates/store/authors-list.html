@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Author lists </h1>
+
+{% for author in authors %}
+    <div>
+        <strong>{{ author.id }}.</strong> <a href="/store/{{ author.id }}/books/"> {{ author.name }} </a>
+    </div>
+{% endfor %}
+
+{% endblock content %}
