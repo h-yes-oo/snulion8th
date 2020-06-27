@@ -5,7 +5,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your views here.
 
-
 def index(request):
     if request.method == 'GET':
         feeds = Feed.objects.all()
@@ -13,7 +12,9 @@ def index(request):
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        feed = Feed.objects.create(title=title, content=content, author=request.user)
+        # feed = Feed.objects.create(title=title, content=content, author=request.user)
+        photo =  request.FILES.get('photo', False)
+        Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
         #return redirect('/feeds/%d/' %feed.id)#이건 get방식으로 url을 가서 다시 index로 돌아옴
         return redirect('/feeds')
 

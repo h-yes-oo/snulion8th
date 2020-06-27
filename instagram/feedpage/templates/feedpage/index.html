@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load  static %}
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <meta charset="utf-8">
+    <title>Liongram</title>
+    <link  rel="stylesheet"  href="{% static 'feedpage/style.css' %}" />
+
+  </head>
+  <body>
+    <div class = "header">
+        <div class = "header_inner">
+            <div class = "logo">
+              <div class = "icon">
+                    <a href = "https://www.instagram.com">
+                        <img class ="logo_img" src ="logo_img.png"/>
+                    </a>
+                </div>
+            </div>
+            <div class = "search">
+              <input class = "search_box" type="text" placeholder="검색">
+            </div>
+            <div class = "button">
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src="bell-regular.svg"/>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                          <img src="heart-regular.svg"/>
+                    </a>
+                </div>
+                <div class = "icon">
+                    <a href = "https://www.instagram.com/">
+                        <img src="user-solid.svg"/>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class = "feed">
+        <div class ="feed_inner">
+            <div class = "id">
+              <div class "id_name">m00nir</div>
+            </div>
+            <div class = "feed_image">
+                <a href = "https://www.instagram.com/">
+                    <img class = "feed_img" src="feed_img.jpg"/>
+                </a>
+            </div>
+            <div class = "icon_box">
+                <a>
+                    <img class = "icon" src="heart-regular.svg"/>
+                </a>
+            </div>
+            <div class = "comment">
+                <input class = "comment_box" type="text" placeholder="댓글 달기...">
+                <p class = "post_comment">게시</p>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
