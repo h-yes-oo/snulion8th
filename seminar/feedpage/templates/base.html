@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>snulion</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'feedpage/style.css' %}">
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'feedpage/main.scss' %}" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
   </head>
   <body>

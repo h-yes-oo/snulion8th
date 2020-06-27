@@ -15,3 +15,13 @@ def signup(request):
             auth.login(request, user)
             return redirect('/store/')
     return render(request, 'accounts/signup.html')
+
+
+def login(request):
+    if request.method == 'POST':
+        user = auth.authenticate(request, username = request.POST['user_id'], password = request.POST['password'])
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/store/')
+    return render(request, 'accounts/login.html')
+        

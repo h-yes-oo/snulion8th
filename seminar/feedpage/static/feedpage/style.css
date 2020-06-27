@@ -2,6 +2,9 @@
     font-family: 'Nanum Gothic', sans-serif;
 }
 
+body {
+    background-color: lightgray;
+}
 a {
     color: black;
     text-decoration: none;

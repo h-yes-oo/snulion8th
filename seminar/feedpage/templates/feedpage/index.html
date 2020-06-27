@@ -15,6 +15,9 @@
 
         <p>{{ feed.title }}</p>
         <p>{{ feed.content }}</p>
+        {% if feed.photo %}
+          <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
+        {% endif %}
         <p>작성자:<strong>{{feed.author.username}}</strong>
           (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count}})
           {% if user.is_authenticated %}
