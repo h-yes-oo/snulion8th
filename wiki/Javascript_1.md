@@ -172,4 +172,4 @@ console.log(typeof unknown2); // Output: number
 const unknown3 = true; 
 console.log(typeof unknown3); // Output: boolean
 ```
-변수의 
+변수의 자료형 반환
