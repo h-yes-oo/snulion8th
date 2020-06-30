@@ -30,3 +30,5 @@ urlpatterns = [
     path('accounts/signup/', accounts.views.signup, name='signup'), 
     path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),#추가
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # 추가
+
+urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

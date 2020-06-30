@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Feed, FeedComment, Like, CommentLike
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request): # 원래 있던 index 함수 수정
@@ -13,7 +14,9 @@ def index(request): # 원래 있던 index 함수 수정
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        Feed.objects.create(title=title, content=content, author=request.user)
+        photo =  request.FILES.get('photo', False)
+        Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
+        # Feed.objects.create(title=title, content=content, author=request.user)
         return redirect('/feeds')
 
 def new(request):
@@ -40,15 +43,48 @@ def edit(request, id):
     return render(request, 'feedpage/edit.html', {'feed':feed})
 
 
-def create_comment(request, id):
-    content = request.POST['content']
-    FeedComment.objects.create(feed_id=id, content=content, author = request.user)
-    return redirect('/feeds')
+# def create_comment(request, id):
+#     content = request.POST['content']
+#     FeedComment.objects.create(feed_id=id, content=content, author = request.user)
+#     return redirect('/feeds')
 
-def delete_comment(request, id, cid):
-    c = FeedComment.objects.get(id=cid)
-    c.delete()
-    return redirect('/feeds')
+def create_comment(request,id):
+    content = request.POST['content']
+    FeedComment.objects.create(feed_id=id, content=content, author=request.user)
+    new_comment = FeedComment.objects.latest('id')
+    like_list = new_comment.commentlike_set.filter(user_id = request.user.id)
+
+    context = {
+        'id': new_comment.id,
+        'username': new_comment.author.username,
+        'content': new_comment.content,
+        'like_count':like_list.count(),
+    }
+
+    return JsonResponse(context)
+
+def delete_comment(request, fid, cid):
+    feed = Feed.objects.get(id = fid)
+    feedComment = FeedComment.objects.get(id = cid)
+    feedComment.delete()
+
+    context = {
+        'fid': feed.id,
+        'cid': feedComment.id,
+        
+    }
+
+    # return redirect('/feeds')
+    return JsonResponse(context)
+
+# def feed_like(request, pk):
+#     feed = Feed.objects.get(id = pk)
+#     like_list = feed.like_set.filter(user_id = request.user.id)
+#     if like_list.count() > 0:
+#         feed.like_set.get(user_id = request.user.id).delete()
+#     else:
+#         Like.objects.create(user_id = request.user.id, feed_id = feed.id)
+#     return redirect ('/feeds')
 
 def feed_like(request, pk):
     feed = Feed.objects.get(id = pk)
@@ -57,16 +93,38 @@ def feed_like(request, pk):
         feed.like_set.get(user_id = request.user.id).delete()
     else:
         Like.objects.create(user_id = request.user.id, feed_id = feed.id)
-    return redirect ('/feeds')
+    
+    context = {
+        'fid': feed.id,
+        'like_count': like_list.count()
+    }
+    
+    return JsonResponse(context)
 
+# def comment_like(request, id, cid):
+#     feedComment = FeedComment.objects.get(id = cid)
+#     like_list = feedComment.commentlike_set.filter(user_id = request.user.id)
+#     if like_list.count() > 0:
+#         feedComment.commentlike_set.get(user_id = request.user.id).delete()
+#     else:
+#         CommentLike.objects.create(user_id = request.user.id, feedComment_id = feedComment.id)
+#     return redirect ('/feeds')
 
-def comment_like(request, id, cid):
+def comment_like(request, fid, cid):
+    feed = Feed.objects.get(id = fid)
     feedComment = FeedComment.objects.get(id = cid)
     like_list = feedComment.commentlike_set.filter(user_id = request.user.id)
     if like_list.count() > 0:
         feedComment.commentlike_set.get(user_id = request.user.id).delete()
     else:
         CommentLike.objects.create(user_id = request.user.id, feedComment_id = feedComment.id)
-    return redirect ('/feeds')
+    
+    context = {
+        'fid': feed.id,
+        'cid': feedComment.id,
+        'like_count': like_list.count()
+    }
+    
+    return JsonResponse(context)
 
 
