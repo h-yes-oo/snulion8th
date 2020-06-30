@@ -5,18 +5,17 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your views here.
 
+
 def index(request):
     if request.method == 'GET':
         feeds = Feed.objects.all()
-        return render(request, 'feedpage/index.html',{'feeds' : feeds})
+        return render(request, 'feedpage/index.html', {'feeds':feeds})
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        Feed.objects.create(title = title, content = content, author = request.user)  ##<--수정
+        feed = Feed.objects.create(title=title, content=content, author=request.user)
+        #return redirect('/feeds/%d/' %feed.id)#이건 get방식으로 url을 가서 다시 index로 돌아옴
         return redirect('/feeds')
-
-    feeds = Feed.objects.all()
-    return render(request, 'feedpage/index.html', {'feeds':feeds})
 
 
 def new(request):
@@ -71,7 +70,7 @@ def feed_like(request, pk):
     return redirect('/feeds')
 
 
-def comment_like(request, pk):
+def comment_like(request, pk, fid):
     feedcomment = FeedComment.objects.get(id = pk)
     like_list = feedcomment.commentlike_set.filter(user_id = request.user.id)
     if like_list.count() > 0:
@@ -79,8 +78,4 @@ def comment_like(request, pk):
     else:
         CommentLike.objects.create(user_id = request.user.id, feedcomment_id = feedcomment.id)
     feed = Feed.objects.get(id = fid)
-    qs = feed.feedcomment_set.all()
-    unsorted_results = qs.all()
-    sorted_results = sorted(unsorted_results, key= lambda t: t.thing_date())
-
     return redirect('/feeds')

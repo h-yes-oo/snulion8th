@@ -15,9 +15,6 @@
         {% endif %} 
         <p>{{ feed.title }}</p>
         <p>{{ feed.content }}</p>
-        {% if  feed.photo %}
-          <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%">
-        {% endif %}
         <p>작성자:<strong>{{feed.author.username}}</strong>
           (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }})
           {% if user.is_authenticated %}
@@ -34,7 +31,7 @@
         </p>
       {% for c in feed.feedcomment_set.all%} <!--feed.feedcomment_set feed가 관계를 맺은 모든 feedcomment객체를 가져옴-->
         <p>{{ c.content }}
-          <a href="/feeds/{{ c.id }}/commentlike/">&emsp;({{ c.like_users.count }} Likes)</a>
+          <a href="/feeds/{{ c.id }}/commentlike/{{ feed.id }}/">&emsp;({{ c.like_users.count }} Likes)</a>
         </p>
         {% if request.user == feed.author %} 
           <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
