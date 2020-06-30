@@ -8,15 +8,15 @@ from django.contrib.auth.models import User
 def index(request):
     if request.method == 'GET':
         feeds = Feed.objects.all()
-        return render(request, 'feedpage/index.html', {'feeds':feeds})
+        return render(request, 'feedpage/index.html',{'feeds' : feeds})
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        # feed = Feed.objects.create(title=title, content=content, author=request.user)
-        photo =  request.FILES.get('photo', False)
-        Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
-        #return redirect('/feeds/%d/' %feed.id)#이건 get방식으로 url을 가서 다시 index로 돌아옴
+        Feed.objects.create(title = title, content = content, author = request.user)  ##<--수정
         return redirect('/feeds')
+
+    feeds = Feed.objects.all()
+    return render(request, 'feedpage/index.html', {'feeds':feeds})
 
 
 def new(request):
