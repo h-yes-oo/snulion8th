@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="index-html">
     <h1>feed page</h1>
     {% if user.is_authenticated %}
       <a href="/feeds/new">new feed</a>
@@ -18,7 +19,7 @@
         {% if feed.photo %}
           <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
         {% endif %}
-        <p>작성자:<strong>{{feed.author.username}}</strong>
+        <p>작성자:<strong>{{ feed.author.get_username }}</strong>
           (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count}})
           {% if user.is_authenticated %}
             {% if request.user != feed.author %}
@@ -52,4 +53,5 @@
         {% endif %}
       </div>
     {% endfor %}
+</div>
 {% endblock content %}
