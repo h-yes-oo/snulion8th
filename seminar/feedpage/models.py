@@ -12,6 +12,7 @@ class Feed(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     like_users = models.ManyToManyField(
         User, blank=True, related_name='like_feeds', through='Like')
+    photo = models.ImageField(blank=True, upload_to='feed_photos')
 
     def update_date(self):  # 나중에 수정할 때 사용
         self.updated_at = timezone.now()

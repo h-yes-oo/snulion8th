@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Feed, FeedComment, Like, LikeComment
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -9,7 +10,9 @@ def index(request):
     if request.method == "POST":
         title = request.POST['title']
         content = request.POST['content']
-        Feed.objects.create(title=title, content=content, author=request.user)
+        photo = request.FILES.get('photo', False)
+        Feed.objects.create(title=title, content=content,
+                            author=request.user, photo=photo)
         return redirect('/feeds/')
 
     elif request.method == "GET":
@@ -48,7 +51,15 @@ def create_comment(request, id):
     content = request.POST['content']
     FeedComment.objects.create(
         feed_id=id, content=content, author=request.user)
-    return redirect('/feeds')
+    new_comment = FeedComment.objects.latest('id')
+
+    context = {
+        'id': new_comment.id,
+        'username': new_comment.author.username,
+        'content': new_comment.content,
+    }
+
+    return JsonResponse(context)
 
 
 def delete_comment(request, id, commentid):
