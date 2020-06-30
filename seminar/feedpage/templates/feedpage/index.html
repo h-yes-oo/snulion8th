@@ -1,57 +1,103 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="index-html">
     <h1>feed page</h1>
     {% if user.is_authenticated %}
-      <a href="/feeds/new">new feed</a>
+      <a href="/feeds/new/" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+        <i class="material-icons">add</i>
+      </a>
     {% endif %}
     {% for feed in feeds %}
-      <div style="border: 1px solid grey;">
-        <a href="/feeds/{{ feed.id }}/like">{{ feed.like_users.count }} Likes</a>
-        {% if request.user == feed.author %}
-          <a href="/feeds/{{ feed.id }}">더보기</a>
-          <a href="/feeds/{{ feed.id }}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
-        {% endif %}
-
-        <p>{{ feed.title }}</p>
-        <p>{{ feed.content }}</p>
-        {% if feed.photo %}
-          <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
-        {% endif %}
-        <p>작성자:<strong>{{ feed.author.get_username }}</strong>
-          (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count}})
-          {% if user.is_authenticated %}
-            {% if request.user != feed.author %}
-              <a href="/accounts/{{ feed.author.id }}/follow">
-                {% if request.user.profile not in feed.author.profile.follows.all %}
-                  팔로우
-                {% else %}
-                  팔로우 취소
-                {% endif %}
-              </a>
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div  class="button-wrapper">
+          <span>
+            <i class="material-icons">mood</i>
+            {{ feed.author.get_username }}
+          </span>
+          <!-- 좋아요 버튼 -->
+          <a  href="/feeds/{{ feed.id }}/like"  class="material-icons mdl-badge mdl-badge--overlap"  data-badge="{{ feed.like_users.count }}">
+            {% if  user in feed.liked_users.all %}
+              <i  class="material-icons">favorite</i>
+            {% else %}
+              <i  class="material-icons">favorite_border</i>
             {% endif %}
+          </a>
+          <!-- 더보기 버튼 -->
+          <a  href="/feeds/{{ feed.id }}">
+            더보기
+          </a>
+          <!-- 수정, 삭제 버튼 -->
+          {% if  request.user == feed.author %}
+            <a  href="/feeds/{{ feed.id }}/edit">
+              <i  class="material-icons">edit</i>
+            </a>
+            <a  href="/feeds/{{ feed.id }}/delete"  onclick="return confirm('정말 삭제하시겠습니까?')">
+              <i  class="material-icons">delete</i>
+            </a>
           {% endif %}
-        </p>
-        {% for c in feed.feedcomment_set.all %}
-          <p>{{ c.content }}</p>
-          <a href="/feeds/{{feed.id}}/comments/{{ c.id }}/like/">{{ c.like_users.count }} Likes</a>
-          {% if request.user == feed.author %}
-            <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+        </div>
+        <div class="mdl-card__title mdl-card--expand">
+          <h2 class="mdl-card__title-text">{{ feed.title }}</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          {{ feed.content }}
+          <br/>
+          {% if feed.photo %}
+            <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
+          {% endif %}
+        </div>
+          <div class="comment-wrapper">
+            {% for c in feed.feedcomment_set.all %}
+              {% if c.id == feed.feedcomment_set.all.last.id %}
+                <div class="toggle-comment last-comment">
+                  <p>{{ c.author.get_username }}: {{ c.content }}</p>
+                  <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                    {% csrf_token %}
+                    <button class="mdl-button mdl-js-button mdl-button--icon">
+                      <i class="material-icons">clear</i>
+                    </button>
+                  </form> </br>
+                </div>
+              {% else %}
+                <div class="toggle-comment" style="display: none;">
+                  <p>{{ c.author.get_username }}: {{ c.content }}</p>
+                    <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                      {% csrf_token %}
+                      <button class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">clear</i>
+                      </button>
+                    </form> </br>
+                </div>
+              {% endif %}
+            {% endfor %}
+            <form action="/feeds/{{ feed.id }}/comments/" method="POST">
               {% csrf_token %}
-              <button>댓글 삭제</button>
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="sample1" name="content">
+                <label class="mdl-textfield__label" for="sample1">Text...</label>
+                <button  type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">send</i>
+                </button>
+              </div>
             </form>
-          {% endif %}
-        {% endfor %}
-
+            {% if feed.feedcomment_set.all.count > 1 %}
+              <button class="more-comment-btn"> MORE COMMENTS </button>
+            {% endif %}
+          </div>
+        <div class="mdl-card__actions mdl-card--border">
         {% if user.is_authenticated %}
-          <form action="/feeds/{{ feed.id }}/comments/" method="POST">
-            {% csrf_token %}
-            <input type="text" name="content">
-            <button type="submit">댓글 달기</button>
-          </form>
+          {% if request.user != feed.author %}
+          <a href="/accounts/{{ feed.author.id }}/follow" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }})
+                {% if request.user.profile not in feed.author.profile.follows.all %}
+                    팔로우
+                {% else %}
+                    팔로우 취소
+                {% endif %}
+          </a>
+          {% endif %}
         {% endif %}
+        </div>
       </div>
     {% endfor %}
-</div>
 {% endblock content %}
