@@ -18,9 +18,10 @@
 			{{ feed.author.username }}
 		</span>
 		<!-- 좋아요 버튼 -->
-		<a href="/feeds/{{ feed.id }}/like" class="material-icons mdl-badge mdl-badge--overlap"
-			data-badge="{{ feed.like_users.count }}">
-			{% if  user in feed.liked_users.all %}
+		<a href="/feeds/{{ feed.id }}/like" data-fid="{{ feed.id }}"
+			class="material-icons mdl-badge mdl-badge--overlap feed-like" data-badge="{{ feed.like_users.count }}"
+			data-csrfmiddlewaretoken="{{ csrf_token }}">
+			{% if user in feed.liked_users.all %}
 			<i class="material-icons">favorite</i>
 			{% else %}
 			<i class="material-icons">favorite_border</i>
@@ -31,7 +32,7 @@
 			더보기
 		</a>
 		<!-- 수정, 삭제 버튼 -->
-		{% if  request.user == feed.author %}
+		{% if request.user == feed.author %}
 		<a href="/feeds/{{ feed.id }}/edit">
 			<i class="material-icons">edit</i>
 		</a>
@@ -57,11 +58,14 @@
 		<div class="toggle-comment last-comment">
 			<!--마지막 댓글은 toggle-comment 와 last-comment라는 클래스 적용-->
 			<p>{{c.author.username}}: {{ c.content }}</p>
+
 			<form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
 				{% csrf_token %}
+				{% if request.user == c.author %}
 				<button class="mdl-button mdl-js-button mdl-button--icon">
 					<i class="material-icons">clear</i>
 				</button>
+				{% endif %}
 			</form>
 			<br />
 		</div>
@@ -71,17 +75,34 @@
 		<div class="toggle-comment" style="display: none;">
 			<!--나머지 댓글의 경우 toggle-comment라는 클래스를 적용하고 보이지 않게 설정합니다-->
 			<p>{{c.author.username}}: {{ c.content }}</p>
+
+			<!-- 댓글 좋아요 기능 -->
+			<a href="/feeds/{{ feed.id }}/comments_like/{{ c.id }}/" data-fid="{{ feed.id }}" data-cid="{{ c.id }}"
+				class="material-icons mdl-badge mdl-badge--overlap comment-like" data-badge="{{ c.like_users.count }}"
+				data-csrfmiddlewaretoken="{{ csrf_token }}">
+				{% if user in feedcomment.liked_users.all %}
+				<i class="material-icons">favorite</i>
+				{% else %}
+				<i class="material-icons">favorite_border</i>
+				{% endif %}
+			</a>
+
+			<!-- 댓글 제거 기능 -->
 			<form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
 				{% csrf_token %}
+				{% if request.user == c.author %}
 				<button class="mdl-button mdl-js-button mdl-button--icon">
 					<i class="material-icons">clear</i>
 				</button>
+				{% endif %}
 			</form>
 			<br />
 		</div>
 		<!--div를 꼭 닫아줍니다-->
 		{% endif %}
 		{% endfor %}
+
+		<!-- 댓글 작성 기능 -->
 		<form action="/feeds/{{ feed.id }}/comments/" method="POST" class="comment-submit" data-fid="{{ feed.id }}"
 			data-csrfmiddlewaretoken="{{ csrf_token }}">
 			{% csrf_token %}

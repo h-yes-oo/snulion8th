@@ -75,10 +75,17 @@ def feed_like(request, pk):
         feed.like_set.get(user_id=request.user.id).delete()
     else:
         Like.objects.create(user_id=request.user.id, feed_id=feed.id)
-    return redirect('/feeds')
+
+    context = {
+        'fid': feed.id,
+        'like_count': like_list.count()
+    }
+
+    return JsonResponse(context)
 
 
 def feedcomment_like(request, pk, commentid):
+    feed = Feed.objects.get(id=pk)  # 추가
     feedcomment = FeedComment.objects.get(id=commentid)
     like_list = feedcomment.likecomment_set.filter(user_id=request.user.id)
     if like_list.count() > 0:
@@ -86,4 +93,13 @@ def feedcomment_like(request, pk, commentid):
     else:
         LikeComment.objects.create(
             user_id=request.user.id, feedcomment_id=feedcomment.id)
-    return redirect('/feeds')
+    # 추가
+    context = {
+        'fid': feed.id,
+        'cid': feedcomment.id,
+        'like_count': like_list.count()
+    }
+
+    return JsonResponse(context)
+
+    # return redirect('/feeds')
