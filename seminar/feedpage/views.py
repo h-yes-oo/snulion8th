@@ -3,6 +3,7 @@ from .models import Feed, FeedComment, Like, CommentLike
 from django.shortcuts import redirect
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -13,7 +14,8 @@ def index(request):
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        feed = Feed.objects.create(title=title, content=content, author=request.user)
+        photo =  request.FILES.get('photo', False)
+        Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
         #return redirect('/feeds/%d/' %feed.id)#이건 get방식으로 url을 가서 다시 index로 돌아옴
         return redirect('/feeds')
 
@@ -47,10 +49,18 @@ def edit(request, id):
     return render(request, 'feedpage/edit.html',{'feed':feed})
 
 
-def create_comment(request, id):
+def create_comment(request,id):
     content = request.POST['content']
-    FeedComment.objects.create(feed_id=id, content=content )
-    return redirect('/feeds')
+    FeedComment.objects.create(feed_id=id, content=content, author=request.user)
+    new_comment = FeedComment.objects.latest('id')
+
+    context = {
+        'id': new_comment.id,
+        'username': new_comment.author.username,
+        'content': new_comment.content,
+    }
+
+    return JsonResponse(context)
 
 
 def delete_comment(request, id, cid):
@@ -67,7 +77,13 @@ def feed_like(request, pk):
     else:
         Like.objects.create(user_id = request.user.id, feed_id = feed.id)
     
-    return redirect('/feeds')
+    context = {
+        'fid': feed.id,
+        'like_count': like_list.count()
+    }
+    
+    return JsonResponse(context)
+    # return redirect('/feeds')
 
 
 def comment_like(request, pk, fid):
