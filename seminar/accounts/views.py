@@ -5,6 +5,7 @@ from django.contrib import auth
 from django.shortcuts import redirect
 from django.contrib.auth.hashers import check_password
 from .models import Profile, Follow
+from django.http import JsonResponse
 
 def signup(request):
     if request.method  == 'POST':
@@ -61,6 +62,7 @@ def follow_manager(request, pk):
     follow_from = Profile.objects.get(user_id = request.user.id)
     follow_to = Profile.objects.get(user_id = pk)
 
+
     try:
         following_already = Follow.objects.get(follow_from=follow_from, follow_to=follow_to)
     except Follow.DoesNotExist:
@@ -71,5 +73,5 @@ def follow_manager(request, pk):
     else:
         Follow.objects.create(follow_from=follow_from, follow_to=follow_to)
 
-
     return redirect('/feeds')
+

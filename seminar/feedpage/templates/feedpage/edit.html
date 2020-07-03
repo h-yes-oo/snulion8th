@@ -1,20 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="Feedcontainer">
-    <div class="Feedheader">
-        <h1>Edit Feed No.{{ feed.id }}</h1>
-    </div>
-    <div class="showcontainer">
-        <form action="/feeds/{{ feed.id }}/update/" method="POST">
-            {% csrf_token %}
-            <p>title</p>
-            <input name="title" / value='{{ feed.title }}'> <br>
-            <p>content</p>
-            <input class="contentbox" name="content" value="{{ feed.content }}"/><br> 
-            <input class="bts" type="submit" value="submit">
-        </form>
-    </div>
-</body>
+<main class="mdl-layout__content" style="
+display: flex;
+justify-content: center;">
+    <div class="page-content">
+        <div class="demo-card-square mdl-card mdl-shadow--2dp" style="width: 700px; margin-top: 50px;;">
+            <form action="/feeds/{{ feed.id }}/update/" method="POST">
+                {% csrf_token %}
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 600px;">
+                    <input class="mdl-textfield__input" type="text" id="sample3" name='title' value='{{ feed.title }}'>
+                    <label class="mdl-textfield__label" for="sample3">Title</label>
+                </div>
+                <!-- <input name="title" / value='{{ feed.title }}'> -->
+                <br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 600px;">
+                    <input class="mdl-textfield__input" type="text" id="sample4" name='content'
+                        value='{{ feed.content }}'>
+                    <label class="mdl-textfield__label" for="sample4">Content</label>
+                </div>
+                <p>photo</p>
+                <div class='new-css'>
+                    <input type="file" name="photo" />
+                    <!-- <input class="contentbox" name="content" value="{{ feed.content }}" /><br> -->
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">create</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+</main>
 {% endblock content %}
-</html>

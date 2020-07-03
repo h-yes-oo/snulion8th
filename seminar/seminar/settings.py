@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sass_processor',
 ]
 #인증과 보안과 관련된 파트
 MIDDLEWARE = [
@@ -120,9 +121,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT =  os.path.join(BASE_DIR, 'static') # 추가
+
 STATICFILES_DIRS = (
 	os.path.join(BASE_DIR, 'seminar', 'static'),
 ) # 추가
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 LOGIN_REDIRECT_URL = "/feeds/"
+
+SASS_PROCESSOR_ENABLED =  True
+SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'feedpage', 'static')

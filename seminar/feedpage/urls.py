@@ -2,6 +2,8 @@
 
 from django.urls import path
 from feedpage import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -15,3 +17,4 @@ urlpatterns = [
 	path('<int:pk>/like/', views.feed_like, name='like'),
     path('<int:id>/comments/<int:cid>/like/', views.comment_like, name='commentlike'),
 ]
+

@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="Feedcontainer">
-    <div class="Feedheader">
-        <h1>Login</h1>
+<main class="mdl-layout__content" style="
+display: flex;
+justify-content: center;">
+    <div class="page-content">
+        <div class="demo-card-square mdl-card mdl-shadow--2dp" style="width: 500px; margin-top: 50px; display:contents">
+            <h3>Login</h3>
+            <div class="showcontainer">
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="hidden" name="next" value="{{next}}" />
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">login</i>
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="showcontainer">
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="hidden" name="next" value="{{next}}" />
-            <input class="bts" type="submit" value="로그인" />
-        </form>
-    </div>
-</div>
-</body>
-{% endblock content %}
-</html>
+</main>
+    {% endblock content %}
+
+    </html>

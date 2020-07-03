@@ -1,21 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="Feedcontainer">
-    <div class="Feedheader">
-        <h1>New feed</h1>
+<main class="mdl-layout__content" style="
+display: flex;
+justify-content: center;">
+    <div class="page-content">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored scroll-up">
+            <i class="material-icons">north</i>
+        </button>
+        {% if user.is_authenticated %}
+        <a href="/feeds/new" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">add</i>
+        </a>
+        {% endif %}
+            <div class="demo-card-square mdl-card mdl-shadow--2dp" style="width: 700px; margin-top: 50px;;">
+                <form enctype="multipart/form-data" action="/feeds/" method="POST">
+                    {% csrf_token %}
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 600px;">
+                        <input class="mdl-textfield__input" type="text" id="sample3" name='title'>
+                        <label class="mdl-textfield__label" for="sample3">Title</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 600px;">
+                        <input class="mdl-textfield__input" type="text" id="sample4" name='content' value='{{ feed.content }}'>
+                        <label class="mdl-textfield__label" for="sample4">Content</label>
+                    </div>
+                    <p>photo</p>
+                    <div class='new-css'>
+                    <input type="file" name="photo" />
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">create</i>
+                    </button>
+                    <!-- <input class="bts" type="submit" value="submit"> -->
+                    </div>
+                </form>
+            </div>
     </div>
-    <div class="showcontainer">
-        <form action="/feeds/" method="POST">
-            {% csrf_token %}
-            <h3>Title</h3>
-            <input name="title" /> <br>
-            <h3>Content</h3>
-            <input name="content" /><br> 
-            <input class="bts" type="submit" value="submit">
-        </form>
-    </div>
-</div>
-</body>
+</main>
 {% endblock content %}
+
 </html>

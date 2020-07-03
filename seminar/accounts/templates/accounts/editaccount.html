@@ -1,55 +1,80 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="Feedcontainer">
-    <div class="Feedheader">
-        <h1>Edit Account: {{ user.get_username }}</h1>
+<main class="mdl-layout__content" style="
+display: flex;
+justify-content: center;">
+    <div class="page-content">
+        <div class="demo-card-square mdl-card mdl-shadow--2dp" style="width: 500px; margin-top: 50px; display:contents">
+        </div>
+        <div class="showcontainer">
+            <form method="POST" action="{%url 'pwchange'%}">
+                {% csrf_token %}
+                <h3>비밀번호 변경</h3><br>
+                기존 비밀번호:
+                <br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                    <input class="mdl-textfield__input" type="password" id="sample3" name='passwordbefore' required>
+                    <label class="mdl-textfield__label" for="sample3">Original Password</label>
+                </div>
+                <br>
+                <br>
+                새로운 비밀번호:
+                <br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                    <input class="mdl-textfield__input" type="password" id="sample3" name='passwordafter1' required>
+                    <label class="mdl-textfield__label" for="sample3">New Password</label>
+                </div>
+                <br>
+                <br>
+                새로운 비밀번호 확인:
+                <br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                    <input class="mdl-textfield__input" type="password" id="sample3" name='passwordafter2' required>
+                    <label class="mdl-textfield__label" for="sample3">New Password Check</label>
+                </div>
+                <br>
+                <br>
+                <button type="submit" class="mdl-button mdl-js-button" onclick="return confirm('수정하시겠습니까?')">
+                    <p>PW change!</p>
+                </button>
+            </form>
+        </div>
+        <div class="showcontainer">
+            <form method="POST" action="{%url 'editaccount'%}">
+                {% csrf_token %}
+                <h3>개인정보 수정</h3><br>
+                학교:
+                <br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                    <input class="mdl-textfield__input" type="text" id="sample3" name='college'
+                        value='{{ user.profile.college }}'>
+                </div>
+                <br>
+                <br>
+                학교:
+                <br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                    <input class="mdl-textfield__input" type="text" id="sample3" name='major'
+                        value='{{ user.profile.major }}'>
+                </div>
+                <br>
+                <br>
+                비밀번호 확인:
+                <br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                    <input class="mdl-textfield__input" type="password" id="sample3" name='passwordbefore' required>
+                    <label class="mdl-textfield__label" for="sample3">Password</label>
+                </div>
+                <br>
+                <br>
+                <button type="submit" class="mdl-button mdl-js-button" onclick="return confirm('수정하시겠습니까?')">
+                    <p>Edit!</p>
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="showcontainer">
-        <form method="POST" action="{%url 'pwchange'%}">
-            {% csrf_token %}
-            <h2>비밀번호 변경</h2><br>
-            기존 비밀번호:
-            <br>
-            <input name="passwordbefore" type="password" value="" required>
-            <br>
-            <br>
-            변경할 비밀번호:
-            <br>
-            <input name="passwordafter1" type="password" value="" required>
-            <br>
-            <br>
-            변경할 비밀번호 확인:
-            <br>
-            <input name="passwordafter2" type="password" value="" required>
-            <br>
-            <br>
-            <input type="submit" value="PW change!" onclick="return confirm('수정하시겠습니까?')">
-        </form>
-    </div>
-    <div class="showcontainer">
-        <form method="POST" action="{%url 'editaccount'%}">
-            {% csrf_token %}
-            <h2>개인정보 수정</h2><br>
-            비밀번호 확인:
-            <br>
-            <input name="passwordbefore" type="password" value="" required>
-            <br>
-            <br>
-            학교:
-            <br>
-            <input name="college" type="text" value='{{ user.profile.college }}'>
-            <br>
-            <br>
-            전공:
-            <br>
-            <input name="major" type="text" value='{{ user.profile.major }}'>
-            <br>
-            <br>
-            <input type="submit" value="Edit!" onclick="return confirm('수정하시겠습니까?')">
-        </form>
-    </div>
-</div>
-</body>
+</main>
 {% endblock content %}
+
 </html>
