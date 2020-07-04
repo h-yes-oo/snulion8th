@@ -72,4 +72,7 @@ def feed_like(request, pk):
     }
     
     return JsonResponse(context)
+
+def map(request):
+    return render(request, 'feedpage/map.html')
     

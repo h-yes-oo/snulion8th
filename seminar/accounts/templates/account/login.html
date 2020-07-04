@@ -1,3 +1,6 @@
+{% load socialaccount %}   <!--이 두 줄을 추가해주세요 !!!-->
+{% providers_media_js %}
+
 <div id="loginModal" class="modal fade">
     <div class="modal-dialog modal-login">
       <div class="modal-content">
@@ -18,6 +21,10 @@
             </div>        
             <div class="form-group">
               <button type="submit" class="btn btn-warning btn-lg btn-block login-btn">로그인 하기</button>
+              <a href="{% provider_login_url 'google'%}">
+                <img src="/media/btn_google_signin_light_normal_web@2x.png" style="width: 200px; height: auto;"/></a>
+              <a href="{% provider_login_url 'naver'%}">
+                <img src="/media/Log in with NAVER_Official_Green.PNG" style="width: 200px; height: auto;"/></a>
             </div>
           </form>
         </div>
