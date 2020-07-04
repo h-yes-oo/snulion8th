@@ -1,43 +1,21 @@
-// 추가(jquery-scrollup)
+$(document).ready(() => {
+    $(".more-comment-btn").on('click', function(event) {
+      $(this).toggleClass("showing-comment");
+      if ($(this).hasClass("showing-comment")) {
+        $(this).text("HIDE COMMENTS");
+        $(this).parent().find(".toggle-comment").not(".last-comment").show();
+      } else {
+        $(this).text("MORE COMMENTS");
+        $(this).parent().find(".toggle-comment").not(".last-comment").hide();
+      }
+    });
+  }
+)
+
 $(".scroll-up").click(() => {
     $('.mdl-layout__content').scrollTop(0);
-    // console.log('up');
 })
 
-// 추가(ajax-feedlike)
-$(".feed-like").click((e) => {
-    e.preventDefault();
-    const $this = $(e.currentTarget);
-    const fid = $this.data('fid');
-    const csrfmiddlewaretoken = $this.data('csrfmiddlewaretoken');
-    // console.log(count);
-    $.ajax({
-        url: `/feeds/${fid}/like/`,
-        type: "POST",
-        data: {
-            fid: fid,
-            csrfmiddlewaretoken: csrfmiddlewaretoken,
-        },
-        dataType: "json",
-        success: function(response) {
-            console.log(response);
-            const count = parseInt($this.attr('data-badge'));
-            if(response.like_count > 0) {
-                $this.attr('data-badge', count+1);
-            } else {
-                $this.attr('data-badge', count-1);
-            }  
-        },
-        error: function(response, status, error) {
-            console.log(response, status, error);
-        },
-        complete: function(response) {
-            console.log(response);
-        }
-    })
-});
-
-// 추가(ajax-commentsubmit)
 $('.comment-submit').submit((e) => {
     e.preventDefault();
     console.log('form submitted');
@@ -55,17 +33,28 @@ $('.comment-submit').submit((e) => {
         },
         dataType: 'json',
         success: function(response) { 
-            console.log(response.content);
+            console.log(response);
             const str = `
-                <p>${response.content}</p>
-                <form action="/feeds/${fid}/comments/${response.id}/" method="POST">
+                <div class="toggle-comment last-comment">
+                    <p>${response.username}: ${response.content}</p>
+                    <form action="/feeds/${fid}/comments/${response.id}/" method="POST">
                     <input type="hidden" name="csrfmiddlewaretoken" value=${csrfmiddlewaretoken}>
                     <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">clear</i>
+                        <i class="material-icons">clear</i>
                     </button>
-                </form>
-                <br />
-            `
+                    </form>
+                </div>
+            `;
+
+            
+            const $commentBtn = $this.siblings('.more-comment-btn');
+            const $lastComment = $this.siblings('.last-comment');
+            
+            if ($commentBtn.hasClass('showing-comment')) {
+                $lastComment.removeClass('last-comment');
+            } else {
+                $lastComment.removeClass('last-comment').hide();
+            }
 
             $(str).insertBefore($this);
             $(`input#${fid}[name=content]`).val('');
@@ -77,4 +66,35 @@ $('.comment-submit').submit((e) => {
             console.log(response);
         },
     });
+});
+
+$(".feed-like").click((e) => {
+    e.preventDefault();
+    const $this = $(e.currentTarget);
+    const fid = $this.data('fid');
+    const csrfmiddlewaretoken = $this.data('csrfmiddlewaretoken');
+    $.ajax({
+        url: `/feeds/${fid}/like/`,
+        type: "POST",
+        data: {
+            fid: fid,
+            csrfmiddlewaretoken: csrfmiddlewaretoken,
+        },
+        dataType: "json",
+        success: function(response) {
+            console.log(response); 
+            const count = parseInt($this.attr('data-badge'));
+            if(response.like_count > 0) {
+                $this.attr('data-badge', count+1);
+            } else {
+                $this.attr('data-badge', count-1);
+            } 
+        },
+        error: function(response, status, error) {
+            console.log(response, status, error);
+        },
+        complete: function(response) {
+            console.log(response);
+        }
+    })
 });

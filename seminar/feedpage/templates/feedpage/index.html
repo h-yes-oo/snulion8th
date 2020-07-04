@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% comment %} 추가 {% endcomment %}
     <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored scroll-up">
       <i class="material-icons">UP</i>
     </button>
@@ -18,8 +17,7 @@
             {{ feed.author.username }}
           </span>
           <!-- 좋아요 버튼 -->
-          {% comment %} class, data 추가 {% endcomment %}
-          <a  href="/feeds/{{ feed.id }}/like" class="material-icons mdl-badge mdl-badge--overlap feed-like" data-badge="{{ feed.like_users.count }}" data-fid={{ feed.id }} data-csrfmiddlewaretoken="{{ csrf_token }}" >
+          <a  href="/feeds/{{ feed.id }}/like" class="material-icons mdl-badge mdl-badge--overlap feed-like" data-badge="{{ feed.like_users.count }}" data-fid={{ feed.id }} data-csrfmiddlewaretoken="{{ csrf_token }}">
             {% if  user in feed.liked_users.all %}
               <i  class="material-icons">favorite</i>
             {% else %}
@@ -52,20 +50,35 @@
         </div>
           <div class="comment-wrapper">
             {% for c in feed.feedcomment_set.all %}
-              <p>{{ c.content }}</p>
-              <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
-                {% csrf_token %}
-                <button class="mdl-button mdl-js-button mdl-button--icon">
-                  <i class="material-icons">clear</i>
-                </button>
-              </form>
-            <br />
+              {% if c.id == feed.feedcomment_set.all.last.id %} 
+                <div class="toggle-comment last-comment"> 
+                  <p>{{c.author.username}}: {{ c.content }}</p> 
+                  <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                    {% csrf_token %}
+                    <button class="mdl-button mdl-js-button mdl-button--icon">
+                      <i class="material-icons">clear</i>
+                    </button>
+                  </form>
+                  <br/>
+                </div>
+              {% else %}
+                <div class="toggle-comment" style="display: none;"> 
+                  <p>{{c.author.username}}: {{ c.content }}</p> 
+                  <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                    {% csrf_token %}
+                    <button class="mdl-button mdl-js-button mdl-button--icon">
+                      <i class="material-icons">clear</i>
+                    </button>
+                  </form>
+                  <br/>
+                </div> 
+              {% endif %}
             {% endfor %}
-            {% comment %} class, data 추가 {% endcomment %}
+            <!-- 댓글 달기 -->>
             <form action="/feeds/{{ feed.id }}/comments/" method="POST" class="comment-submit" data-fid="{{ feed.id }}" data-csrfmiddlewaretoken="{{ csrf_token }}">
               {% csrf_token %}
               <div class="mdl-textfield mdl-js-textfield">
-              {% comment %} id 삭제, 추가 {% endcomment %}
+              <!-- 댓글 인풋 -->
                 <input id="{{ feed.id }}" class="mdl-textfield__input" type="text" name="content">
                 <label class="mdl-textfield__label" for="sample1">Text...</label>
                 <button type="submit" class="mdl-button mdl-js-button mdl-button--icon">
@@ -73,6 +86,9 @@
                 </button>
               </div>
             </form>
+            {% if feed.feedcomment_set.all.count > 1 %}
+              <button class="more-comment-btn"> MORE COMMENTS </button>
+            {% endif %}
           </div>
         <div class="mdl-card__actions mdl-card--border">
         {% if user.is_authenticated %}

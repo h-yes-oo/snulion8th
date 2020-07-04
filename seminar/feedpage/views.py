@@ -42,8 +42,8 @@ def delete(request,id):
 # 변경
 def create_comment(request,id):
     content = request.POST['content']
-    # 변수 할당
-    new_comment = FeedComment.objects.create(feed_id=id, content=content, author=request.user)
+    FeedComment.objects.create(feed_id=id, content=content, author=request.user)
+    new_comment = FeedComment.objects.latest('id')
 
     context = {
         'id': new_comment.id,
@@ -51,8 +51,9 @@ def create_comment(request,id):
         'content': new_comment.content,
     }
 
-    return JsonResponse(context)
     # return redirect('/feeds')
+    return JsonResponse(context)
+
 
 def delete_comment(request,id,cid):
     c = FeedComment.objects.get(id=cid)
@@ -72,7 +73,7 @@ def feed_like(request, pk):
         'fid': feed.id,
         'like_count': like_list.count()
     }
-    
+
     return JsonResponse(context)
     # return redirect('/feeds')
     
