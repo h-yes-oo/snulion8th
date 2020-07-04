@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+* {
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: #f7fbff;
+}
+
+.mdl-layout-title {
+    font-weight: 600 !important;
+}
+
+
+.demo-card-square.mdl-card.mdl-shadow--2dp {
+	display:  inline-block;
+	width:  350px;
+	margin:  10px;
+	vertical-align:  top;
+}
+
+.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored {
+	z-index:  2;
+	position:  fixed;
+	bottom:  20px;
+	right:  40px;
+}
+
+.button-wrapper {
+	padding: 16px;
+	text-align: right;
+
+	a {
+		text-decoration: none;
+	}
+
+	span {
+		float: left;
+		
+		i {
+			vertical-align: -25%;
+		}
+	}
+}
+
+.comment-wrapper {
+	padding: 16px;
+}
+
+.toggle-comment > p, form {
+	display: inline;
+}
+
+.mdl-textfield.mdl-js-textfield > button  {
+	margin-left:  260px;
+}
+
+.scroll-up {
+	position: fixed;
+	bottom: 84px !important;
+	right: 40px !important;
+}
