@@ -55,12 +55,9 @@
                   <p>{{c.author.username}}: {{ c.content }}</p> 
                   <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
                       {% csrf_token %}
-                      <a href="/feeds/{{ feed.id }}/comments/{{c.id}}/" >
-                        <i class="material-icons" style="color:black">clear</i>
-                      </a>
-                      <a href= "/feeds/{{feed.id}}/comments/{{c.id}}/like/" data-badge="{{ c.like_users.count }}" data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
-                        <i class="fas fa-heart" style="color:red"></i>
-                      </a> 
+                      <button class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">clear</i>
+                      </button>
                   </form>
                   <br/>
         </div> <!--div를 꼭 닫아줍니다-->
@@ -69,12 +66,9 @@
                       <p>{{c.author.username}}: {{ c.content }}</p> 
                       <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
                         {% csrf_token %}
-                        <a href="/feeds/{{ feed.id }}/comments/{{c.id}}/delete/" >
-                          <i class="material-icons" style="color:black">clear</i>
-                        </a>
-                        <a href= "/feeds/{{feed.id}}/comments/{{c.id}}/like/" data-badge="{{ c.like_users.count }}" data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
-                          <i class="fas fa-heart" style="color:red"></i>
-                        </a> 
+                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                          <i class="material-icons">clear</i>
+                        </button>
                       </form>
                       <br/>
                     </div> <!--div를 꼭 닫아줍니다-->

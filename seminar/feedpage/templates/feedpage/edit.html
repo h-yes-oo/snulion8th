@@ -1,12 +1,20 @@
 {% extends 'base.html'%}
 {%block content%}
-<h1>edit feed</h1>
-    <form  action="/feeds/{{feed.id}}/edit" method="POST">
-      {% csrf_token %}
-      <p>title</p>
-      <input name="title" /> <br/>
-      <p>content</p>
-      <input name="content" /> <br/>
-      <input type="submit" value="수정하기" />
-    </form>
+<h3 class= "edit-feed">edit feed</h3>
+  <div class ="edit-box">
+    <form enctype="multipart/from-data" action="/feeds/" method="POST">
+    {% csrf_token %}  
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="sample1">
+        <label class="mdl-textfield__label" for="sample1">Title...</label>
+      </div><br/>
+  </form>
+  <form enctype="multipart/from-data" action="/feeds/" method="POST">
+    {% csrf_token %}
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="textarea" id="sample1">
+        <label class="mdl-textfield__label" for="sample1">Content...</label>
+      </div><br/>
+  </form>
+  </div>  
 {% endblock content%}

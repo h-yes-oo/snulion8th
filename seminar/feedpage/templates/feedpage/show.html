@@ -1,12 +1,21 @@
 {% extends 'base.html'%}
 {%block content%}
-    <div class="show">
+  <div class="demo-card-square mdl-card mdl-shadow--2dp">
+    <button class="mdl-button mdl-js-button mdl-button--primary">
       <a class='home' href="/feeds">home</a>
+    </button>
+    <button class="mdl-button mdl-js-button mdl-button--primary">
       <a class='edit' href="/feeds/{{ feed.id }}/edit">edit</a>
-      <p class='title'>{{ feed.title }}</p>
-      <p class='content'>{{ feed.content }}</p>
-      {% if  feed.photo %}
-          <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%">
-      {% endif %}
-    </div>
+    </button>
+      <div class="mdl-card__title mdl-card--expand">
+        <h2 class="mdl-card__title-text">{{ feed.title }}</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        {{ feed.content }}
+        <br/>
+        {% if feed.photo %}
+          <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
+        {% endif %}
+      </div>
+  </div>
     {% endblock content%}

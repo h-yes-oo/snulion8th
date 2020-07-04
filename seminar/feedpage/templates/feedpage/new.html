@@ -2,7 +2,26 @@
 {%block content%}
   <div class='new-form'>
     <h1 class="new-message">new feed</h1>
-    <form enctype="multipart/form-data" action="/feeds/" method="POST">
+        <form enctype="multipart/from-data" action="/feeds/" method="POST">
+          {% csrf_token %}  
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="sample1">
+              <label class="mdl-textfield__label" for="sample1">Title...</label>
+            </div>
+        </form>
+        <form enctype="multipart/from-data" action="/feeds/" method="POST">
+          {% csrf_token %}
+          
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="textarea" id="sample1">
+            <label class="mdl-textfield__label" for="sample1">Content...</label>
+          </div>
+          <p>photo</p>
+          <input name="photo" type="file" /> <br />
+        </form>        
+      
+  
+    <!--<form enctype="multipart/form-data" action="/feeds/" method="POST">
       {% csrf_token %}
       <div class="title-input">
         <p>title</p>
@@ -16,6 +35,5 @@
       </div>
       <div class="submit"><input type="submit" value="submit" /></div>
     </form>
-  </div>
-    
+  </div>-->
 {% endblock content%}
