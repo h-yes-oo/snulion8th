@@ -44,3 +44,9 @@ body  {
 .mdl-textfield.mdl-js-textfield > button  {
 	margin-left:  260px;
 }
+
+.scroll-up {
+	position: fixed;
+	bottom : 84px !important;
+	right: 40px !important;
+}
