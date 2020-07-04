@@ -1,12 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="feed-block">
-        <div class="title">로그인</div>
+    <div class="info">
+        <div class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+                <i class="material-icons mdl-list__item-avatar">person</i>
+                <span>로그인</span>
+            </span>
+            <a class="mdl-list__item-secondary-action" href="#"></a>
+        </div>
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input type="hidden" name="next" value="{{next}}"/>
-            <button type="submit">로그인</button>
+            {% comment %} {{ form.as_p }} {% endcomment %}
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="username" type="text" id="username" required>
+                <label class="mdl-textfield__label" for="username">사용자 이름</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="password" type="password" id="password" required>
+                <label class="mdl-textfield__label" for="password">비밀번호</label>
+            </div></br>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" 
+                    type="submit">로그인</button>
         </form>
     </div>
 {% endblock content %}

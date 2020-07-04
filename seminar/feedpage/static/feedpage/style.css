@@ -1,4 +1,63 @@
-* {
+body  {
+	background-color:  white;
+}
+
+.demo-card-square.mdl-card.mdl-shadow--2dp {
+	display:  inline-block;
+	width:  350px;
+	margin:  10px;
+	vertical-align:  top;
+}
+
+.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored {
+	z-index:  2;
+	position:  fixed;
+	bottom:  20px;
+	right:  40px;
+}
+
+.button-wrapper {
+	padding: 16px;
+	text-align: right;
+}
+
+.button-wrapper > a {
+	text-decoration: none;
+}
+
+.button-wrapper > span {
+	float: left;
+}
+
+.button-wrapper > span > i {
+	vertical-align: -25%;
+}
+
+.comment-wrapper {
+    padding: 16px;
+}
+
+.toggle-comment > p, form {
+    display: inline;
+}
+
+.mdl-textfield.mdl-js-textfield > button  {
+	margin-left:  260px;
+}
+
+.scroll-up {
+	position: fixed;
+	bottom: 84px !important;
+	right: 40px !important;
+}
+
+.info {
+    margin: auto;
+    padding: 20px;
+}
+
+
+/* * {
     background-color:white; 
 }
 
@@ -71,14 +130,14 @@ header .user-info .user-name {
     font-size: 20px;
     justify-content: center;
 }
-.feed-block {
+/* .feed-block {
     border: 2px solid #9400D3;
     border-radius: 15px;
     padding: 10px;
     margin: 5px;
-}
+} */
 
-.feed-block .title {
+/* .feed-block .title {
     color: #9400D3;
     font-weight: bold; 
     padding: 5px;
@@ -125,4 +184,4 @@ input {
 
 input:focus {
     outline: none;
-}
+} */ 

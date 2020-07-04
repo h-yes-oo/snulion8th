@@ -1,16 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="feed-block">
-        <div class="content">EDIT FEED</div>
-        <form action="{% url 'show' feed.id %}" method="POST">
-            {% csrf_token %}
-            <div class="title">title</div>
-            <input type = "text" name="title" value = "{{ feed.title }}"
-                style = "width:90%; height:50px;" required/><br/>
-            <div class="title">content</div>
-            <input type = "text" name="content" value = "{{ feed.content }}"
-                style = "width:90%; height:50px;" required/><br/>
-            <button class="submit" type="submit">수정하기</button>
-        </form>
+    <div class="demo-card-square mdl-card mdl-shadow--2dp">
+        <div class="button-wrapper">
+            <span>
+                <i class="material-icons">mood</i>
+                {{ feed.author.username }}
+            </span>
+        </div>
+        <div class="info">
+            <form action="{% url 'show' feed.id %}" method="POST">
+                {% csrf_token %}
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" name="title" type="text" id="info1" 
+                        value = "{{ feed.title }}" required>
+                    <label class="mdl-textfield__label" for="info1">title</label>
+                </div></br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" name="content" type="text" id="info2" 
+                        value = "{{ feed.content }}" required>
+                    <label class="mdl-textfield__label" for="info2">content</label>
+                </div></br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {% if feed.photo %}
+                    <input src="{{ feed.photo.url }}" name="photo" type="file">
+                {% endif %}
+                </div></br>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" 
+                        type="submit">수정하기
+                </button>
+            </form>
+        </div>
     </div>
 {% endblock content %}

@@ -1,17 +1,31 @@
 <!-- ./feedpage/templates/feedpage/new.html -->
 {% extends 'base.html' %}
 {% block content %}
-    <div class="feed-block">
-        <div class="content">NEW FEED</div>
-        <form enctype="multipart/form-data" action="{% url 'index' %}" method="POST">
+    <div class="demo-card-square mdl-card mdl-shadow--2dp">
+        <div class="button-wrapper">
+            <span>
+                <i class="material-icons">mood</i>
+                {{ feed.author.username }}
+            </span>
+        </div>        
+        <div class="info">
+            <form enctype="multipart/form-data" action="{% url 'index' %}" method="POST">
                 {% csrf_token %}
-            <div class="title">title</div>
-                <input name="title"/ required> <br />
-            <div class="title">content</div>
-                <input name="content"/ required> <br />
-            <div class="title">photo</div> 
-            <input name="photo" type="file"/> <br />
-            <button class="submit" type="submit">submit</button>
-        </form>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" name="title" type="text" id="info1" required>
+                    <label class="mdl-textfield__label" for="info1">title</label>
+                </div></br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" name="content" type="text" id="info2" required>
+                    <label class="mdl-textfield__label" for="info2">content</label>
+                </div></br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input src="{{ feed.photo.url }}" name="photo" type="file">
+                </div></br>
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+                    새로 만들기
+                </button>
+            </form>
+        </div>
     </div>
 {% endblock content %}
