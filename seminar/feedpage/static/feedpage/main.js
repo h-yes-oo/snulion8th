@@ -16,12 +16,45 @@ $(".scroll-up").click(() => {
     $('.mdl-layout__content').scrollTop(0);
 })
 
+$(document).on('submit', '.comment-delete', function(e) {
+    e.preventDefault();
+    console.log('delete comment');
+    console.log(this);
+    console.log($('.comment-delete'));
+    const $this = $(e.currentTarget);
+    console.log($this);
+    const fid = $this.data('fid');
+    const cid = $this.data('cid');
+    const csrfmiddlewaretoken = $this.data('csrfmiddlewaretoken');
+
+    $.ajax({
+        type: 'POST',
+        url: `/feeds/${fid}/comments/${cid}/`,
+        data: {
+            fid: fid,
+            csrfmiddlewaretoken: csrfmiddlewaretoken,
+        },
+        dataType: 'json',
+        success: function(response) {
+            console.log(response);
+            $this.parent().remove();
+        },
+        error: function(response, status, error) {
+            console.log(response, status, error);
+        },
+        complete: function(response) {
+            console.log(response);
+        },
+    })
+})
+
 $('.comment-submit').submit((e) => {
     e.preventDefault();
     console.log('form submitted');
     const $this = $(e.currentTarget);
     const fid = $this.data('fid');
     const csrfmiddlewaretoken = $this.data('csrfmiddlewaretoken');
+    // const cid = $this.data()
 
     $.ajax({
         type: 'POST',
@@ -37,15 +70,14 @@ $('.comment-submit').submit((e) => {
             const str = `
                 <div class="toggle-comment last-comment">
                     <p>${response.username}: ${response.content}</p>
-                    <form action="/feeds/${fid}/comments/${response.id}/" method="POST">
-                    <input type="hidden" name="csrfmiddlewaretoken" value=${csrfmiddlewaretoken}>
-                    <button class="mdl-button mdl-js-button mdl-button--icon">
-                        <i class="material-icons">clear</i>
-                    </button>
+                    <form action="/feeds/${fid}/comments/${response.id}/" class="comment-delete" method="POST" data-fid=${fid} data-cid=${response.id} data-csrfmiddlewaretoken=${csrfmiddlewaretoken}>
+                        <input type="hidden" name="csrfmiddlewaretoken" value=${csrfmiddlewaretoken}>
+                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">clear</i>
+                        </button>
                     </form>
                 </div>
             `;
-
             
             const $commentBtn = $this.siblings('.more-comment-btn');
             const $lastComment = $this.siblings('.last-comment');

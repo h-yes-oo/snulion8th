@@ -13,7 +13,8 @@ def index(request):
         content = request.POST['content']
         photo = request.FILES.get('photo',False)
         Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
-        return redirect('/feeds')
+        # return redirect('/feeds')
+        return JsonResponse({'message': 'created!'}, status = 201)
 
 def new(request):
     return render(request, 'feedpage/new.html')
@@ -55,10 +56,15 @@ def create_comment(request,id):
     return JsonResponse(context)
 
 
-def delete_comment(request,id,cid):
+def delete_comment(request, id, cid):
     c = FeedComment.objects.get(id=cid)
     c.delete()
-    return redirect('/feeds')
+
+    context = {
+        'cid': c.id
+    }
+    # return redirect('/feeds')
+    return JsonResponse(context)
 
 # 변경
 def feed_like(request, pk):
@@ -77,3 +83,5 @@ def feed_like(request, pk):
     return JsonResponse(context)
     # return redirect('/feeds')
     
+def map(request):
+    return render(request, 'feedpage/map.html')

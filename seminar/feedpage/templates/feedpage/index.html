@@ -5,9 +5,9 @@
       <i class="material-icons">UP</i>
     </button>
     {% if user.is_authenticated %}
-      <a href="/feeds/new" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+      <button type="button" data-toggle="modal" data-target="#createModal" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
         <i class="material-icons">add</i>
-      </a>
+      </button>
     {% endif %}
     {% for feed in feeds %} 
       <div class="demo-card-square mdl-card mdl-shadow--2dp">
@@ -53,7 +53,7 @@
               {% if c.id == feed.feedcomment_set.all.last.id %} 
                 <div class="toggle-comment last-comment"> 
                   <p>{{c.author.username}}: {{ c.content }}</p> 
-                  <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                  <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST" class="comment-delete" data-fid="{{ feed.id }}" data-cid="{{ c.id }}" data-csrfmiddlewaretoken="{{ csrf_token }}">
                     {% csrf_token %}
                     <button class="mdl-button mdl-js-button mdl-button--icon">
                       <i class="material-icons">clear</i>
@@ -64,7 +64,7 @@
               {% else %}
                 <div class="toggle-comment" style="display: none;"> 
                   <p>{{c.author.username}}: {{ c.content }}</p> 
-                  <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
+                  <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST" class="comment-delete" data-fid="{{ feed.id }}" data-cid="{{ c.id }}" data-csrfmiddlewaretoken="{{ csrf_token }}">
                     {% csrf_token %}
                     <button class="mdl-button mdl-js-button mdl-button--icon">
                       <i class="material-icons">clear</i>
@@ -74,7 +74,7 @@
                 </div> 
               {% endif %}
             {% endfor %}
-            <!-- 댓글 달기 -->>
+            <!-- 댓글 달기 -->
             <form action="/feeds/{{ feed.id }}/comments/" method="POST" class="comment-submit" data-fid="{{ feed.id }}" data-csrfmiddlewaretoken="{{ csrf_token }}">
               {% csrf_token %}
               <div class="mdl-textfield mdl-js-textfield">

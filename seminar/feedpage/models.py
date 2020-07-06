@@ -28,6 +28,10 @@ class Feed(models.Model): # 모델 클래스명은 단수형을 사용 (Feeds(x)
                 title=myfake.bs(),
                 content=myfake.text()
             )
+    
+    def update_feed(self, title, content):
+        self.title = title
+        self.content = content
 
 class FeedComment(models.Model):
     content = models.TextField()
