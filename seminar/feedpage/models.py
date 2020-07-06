@@ -29,6 +29,11 @@ class Feed(models.Model):
                 content=myfake.text()
             )
 
+    # 테스트 코드
+    def update_feed(self, title, content):
+        self.title = title
+        self.content = content
+
 
 class FeedComment(models.Model):
     content = models.TextField()

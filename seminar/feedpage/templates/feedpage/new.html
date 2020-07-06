@@ -1,16 +1,32 @@
-{% extends 'base.html' %} {% block content %}
-<h1>new feed</h1>
-<form enctype="multipart/form-data" action="/feeds/" method="POST">
-	{% csrf_token %}
-	<p>title</p>
-	<input name="title" />
-	<br />
-	<p>content</p>
-	<input name="content" />
-	<br />
-	<p>photo</p>
-	<input name="photo" type="file">
-	<br>
-	<input type="submit" value="submit" />
-</form>
-{% endblock content %}
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="createModalLabel">새로운 피드 생성하기</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id='feed-create' data-csrfmiddlewaretoken="{{ csrf_token }}">
+					<div class="form-group">
+						<label for="title" class="col-form-label">Title</label>
+						<input type="text" name="title" class="form-control" id="title">
+					</div>
+					<div class="form-group">
+						<label for="content" class="col-form-label">Content</label>
+						<textarea class="form-control" name="content" id="content"></textarea>
+					</div>
+
+					<!-- Modal footer를 form 태그 안으로 이동 -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+						<button type="submit" class="btn btn-primary">만들기</button>
+					</div>
+					<!-- 여기까지 -->
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

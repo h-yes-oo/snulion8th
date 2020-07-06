@@ -13,7 +13,8 @@ def index(request):
         photo = request.FILES.get('photo', False)
         Feed.objects.create(title=title, content=content,
                             author=request.user, photo=photo)
-        return redirect('/feeds/')
+
+        return JsonResponse({"message": "created!!"}, status=201)
 
     elif request.method == "GET":
         feeds = Feed.objects.all()
@@ -103,3 +104,6 @@ def feedcomment_like(request, pk, commentid):
     return JsonResponse(context)
 
     # return redirect('/feeds')
+
+def map(request):                                #추가
+    return render(request,'feedpage/map.html')   #추가
