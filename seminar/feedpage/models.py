@@ -19,6 +19,10 @@ class Feed(models.Model):
     def __str__(self):
         return self.title
 
+    def update_feed(self, title, content):
+        self.title = title
+        self.content = content
+
 
 class FeedComment(models.Model):
     content = models.TextField()
