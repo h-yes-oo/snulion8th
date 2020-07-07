@@ -26,8 +26,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', feedpage.views.index, name='index'), 
     path('feeds/', include('feedpage.urls')), 
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', accounts.views.signup, name='signup'), 
+    path('accounts/signup/', accounts.views.signup, name='account_signup'),
+    path('accounts/', include('allauth.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/signup/', accounts.views.signup, name='signup'), 
     path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),#추가
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # 추가
 

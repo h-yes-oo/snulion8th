@@ -17,7 +17,8 @@ def index(request): # 원래 있던 index 함수 수정
         photo =  request.FILES.get('photo', False)
         Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
         # Feed.objects.create(title=title, content=content, author=request.user)
-        return redirect('/feeds')
+        # return redirect('/feeds')
+        return JsonResponse({"message" : "created"}, status=201)
 
 def new(request):
     return render(request, 'feedpage/new.html')
@@ -127,4 +128,5 @@ def comment_like(request, fid, cid):
     
     return JsonResponse(context)
 
-
+def map(request):                                #추가
+    return render(request,'feedpage/map.html')   #추가
