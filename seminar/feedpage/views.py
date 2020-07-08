@@ -6,19 +6,16 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 
 # Create your views here.
-def index(request): 
-    if request.method=='GET':
+def index(request):
+    if request.method == 'GET':
         feeds = Feed.objects.all()
-        return render(request, 'feedpage/index.html', {'feeds': feeds})
-    elif request.method=='POST':
-        title=request.POST['title']
-        content= request.POST['content']
-        photo =  request.FILES.get('photo', False)
+        return render(request,'feedpage/index.html',{'feeds':feeds})
+    elif request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        photo = request.FILES.get('photo',False)
         Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
-        return redirect ('/feeds')
-
-    feeds=Feed.objects.all()
-    return render(request,'feedpage/index.html',{'feeds':feeds})
+        return JsonResponse({"message":"created"},status=201)
 
 def new(request):
     return render(request, 'feedpage/new.html')
@@ -47,12 +44,13 @@ def edit(request, id):
 
 def delete_comment(request,id,cid):
     c=FeedComment.objects.get(id=cid)
+    c.delete()
+
     context= { 
         'cid': cid,
         'fid': id,
     }
     
-
     return JsonResponse(context)
 
 def create_comment(request,id):
@@ -99,3 +97,6 @@ def comment_like(request,id,cid):
     }
 
     return JsonResponse(context)
+
+def map(request):
+    return render(request,'feedpage/map.html')

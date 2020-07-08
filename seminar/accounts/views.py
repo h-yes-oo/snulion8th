@@ -1,63 +1,57 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from django.contrib import auth
-from django.shortcuts import redirect
-from django.contrib.auth.forms import UserChangeForm
-from .models import Profile,Follow
-#from accounts import CustomUserChangeForm
+from .models import Profile, Follow
+from django.contrib.auth import login as django_login
+from django.contrib.auth import authenticate as django_authenticate
+from django.http import JsonResponse
 
 def signup(request):
-    if request.method  == 'POST':
-        if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
-            profile=user.profile
-            profile.college=request.POST['college']
-            profile.major=request.POST['major']
-            profile.mbti=request.POST['mbti']
-            auth.login(request, user)
-            return redirect('/feeds')
-    return render(request, 'accounts/signup.html')
+   if request.method == "POST":
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password1"]
+        college = request.POST["college"]
+        major = request.POST["major"]
 
-def login (request):
-    if request.method =='POST':
-        username=request.POST['username']
-        password=request.POST['password']
-        user=auth.authenticate(request,username=username, password=password)
-        if user is not None:
-            auth.login(request,user)
-        else:
-            return render(request,'accounts/login.html',{'error':'username or password is incorrect'})
-    else:
-        return render(request, 'accounts/login.html')
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.profile.college = college
+        user.profile.major = major
+        user.save()
+
+        login_user = django_authenticate(username=username, password=password)
+        django_login(request, login_user)
+        return JsonResponse({"response": "signup success"})
+       
+
     
 
-def logout(request):
-    return render(request, 'accounts/logout.html')
+def mypage(request):
+    if request.method == 'POST':
+        user=request.user
+        user.name=request.POST['username']
+        user.profile.college = request.POST['college']
+        user.profile.major = request.POST['major']
+        auth.login(request, user)
+        return redirect('/feeds')
+    else:
+        return render(request, 'accounts/mypage.html')
+
 
 def follow_manager(request, pk):
-    follow_from=Profile.objects.get(user_id=request.user.id)
-    follow_to=Profile.objects.get(user_id=pk)
+    follow_from = Profile.objects.get(user_id = request.user.id)
+    follow_to = Profile.objects.get(user_id = pk)
 
     try:
-        following_already=Follow.objects.get(follow_from=follow_from,follow_to=follow_to)
+        following_already = Follow.objects.get(follow_from=follow_from, follow_to=follow_to)
     except Follow.DoesNotExist:
-        following_already=None
-    
+        following_already = None
+
     if following_already:
         following_already.delete()
     else:
-        f=Follow()
-        f.follow_from,f.follow_to=follow_from,follow_to
+        # Follow.objects.create(follow_from=follow_from, follow_to=follow_to)
+        f = Follow()
+        f.follow_from, f.follow_to = follow_from, follow_to
         f.save()
+
     return redirect('/feeds')
-
-
-'''@login_required
-def update(request):
-    if request.method=='POST':
-        user_change_from= CustomUserChangeForm(requst.POST,instance=request.user)
-        user_change_form.save()
-    else:
-        user_change_from= CustomUserChangeForm(requst.POST,instance=request.user)
-        return render(request, 'accounts/update.html', {'user_change_form':user_change_form})
-'''

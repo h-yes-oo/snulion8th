@@ -5,9 +5,9 @@
     <i class="material-icons">UP</i>
   </button>
     {% if user.is_authenticated %}
-      <a href="/feeds/new" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+      <button type="button" data-toggle="modal" data-target="#createModal" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
         <i class="material-icons">add</i>
-      </a>
+      </button>
     {% endif %}
     {% for feed in feeds %} 
       <div class="demo-card-square mdl-card mdl-shadow--2dp">
@@ -51,28 +51,28 @@
           <div class="comment-wrapper">
             {% for c in feed.feedcomment_set.all %}
               {% if c.id == feed.feedcomment_set.all.last.id %} <!--마지막 댓글의 경우-->
-                <div class="toggle-comment last-comment"> <!--마지막 댓글은 toggle-comment 와 last-comment라는 클래스 적용-->
+                <div class="toggle-comment last-comment {{c.id}}"> <!--마지막 댓글은 toggle-comment 와 last-comment라는 클래스 적용-->
                   <p>{{c.author.username}}: {{ c.content }}</p> 
                   <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
                       {% csrf_token %}
-                      <a href="/feeds/{{ feed.id }}/comments/{{c.id}}/" >
+                      <a href="/feeds/{{ feed.id }}/comments/{{c.id}}/delete/" class="comment-delete"  data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
                         <i class="material-icons" style="color:black">clear</i>
                       </a>
-                      <a href= "/feeds/{{feed.id}}/comments/{{c.id}}/like/" data-badge="{{ c.like_users.count }}" data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
+                      <a href= "/feeds/{{feed.id}}/comments/{{c.id}}/like/" class="material-icons mdl-badge mdl-badge--overlap comment-like" data-badge="{{ c.like_users.count }}" data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
                         <i class="fas fa-heart" style="color:red"></i>
                       </a> 
                   </form>
                   <br/>
         </div> <!--div를 꼭 닫아줍니다-->
               {% else %} <!--나머지 댓글의 경우-->
-                <div class="toggle-comment" style="display: none;"> <!--나머지 댓글의 경우 toggle-comment라는 클래스를 적용하고 보이지 않게 설정합니다-->
+                <div class="toggle-comment rest-comment {{c.id}}" style="display: none;"> <!--나머지 댓글의 경우 toggle-comment라는 클래스를 적용하고 보이지 않게 설정합니다-->
                       <p>{{c.author.username}}: {{ c.content }}</p> 
                       <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
                         {% csrf_token %}
-                        <a href="/feeds/{{ feed.id }}/comments/{{c.id}}/delete/" >
+                        <a href="/feeds/{{ feed.id }}/comments/{{c.id}}/delete/" class="comment-delete"  data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
                           <i class="material-icons" style="color:black">clear</i>
                         </a>
-                        <a href= "/feeds/{{feed.id}}/comments/{{c.id}}/like/" data-badge="{{ c.like_users.count }}" data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
+                        <a href= "/feeds/{{feed.id}}/comments/{{c.id}}/like/" class="material-icons mdl-badge mdl-badge--overlap comment-like" data-badge="{{ c.like_users.count }}" data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
                           <i class="fas fa-heart" style="color:red"></i>
                         </a> 
                       </form>

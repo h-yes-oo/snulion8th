@@ -35,22 +35,24 @@ $('.comment-submit').submit((e) => {
         dataType: 'json',
         success: function(response) { 
             console.log(response);
-            //response는 views.py의 context가 담겨있다.
             const str = `
-                <div class="toggle-comment last-comment">
+                <div class="toggle-comment last-comment ${response.id}">
                     <p>${response.username}: ${response.content}</p>
                     <form action="/feeds/${fid}/comments/${response.id}/" method="POST">
-                    <input type="hidden" name="csrfmiddlewaretoken" value=${csrfmiddlewaretoken}>
-                    <button class="mdl-button mdl-js-button mdl-button--icon">
-                        <i class="material-icons">clear</i>
-                    </button>
+                        <input type="hidden" name="csrfmiddlewaretoken" value=${csrfmiddlewaretoken}>
+                        <a href="/feeds/${ fid }/comments/${ response.id }/delete/" class="comment-delete">
+                            <i class="material-icons" style="color:black">clear</i>
+                        </a>
+                        <a href= "/feeds/${ fid }/comments/${ response.id }/like/" class="material-icons mdl-badge mdl-badge--overlap comment-like" data-badge="{{ c.like_users.count }}" data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
+                            <i class="fas fa-heart" style="color:red"></i>
+                        </a> 
                     </form>
+                  <br/>
                 </div>
-            `;//index.html에서 온 것들
+            `;
 
             const $commentBtn = $this.siblings('.more-comment-btn');
             const $lastComment = $this.siblings('.last-comment');
-            //feed마다 last comment가 있는데 siblings로 해당 feed의 last comment인지 확인
 
             if ($commentBtn.hasClass('showing-comment')) {
                 $lastComment.removeClass('last-comment');
@@ -86,10 +88,10 @@ $(".feed-like").click((e) => {
         success: function(response) {
             console.log(response); 
             const count = parseInt($this.attr('data-badge'));
-            if(response.like_count > 0) {
+            if(response.like_count > 0) {// view와는 작동 로직이 다르다. 요청이 끝나고 나서라고 생각
                 $this.attr('data-badge', count+1);
             } else {
-            $this.attr('data-badge', count-1);
+                $this.attr('data-badge', count-1);
             }
         },
         error: function(response, status, error) {
@@ -140,10 +142,17 @@ $(".comment-delete").click((e) => {
     const $this = $(e.currentTarget);
     const fid = $this.data('fid');
     const cid = $this.data('cid');
+
+    console.log($this);
+
     const csrfmiddlewaretoken = $this.data('csrfmiddlewaretoken');
+    const last_comment=$this.closest('div');
+
+    console.log(last_comment)
+
     $.ajax({
-        url: `/feeds/${fid}/comments/${cid}/`,
-        type: "DELETE",
+        url: `/feeds/${fid}/comments/${cid}/delete/`,
+        type: "POST",
         data: {
             fid: fid,
             cid: cid,
@@ -152,7 +161,11 @@ $(".comment-delete").click((e) => {
         dataType: "json",
         success: function(response) {
             console.log(response);
-            reqPostResponse
+            if ($(this).hasClass('last-comment')){
+                $(last_comment).remove();
+            }else{
+                $(last_comment).remove();
+            }            
         },
         error: function(response, status, error) {
             console.log(response, status, error);

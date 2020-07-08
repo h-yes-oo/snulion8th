@@ -5,9 +5,9 @@
     <i class="material-icons">UP</i>
   </button>
     {% if user.is_authenticated %}
-      <a href="/feeds/new" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+      <button type="button" data-toggle="modal" data-target="#createModal" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
         <i class="material-icons">add</i>
-      </a>
+      </button>
     {% endif %}
     {% for feed in feeds %} 
       <div class="demo-card-square mdl-card mdl-shadow--2dp">
