@@ -47,24 +47,23 @@ def create_comment(request, id):
     content = request.POST['content']
     FeedComment.objects.create(feed_id=id, content=content, author=request.user)
     new_comment = FeedComment.objects.latest('id')
+    like_count = new_comment.commentlike_set.filter(user_id = request.user.id)
 
     context = {
-        'fid': id,
+        'cid': new_comment.id,
         'username': new_comment.author.username,
         'content': new_comment.content,
+        'like_count': like_count.count(),
     }
     return JsonResponse(context)
 
 def delete_comment(request, id, cid):
     c = FeedComment.objects.get(id=cid)
     c.delete()
+    feed = Feed.objects.get(id=id) 
 
-    # context = {
-    #     'fid': id,
-    #     'cid': cid
-    # }
-    # return JsonResponse(context)
-    return redirect('/feeds')
+    context = {}
+    return JsonResponse(context)
 
 def feed_like(request, pk):
     feed = Feed.objects.get(id=pk)
