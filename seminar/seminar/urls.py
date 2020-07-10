@@ -27,8 +27,11 @@ urlpatterns = [
     # include 덕분에 feeds/가 앞에 붙어서 작동한다. 
     path('feeds/', include('feedpage.urls')), 
     # django에 제공되는 것을 연결하기 때문에 account 아래 url 설정 안먹음ㅠ
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', accounts.views.signup, name='signup'),
+    # signup을 먼저쓰자..
+    # path('accounts/signup/', accounts.views.signup, name='signup'),
+    path('accounts/signup/', accounts.views.signup, name='account_signup'),
+    # path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('allauth.urls')),
     path('accounts/profile_edit/<int:id>/', accounts.views.profile_edit, name='profile_edit'), 
     path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),
     # 항상 끝에도 쉼표를 붙여 줍시다 

@@ -1,29 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Profile, Follow
-from django.shortcuts import redirect
+from django.contrib.auth import login as django_login
+from django.contrib.auth import authenticate as django_authenticate
+from django.http import JsonResponse
 
 def signup(request):
-    if request.method  == 'POST':
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-        username = request.POST['username']
-        
-        if password1 != password2:
-            res_data = {}
-            res_data['error'] = "비밀번호가 일치하지 않습니다" 
-            return render(request, 'accounts/signup.html', res_data)
-        else:
-            user = User.objects.create_user(username=username,password=password1)
-            auth.login(request, user)
-            Profile.objects.filter(user = user).update(college = request.POST['college'],\
-                            major = request.POST['major'], email = request.POST['email'],\
-                            birthday = request.POST['birthday'], address = request.POST['address'])
-            return redirect('/feeds')
+    if request.method == "POST":
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password1"]
+        college = request.POST["college"]
+        major = request.POST["major"]
+        # birthday = request.POST["birthday"]
+        # address = request.POST["address"]
 
-    elif request.method == 'GET':
-        return render(request, 'accounts/signup.html')
+        user = User.objects.create_user(username=username, email=email, password=password)
+
+        user.profile.college = college
+        user.profile.major = major
+        # user.profile.birthday = birthday
+        # user.profile.address = address
+        user.save()
+
+        login_user = django_authenticate(username=username, password=password)
+        django_login(request, login_user)
+        return JsonResponse({"response": "signup success"})
 
 def login(request):
     if request.method == 'POST':
@@ -35,14 +38,14 @@ def login(request):
             auth.login(request, user)
             return redirect('/feeds')
         else:
-            return render(request, 'accounts/login.html')
+            return render(request, 'account/login.html')
             # , 'error':'username or password is incorrect')
 
     elif request.method == 'GET':
-        return render(request, 'accounts/login.html')
+        return render(request, 'account/login.html')
 
 def logout(request):
-    return render(request, 'accounts/logged_out.html')
+    return render(request, 'account/logout.html')
 
 def profile_edit(request, id):
     if request.method == 'POST':

@@ -1,26 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Feed, FeedComment, Like, CommentLike
 # 추가. (참고: .models == feedpage.models)
-from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 
 # feedpage/view.py
 ...
 def index(request):
-    if request.method == 'GET':
-        feeds = Feed.objects.all()
-        return render(request, 'feedpage/index.html', {'feeds': feeds})
-
-    elif request.method == 'POST':
+    if request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
         photo =  request.FILES.get('photo', False) #사진 field가 비어있어도 되도록! 
         Feed.objects.create(title=title, content=content, author= request.user, photo=photo)
-        return redirect('/feeds')
+        # return redirect('/feeds')
+        return JsonResponse({"message" : "created"}, status=201)  
     
-    feeds = Feed.objects.all()
-    return render(request, 'feedpage/index.html', {'feeds':feeds})
+    elif request.method == 'GET':
+        feeds = Feed.objects.all()
+        return render(request, 'feedpage/index.html', {'feeds': feeds})
 
 def new(request):
     return render(request, 'feedpage/new.html')
@@ -97,3 +94,5 @@ def comment_like(request, id, cid):
     }
     return JsonResponse(context)
 
+def map(request):                                #추가
+    return render(request,'feedpage/map.html')   #추가

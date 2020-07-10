@@ -33,15 +33,25 @@ ALLOWED_HOSTS = []
 # 위에서 아래로 url 찾는 내용 진행한다. 
 # 따라서 먼저 연결되도록 하려면 위로 올려준다. 
 INSTALLED_APPS = [
-    'feedpage.apps.FeedpageConfig',  #추가, 줄여서 'feedpage'라고만 적어도 된다
-    'accounts.apps.AccountsConfig', 
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'feedpage.apps.FeedpageConfig',  #추가, 줄여서 'feedpage'라고만 적어도 된다
+    'accounts.apps.AccountsConfig', 
     'sass_processor',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #provider
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +144,13 @@ LOGIN_REDIRECT_URL = '/feeds/'
 
 SASS_PROCESSOR_ENABLED =  True
 SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'feedpage', 'static')
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+ACCOUNT_LOGOUT_ON_GET = True 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -1,31 +1,28 @@
-<!-- ./feedpage/templates/feedpage/new.html -->
-{% extends 'base.html' %}
-{% block content %}
-    <div class="demo-card-square mdl-card mdl-shadow--2dp">
-        <div class="button-wrapper">
-            <span>
-                <i class="material-icons">mood</i>
-                {{ feed.author.username }}
-            </span>
-        </div>        
-        <div class="info">
-            <form enctype="multipart/form-data" action="{% url 'index' %}" method="POST">
-                {% csrf_token %}
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" name="title" type="text" id="info1" required>
-                    <label class="mdl-textfield__label" for="info1">title</label>
-                </div></br>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" name="content" type="text" id="info2" required>
-                    <label class="mdl-textfield__label" for="info2">content</label>
-                </div></br>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input src="{{ feed.photo.url }}" name="photo" type="file">
-                </div></br>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" 
-                        type="submit">만들기
-                </button>
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="createModalLabel">새로운 피드 생성하기</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id='feed-create' data-csrfmiddlewaretoken="{{ csrf_token }}">
+            <div class="form-group">
+                <label for="title" class="col-form-label">Title</label>
+                <input type="text" name="title" class="form-control" id="title">
+            </div>
+            <div class="form-group">
+                <label for="content" class="col-form-label">Content</label>
+                <textarea class="form-control" name="content" id="content"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                <button type="submit" class="btn btn-primary">만들기</button>
+            </div>
             </form>
         </div>
+        </div>
     </div>
-{% endblock content %}
+</div>
