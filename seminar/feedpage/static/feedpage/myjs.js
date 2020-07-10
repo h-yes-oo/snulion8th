@@ -38,12 +38,12 @@ $('.comment-submit').submit((e) => {
             const str = `
                 <div class="toggle-comment last-comment ${response.id}">
                     <p>${response.username}: ${response.content}</p>
-                    <form action="/feeds/${fid}/comments/${response.id}/" method="POST">
-                        <input type="hidden" name="csrfmiddlewaretoken" value=${csrfmiddlewaretoken}>
-                        <a href="/feeds/${ fid }/comments/${ response.id }/delete/" class="comment-delete">
+                    <form action="/feeds/${ fid }/comments/${ response.id }/" method="POST">
+                        <input type="hidden" name="csrfmiddlewaretoken" value=${ csrfmiddlewaretoken }>
+                        <a href="/feeds/${ fid }/comments/${ response.id }/delete/" class="comment-delete"  data-fid=${ fid } data-cid=${response.id} data-csrfmiddlewaretoken="{{ csrf_token }}">
                             <i class="material-icons" style="color:black">clear</i>
                         </a>
-                        <a href= "/feeds/${ fid }/comments/${ response.id }/like/" class="material-icons mdl-badge mdl-badge--overlap comment-like" data-badge="{{ c.like_users.count }}" data-fid={{ feed.id }} data-cid={{c.id}} data-csrfmiddlewaretoken="{{ csrf_token }}">
+                        <a href= "/feeds/${ fid }/comments/${ response.id }/like/" class="material-icons mdl-badge mdl-badge--overlap comment-like" data-badge="0" data-fid=${ fid } data-cid=${ response.id } data-csrfmiddlewaretoken="{{ csrf_token }}">
                             <i class="fas fa-heart" style="color:red"></i>
                         </a> 
                     </form>
@@ -70,6 +70,14 @@ $('.comment-submit').submit((e) => {
             console.log(response);
         },
     });
+    /*$.ajax({
+        type: 'GET',
+        url: `/feeds/${fid}/comments/`, 
+        dataType: 'json',
+        success: function(response){
+            console.log("get done");
+        }
+    })*/
 });
 
 $(".feed-like").click((e) => {
@@ -126,7 +134,6 @@ $(".comment-like").click((e) => {
             } else {
             $this.attr('data-badge', count-1);
             }
-            console.log(data-badge);
         },
         error: function(response, status, error) {
             console.log(response, status, error);
