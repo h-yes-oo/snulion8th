@@ -1,68 +1,88 @@
-/* * {
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+
+
+body  {
+	background-color:  lightgray;
 }
 
-a {
-    text-decoration: none;
-    color: black;
-   }
-
-.header {
-    top:0;
-    width:100%; 
-    height: 150px;
-    background-color: #fff; 
-    color:  mediumslateblue; 
-    text-align: left;
-    position: fixed;
-    border-bottom: 0.5px solid rgb(220, 220, 220);
-    box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, 0.02) ;
-    z-index: 5;
-
-
+.demo-card-square.mdl-card.mdl-shadow--2dp {
+	display:  inline-block;
+	width:  350px;
+	margin:  10px;
+	vertical-align:  top;
 }
 
-.title {
-    width: 20%;
-    margin-left:40%;
-    font-size: 30px;
+.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored {
+	z-index:  2;
+	position:  fixed;
+	bottom:  20px;
+	right:  40px;
 }
 
-.welcome {
-    text-align:right;
-    margin-right:20px;
-    margin-top:10px;
-    font-size:14px;
-    
-
+.button-wrapper {
+	padding: 16px;
+	text-align: right;
 }
 
-.logout {
-    border-radius: 22px !important;
-    margin-left:1200px;
-    
+.button-wrapper > a {
+	text-decoration: none;
 }
 
-.logout:hover {
-    background-color: rgb(220, 220, 220);
-   
+.button-wrapper > span {
+	float: left;
 }
 
-.logtext {
-  
-    margin-right:5px;
-    
+.button-wrapper > span > i {
+	vertical-align: -25%;
 }
 
-.logtext:hover {
-    text-decoration-color: #fff;
+.comment-wrapper {
+    padding: 16px;
 }
 
-.editview {
-    top : 200px;
+.toggle-comment > p, form {
+    display: inline;
 }
 
-.showview {
-    position: absolute;
-    top:100px;
-} */
+.mdl-textfield.mdl-js-textfield > button  {
+	margin-left:  260px;
+}
+
+.scroll-up {
+	position: fixed;
+	bottom: 84px !important;
+	right: 40px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* * { font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif; }
+
+a { text-decoration: none; color: black; }
+
+.header { top: 0; width: 100%; height: 150px; background-color: #fff; color: mediumslateblue; text-align: left; position: fixed; border-bottom: 0.5px solid gainsboro; box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.02); z-index: 5; }
+
+.title { width: 20%; margin-left: 40%; font-size: 30px; }
+
+.welcome { text-align: right; margin-right: 20px; margin-top: 10px; font-size: 14px; }
+
+.logout { border-radius: 22px !important; margin-left: 1200px; }
+
+.logout:hover { background-color: gainsboro; }
+
+.logtext { margin-right: 5px; }
+
+.logtext:hover { text-decoration-color: #fff; }
+
+.editview { top: 200px; }
+
+.showview { position: absolute; top: 100px; }
+
+# sourceMappingURL=base.css.map */
