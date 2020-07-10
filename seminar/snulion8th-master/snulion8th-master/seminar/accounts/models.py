@@ -9,7 +9,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     college = models.CharField(max_length=20, blank=True)
     major = models.CharField(max_length=20, blank=True)
-    follows = models.ManyToManyField('self',through = 'Follow', blank=True, related_name='followed',symmetrical=False)
+    follows = models.ManyToManyField('self',through = 'Follow', blank=True, related_name='follow_from',symmetrical=False)
 
     def seed(count): 
         myfake = Faker()

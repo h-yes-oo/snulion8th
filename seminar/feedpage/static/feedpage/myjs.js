@@ -170,6 +170,7 @@ $(".comment-delete").click((e) => {
             console.log(response);
             if ($(this).hasClass('last-comment')){
                 $(last_comment).remove();
+
             }else{
                 $(last_comment).remove();
             }            
