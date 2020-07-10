@@ -3,19 +3,29 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import redirect
 from .models import Profile, Follow
+from django.contrib.auth import login as django_login
+from django.contrib.auth import authenticate as django_authenticate
+from django.http import JsonResponse
 
 # Create your views here.
 
 def signup(request):
-    if request.method  == 'POST':
-        if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
-            user.profile.college  = request.POST['college']
-            user.profile.major    = request.POST['major']
-            user.profile.birthday = request.POST['birthday']
-            auth.login(request, user)
-            return redirect('/feeds')
-    return render(request, 'accounts/signup.html')
+    if request.method == "POST":
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password1"]
+        college = request.POST["college"]
+        major = request.POST["major"]
+
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.profile.college = college
+        user.profile.major = major
+        user.save()
+
+        login_user = django_authenticate(username=username, password=password)
+        django_login(request, login_user)
+        return JsonResponse({"response": "signup success"})
+
 
 
 def user_info(request, id):

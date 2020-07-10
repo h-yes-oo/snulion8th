@@ -1,91 +1,73 @@
 
 header {
     width: 100%; 
-    height:130px;
-    background-color: mediumslateblue; 
-    color: white;
-    border-bottom: 2px solid black;
+    height:100px;
+    
 }
 
 body {
     position:absolute;
+    
     margin:0;
     width:100%;
+    background-color: aliceblue;
 }
 
 /* logged_in header */
 
-.logged_in {
-    width:100%;
-    height:100%;
+.info {
     display:flex;
-    justify-content:center;
-    align-items:center;
+    flex-direction: column;
+    position: relative;
+    top:15px;
+    align-items: center;
 }
 
-.logged_in .info {
-    position:absolute;
-    right:10px;
-    display: flex;
-    flex-direction :column;
-    justify-content:center;
-    
-    
-}
-.logged_in .title {
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    align-items:center;
-    /* padding-bottom:15px; */
+.demo-card-square.mdl-card.mdl-shadow--2dp {
+	display:  inline-block;
+	width:  350px;
+	margin:  10px;
+	vertical-align:  top;
 }
 
-.logged_in .link {
-    font-size:14px;   
+.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored {
+	z-index:  2;
+	position:  fixed;
+	bottom:  20px;
+	right:  40px;
 }
 
-/* logged_out header */
-.logged_out {
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+.button-wrapper {
+	padding: 16px;
+	text-align: right;
 }
 
-
-
-.snulion {
-    font-size: 40px;
+.button-wrapper > a {
+	text-decoration: none;
 }
 
-.new_feed {
-    font-size:25px;
+.button-wrapper > span {
+	float: left;
 }
 
-.feeds {
-    display:flex;
-    flex-direction:column;
+.button-wrapper > span > i {
+	vertical-align: -25%;
 }
-.feeds .feed {
-    border:1px solid red;
-    margin-top:-1px; 
-    display:flex;
-    flex-direction:column;
-    justify-content: flex-start;
-    align-items:flex-start;
+
+.comment-wrapper {
+    padding: 16px;
 }
-.feed .title {
-    margin:auto;
-    font-size:25px;
-    font-weight:700;
+
+.toggle-comment > p, form {
+    display: inline;
 }
-.feed .content {
-    font-size:20px;
+
+.mdl-textfield.mdl-js-textfield > button  {
+	margin-left:  260px;
 }
-.feed .link {
-    width:7%;
-    display:flex;
-    justify-content: space-between;
+
+.scroll-up {
+	position: fixed;
+	bottom: 84px !important;
+	right: 40px !important;
 }
