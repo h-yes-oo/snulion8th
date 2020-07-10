@@ -60,7 +60,7 @@ $(document).on('submit', '.comment-submit', function(e) {
         $(str).insertBefore($this);
         $(`input#${fid}[name=content]`).val('');
 
-        /* add "more comment" button */
+        /* add "more comment" button if more than one comment given */
         if($this.prevAll().length > 1) {
           console.log($commentBtn, "more comment button");
           $commentBtn.removeAttr('style');
@@ -87,15 +87,15 @@ $(document).on('submit', '.comment-delete', function(e) {
 
   const $removedComment = $this.parent();
   const $lastComment = $this.parent().siblings().last().prev().prev().prev();
+  /* 마지막 댓글 tag 뒤에 lastcomment, form tag 때문에 prev.prev.prev를 해주어야함...ㅎㅅㅎ */
   const $commentBtn = $this.parent().siblings('.more-comment-btn');
   const cmtCount = $lastComment.prevAll().length;
   /* 
-    const $lastCommetn = $this.parent().prev();
+    const $lastCommet = $this.parent().prev();
     const cmtCount = $lastComment.prevAll().length + $currComment.nextAll().length-2;
     // -2를 하는 이유는 last comment와 form element가 nextAll()에 count되기 때문..ㅎㅎ 
-    => 이 버전을 사용하지 않는 이유는 앞 뒤로 comment를 더하는 귀찮음 때문 ㅎ
-    => $this.parent().siblings().last().prev()는 마지막 comment 의미~~
-    => showing button 사용 시에도 delete가 가능하도록 함! 
+    => 이 버전을 사용하지 않는 이유는 showing button 사용 시에도 delete가 가능하도록 하기 위함
+    => $this.parent().siblings().last().prev().prev().prev()가 마지막 comment 의미~~
   */
 
 
