@@ -1,0 +1,135 @@
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+.header {
+    height: 77px; 
+    width: 100%; /* 화면 넓이에 꽉 차게 하는 속성 */
+    position: fixed; /*스크롤해도 항상 위에 고정시키는 속성 */
+    top: 0; /*화면 가장 위에 위치시키는 속성 */
+    z-index: 1; /* 배치 순서를 나타내는 속성, 숫자가 클 수록 앞에 보이게 됨 */
+    background-color: white;
+    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+}
+
+.header_inner {
+    max-width: 1010px;
+    padding: 16px; 
+    margin: auto;
+    width: 100%;
+    display: flex;
+}
+.feed{
+    width: 100%;
+    position: absolute;
+    top: 77px;
+    background-color:whitesmoke;
+    height:100%;
+}
+.feed_inner{
+    position: absolute;
+    margin-left: 50px;
+    margin-top : 130px;
+    width: 300px;
+    background-color: white;
+}
+.id{
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 0.7px solid gray;
+    font-size: 13px;
+    font-weight: bold;
+}
+.id_name{
+    /* padding : 10px; */
+    font-size: 20px;
+}
+.feed_image{
+    
+}
+.icon_box{
+    padding: 5px;
+    border: 0.7px solid gray;
+}
+.comment{
+    /* display: inline-block; */
+    display: flex;
+    /* justify-content: ; */
+    /* align-items: ; */
+    padding: 5px;
+    border: 0.7px solid gray;
+}
+.post_comment{
+    font-size: 13px;
+    right: 5px;
+    color: red;
+    padding: 5px;
+    font-weight:bold;
+}
+
+.comment_box {
+    border: 0;
+    width: 240px;
+    margin-left:10px;
+}
+
+.feed_image{
+    height:300px;
+    width:300px;
+}
+.feed_img{
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+}
+.logo {
+    height: 46px;
+    width: auto;
+    flex: 1 9999 0%;
+}
+
+.logo_img {
+    height: 200%;
+    width: auto;
+}
+
+.search {
+    height: 28px;
+    width: 215px;
+    margin: auto;
+}
+
+.search_box {
+    height: 100%;
+    width: 100%;
+    background: #fafafa;
+    border: solid 1px #dbdbdb;
+    border-radius: 3px;
+    color: #999;
+    cursor: text;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.button {
+    display: flex; 
+    flex-direction: row;
+    flex: 1;
+    justify-content: flex-end; 
+    height: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.icon {
+    width: 22px;
+    height: 22px;
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+}
