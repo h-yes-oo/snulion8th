@@ -117,12 +117,20 @@ $(".comment-like").click((e) => {
         dataType: "json",
         success: function (response) {
             console.log(response);
-            const count = parseInt($this.attr('data-badge'));
+            const like = response.like_count
             if (response.like_count > 0) {
-                $this.attr('data-badge', count + 1);
+                $this.attr('data-count', like + 1);
+                // 수정 필요, like_count를 지웠다가 다시 로딩해주자, siblings와 같은 메소드가 없을까
+                $this.children().remove();
+                const substitute = `<div class="like_user"> ${like + 1} </div>`;
+                $(substitute).prependTo($this);
             } else {
-                $this.attr('data-badge', count - 1);
-            }
+                $this.attr('data-count', like - 1);
+                $this.children().remove();
+                const substitute = `<div class="like_user"> ${like - 1} </div>`;
+
+                $(substitute).prependTo($this);
+            };
         },
         error: function (response, status, error) {
             console.log(response, status, error);
