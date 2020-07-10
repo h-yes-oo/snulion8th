@@ -9,6 +9,7 @@
 
 ![bookshelf](./image/bookshelf.png)
 
+(그려본 책장 이미지)
   
 
 >__메인 페이지__
