@@ -2,9 +2,6 @@
 
 {% block content %}
     <h1>feed page</h1>
-    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored scroll-up">
-      <i class="material-icons">UP</i>
-    </button>
     {% if user.is_authenticated %}
       <a href="/feeds/new/" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
         <i class="material-icons">add</i>
@@ -17,8 +14,8 @@
             <i class="material-icons">mood</i>
             {{ feed.author.get_username }}
           </span>
-          <!-- 피드 좋아요 버튼 -->
-          <a  href="/feeds/{{ feed.id }}/like"  class="material-icons mdl-badge mdl-badge--overlap feed-like"  data-badge="{{ feed.like_users.count }}" data-fid={{ feed.id }} data-csrfmiddlewaretoken="{{ csrf_token}}">
+          <!-- 좋아요 버튼 -->
+          <a  href="/feeds/{{ feed.id }}/like"  class="material-icons mdl-badge mdl-badge--overlap"  data-badge="{{ feed.like_users.count }}">
             {% if  user in feed.liked_users.all %}
               <i  class="material-icons">favorite</i>
             {% else %}
@@ -49,7 +46,6 @@
             <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
           {% endif %}
         </div>
-          <!-- 댓글 기능 -->
           <div class="comment-wrapper">
             {% for c in feed.feedcomment_set.all %}
               {% if c.id == feed.feedcomment_set.all.last.id %}
@@ -74,17 +70,16 @@
                 </div>
               {% endif %}
             {% endfor %}
-            <form action="/feeds/{{ feed.id }}/comments/" method="POST" class="comment-submit" data-fid="{{ feed.id }}" data-csrfmiddlewaretoken="{{ csrf_token }}">
+            <form action="/feeds/{{ feed.id }}/comments/" method="POST">
               {% csrf_token %}
               <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" id="{{ feed.id }}" name="content">
+                <input class="mdl-textfield__input" type="text" id="sample1" name="content">
                 <label class="mdl-textfield__label" for="sample1">Text...</label>
                 <button  type="submit" class="mdl-button mdl-js-button mdl-button--icon">
                   <i class="material-icons">send</i>
                 </button>
               </div>
             </form>
-            <!-- 댓글 더보기 -->
             {% if feed.feedcomment_set.all.count > 1 %}
               <button class="more-comment-btn"> MORE COMMENTS </button>
             {% endif %}
