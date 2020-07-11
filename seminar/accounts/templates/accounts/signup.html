@@ -1,29 +1,52 @@
 <!-- accounts/templates/accounts/signup.html -->
 {% extends 'base.html' %}
 {% block content %}
-    <div class="feed-block">
-        <div class="content"> 회원가입 </div>
+    <div class="info">
+        <div class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+                <i class="material-icons mdl-list__item-avatar">person</i>
+                <span>회원가입</span>
+            </span>
+            <a class="mdl-list__item-secondary-action" href="#"></a>
+        </div>
         {{ error }}<br>
         <form method="POST" action="{% url 'signup' %}">
             {% csrf_token %}
-            <div class="title"> 사용자 이름 </div>
-            <input name="username" type="text" required><br><br>
-            <div class="title"> 비밀번호 </div>
-            <input name="password1" type="password" required><br><br>
-            <div class="title"> 비밀번호 확인</div>
-            <input name="password2" type="password" required><br><br>
-            <div class="title"> 학교 </div> 
-            <input name="college" type="text"><br><br>
-            <div class="title"> 전공 </div> 
-            <input name="major" type="text"><br><br> 
-            <div class="title"> 이메일 </div>
-            <input name="email" type="text"><br><br>
-            <div class="title"> 생일</div>
-            <input name="birthday" type="date" placeholder="YYYY-MM-DD" 
-            value="{{ form.birthday }}" pattern="\d{4}-\d{1,2}-\d{1,2}" required><br><br>
-            <div class="title"> 주소 </div> 
-            <input name="address" type="text"><br><br>
-            <button type="submit">Sign Up</button>
-        </form> 
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="username" type="text" id="info1" required>
+                <label class="mdl-textfield__label" for="info1">사용자 이름</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="password1" type="password" id="info2" required>
+                <label class="mdl-textfield__label" for="info2">비밀번호</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="password2" type="password" id="info3" required>
+                <label class="mdl-textfield__label" for="info3">비밀번호 확인</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="college" type="text" id="info4" required>
+                <label class="mdl-textfield__label" for="info4">학교</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="major" type="text" id="info5" required>
+                <label class="mdl-textfield__label" for="info5">전공</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="email" type="text" id="info6" required>
+                <label class="mdl-textfield__label" for="info6">이메일</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="birthday" type="date" 
+                    id="info7"placeholder="YYYY-MM-DD" pattern="\d{4}-\d{1,2}-\d{1,2}" required>
+                <label class="mdl-textfield__label" for="info7">생일</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="address" type="text" id="info8" required>
+                <label class="mdl-textfield__label" for="info8">주소</label>
+            </div></br>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                type="submit">Sign Up</button>
+        </form>
     </div>
 {% endblock content %}

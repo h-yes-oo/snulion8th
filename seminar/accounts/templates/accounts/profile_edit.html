@@ -1,21 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="feed-block">
-        <div class="content"> 정보 수정하기 </div>
+    <div class="info">
+        <div class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+                <i class="material-icons mdl-list__item-avatar">person</i>
+                <span>{{ user.username }}</span>
+            </span>
+            <a class="mdl-list__item-secondary-action" href="#"></a>
+        </div>
         <form method="POST" action="{%url 'profile_edit' user.id %}">
             {% csrf_token %}
-            <div class="title"> 학교 </div>
-            <input name="college" type="text" value="{{ user.profile.college }}" required><br><br>
-            <div class="title"> 전공 </div> 
-            <input name="major" type="text" value="{{ user.profile.major }}" required><br><br> 
-            <div class="title"> e-mail </div>
-            <input name="email" type="text" value="{{ user.profile.email }}" required><br><br>
-            <div class="title"> 생일 </div>
-            <input name="birthday" type="date" required pattern = "\d{4}-\d{2}-\d{2}" 
-                    value="{{ user.profile.birthday | date:"Y-m-d" }}"><br><br>
-            <div class="title"> 주소 </div> 
-            <input name="address" type="text" value="{{ user.profile.address }}"><br><br> 
-            <button type="submit">수정하기</button>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="college" type="text" 
+                        id="info1" value="{{ user.profile.college }}" required>
+                <label class="mdl-textfield__label" for="info1">학교</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="major" type="text" 
+                        id="info2" value="{{ user.profile.major }}" required>
+                <label class="mdl-textfield__label" for="info2">전공</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="email" type="text" 
+                        id="info3" value="{{ user.profile.email }}" required>
+                <label class="mdl-textfield__label" for="info3">e-mail</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="birthday" type="text" 
+                        id="info4" required pattern = "\d{4}-\d{2}-\d{2}" 
+                    value="{{ user.profile.birthday | date:"Y-m-d" }}">
+                <label class="mdl-textfield__label" for="info4">생일</label>
+            </div></br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="address" type="text" 
+                        id="info5" value="{{ user.profile.address }}" required>
+                <label class="mdl-textfield__label" for="info5">주소</label>
+            </div></br>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                type="submit">수정하기</button>
         </form>
     </div>
 {% endblock content %}

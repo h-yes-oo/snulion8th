@@ -1,15 +1,28 @@
-<!-- ./feedpage/templates/feedpage/new.html -->
-{% extends 'base.html' %}
-{% block content %}
-    <div class="feed-block">
-        <div class="content">NEW FEED</div>
-        <form action="{% url 'index' %}" method="POST">
-                {% csrf_token %}
-            <div class="title">title</div>
-                <input name="title"/ required> <br />
-            <div class="title">content</div>
-                <input name="content"/ required> <br />
-            <button class="submit" type="submit">submit</button>
-        </form>
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="createModalLabel">새로운 피드 생성하기</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id='feed-create' data-csrfmiddlewaretoken="{{ csrf_token }}">
+            <div class="form-group">
+                <label for="title" class="col-form-label">Title</label>
+                <input type="text" name="title" class="form-control" id="title">
+            </div>
+            <div class="form-group">
+                <label for="content" class="col-form-label">Content</label>
+                <textarea class="form-control" name="content" id="content"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                <button type="submit" class="btn btn-primary">만들기</button>
+            </div>
+            </form>
+        </div>
+        </div>
     </div>
-{% endblock content %}
+</div>

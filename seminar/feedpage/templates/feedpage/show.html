@@ -1,17 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
-    <a href="{% url 'index' %}"><button>home</button></a>
-    {% if user.is_authenticated %}
-        {% if request.user == feed.author %}
-            <a href="{% url 'edit' feed.id %}"><button>edit</button></a>
+<div class="demo-card-square mdl-card mdl-shadow--2dp">
+    <div class="button-wrapper">
+        <span>
+            <i class="material-icons">mood</i>
+            {{ feed.author.username }}
+        </span>
+        <a href="{% url 'index' %}">home</a>
+        {% if user.is_authenticated %}
+            {% if request.user == feed.author %}
+                <a href="{% url 'edit' feed.id %}">
+                    <i class="material-icons">edit</i>
+                </a>
+                <a href="{% url 'delete' feed.id %}"
+                    onclick="return confirm('정말 삭제하시겠습니까?')">
+                    <i class="material-icons">delete</i>
+                </a>
+            {% endif %}
         {% endif %}
-    {% endif %}
-    <div class="feed-block">
-        <div class="title">
-            <p>제목: "{{ feed.title }}"</p>
-        </div>
-        <div class="content">
-            <p>내용: {{ feed.content }}</p>
-        </div>
     </div>
+    <!-- feed title -->
+    <div class="mdl-card__title mdl-card--expand">
+        <h2 class="mdl-card__title-text">{{ feed.title }}</h2>
+    </div>
+    <!-- feed content -->
+    <div class="mdl-card__supporting-text">
+        {{ feed.content }}<br/>
+        {% if feed.photo %}
+            <img src="{{ feed.photo.url }}" alt="" width="30%" height="20%">
+        {% endif %}
+    </div>
+</div>
 {% endblock content %}

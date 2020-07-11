@@ -1,0 +1,23 @@
+<!-- accounts/templates/accounts/signup.html -->
+{% extends 'base.html' %}
+{% block content %}
+    <div class="feed-block">
+        <div class="content"> 회원가입 </div>
+        {{ error }}<br>
+        <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <div class="title"> 사용자 이름 </div>
+            <input name="username" type="text" required><br><br>
+            <div class="title"> 비밀번호 </div>
+            <input name="password1" type="password" required><br><br>
+            <div class="title"> 비밀번호 확인</div>
+            <input name="password2" type="password" required><br><br>
+            <div class="title"> 이메일 </div>
+            <input name="email" type="text"><br><br>
+            <div class="title"> 생일</div>
+            <input name="birthday" type="date" placeholder="YYYY-MM-DD" 
+            value="{{ form.birthday }}" pattern="\d{4}-\d{1,2}-\d{1,2}" required><br><br>
+            <button type="submit">Sign Up</button>
+        </form> 
+    </div>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="feed-block">
+        <div class="content"> 정보 수정하기 </div>
+        {{ error }}
+        <form method="POST" action="{%url 'profile_edit' user.id %}">
+            {% csrf_token %}
+            <div class="title"> password </div>
+            <input name="password" type="password" required> 
+            <div class="title"> e-mail </div>
+            <input name="email" type="text" value="{{ user.profile.email }}" required><br><br>
+            <div class="title"> 생일 </div>
+            <input name="birthday" type="date" required pattern = "\d{4}-\d{2}-\d{2}" 
+                    value="{{ user.profile.birthday | date:"Y-m-d" }}"><br><br>
+            <button type="submit">수정하기</button>
+        </form>
+    </div>
+{% endblock content %}
