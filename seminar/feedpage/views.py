@@ -14,8 +14,10 @@ def index(request):
         content = request.POST['content']
         photo =  request.FILES.get('photo', False)
         Feed.objects.create(title = title, content = content, author = request.user, photo=photo)
-        return redirect('/feeds')
+        return JsonResponse({'message':'created'}, status=201)
         
+def map(request):
+    return render(request, 'feedpage/map.html')
 
 def new(request):
     return render(request, 'feedpage/new.html')
@@ -59,8 +61,12 @@ def create_comment(request, id):
 def delete_comment(request, id, cid):
     c = FeedComment.objects.get(id=cid)
     c.delete()
-    feed = Feed.objects.get(id =id)
-    d = feed.feedcomment_set.filter()[feed.feedcomment_set.filter().count()-1].id
+    feed = Feed.objects.get(id=id)
+    
+    if (feed.feedcomment_set.filter().count() > 0):
+        d = feed.feedcomment_set.filter()[feed.feedcomment_set.filter().count()-1].id
+    else:
+        d = 0
 
     context= {
         'cid2': d,
@@ -74,10 +80,12 @@ def feed_like(request, pk):
         feed.like_set.get(user_id = request.user.id).delete()
     else:
         Like.objects.create(user_id = request.user.id, feed_id = feed.id)
-    
+    user = User.objects.get(id = request.user.id)
+    ucount = user.like_feeds.count()
     context = {
         'fid': feed.id,
-        'like_count': like_list.count()
+        'like_count': like_list.count(),
+        'ucount': ucount,
     }
     
     return JsonResponse(context)

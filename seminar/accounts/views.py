@@ -5,17 +5,29 @@ from django.contrib import auth
 from django.shortcuts import redirect
 from django.contrib.auth.hashers import check_password
 from .models import Profile, Follow
+from django.contrib.auth import login as django_login
+from django.contrib.auth import authenticate as django_authenticate
 from django.http import JsonResponse
 
+
 def signup(request):
-    if request.method  == 'POST':
-        if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
-            user = User.objects.get(username=request.POST['username'])
-            Profile.objects.filter(user=user).update(college = request.POST['college'], major= request.POST['major'])
-            auth.login(request, user)
-            return redirect('/feeds')
-    return render(request, 'accounts/signup.html')
+    if request.method == "POST":
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password1 = request.POST["password1"]
+        password2 = request.POST["password2"]
+        college = request.POST["college"]
+        major = request.POST["major"]
+        if password1 == password2:
+            user = User.objects.create_user(username=username, email=email, password=password1)
+            user.profile.college = college
+            user.profile.major = major
+            user.save()
+
+            login_user = django_authenticate(username=username, password=password1)
+            django_login(request, login_user)
+
+        return JsonResponse({"response": "signup success"})
 
 def login(request):
     if request.method == 'POST':

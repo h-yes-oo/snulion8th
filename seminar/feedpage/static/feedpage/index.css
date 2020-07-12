@@ -73,3 +73,7 @@ body {
     justify-content: space-between;
     margin: 10px;
 }
+
+a:hover {
+	color: rgb(255,82,82);
+}

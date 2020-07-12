@@ -26,11 +26,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', feedpage.views.index, name='index'),
     path('feeds/', include('feedpage.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', accounts.views.signup, name='signup'),
+    # path('accounts/signup/', accounts.views.signup, name='signup'),
+    path('accounts/signup/', accounts.views.signup, name='account_signup'),
+    # path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/editaccount/', accounts.views.editaccount, name='editaccount'),
     path('accounts/pwchange/', accounts.views.pwchange, name='pwchange'),
     path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),
+    path('accounts/', include('allauth.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

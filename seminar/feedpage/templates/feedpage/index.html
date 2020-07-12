@@ -8,9 +8,9 @@
       <i class="material-icons">north</i>
     </button>
     {% if user.is_authenticated %}
-      <a href="/feeds/new" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-        <i class="material-icons">add</i>
-      </a>
+    <button type="button" data-toggle="modal" data-target="#createModal" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+      <i class="material-icons">add</i>
+    </button>
     {% endif %}
     {% for feed in feeds %} 
       <div class="demo-card-square mdl-card mdl-shadow--2dp">
@@ -65,7 +65,7 @@
                           <i class="material-icons">clear</i>
                         </button>
                       </form>
-                    {% endif %} 
+                    {% endif %}
                     <!-- 댓글 좋아요 1 -->
                     {% if user.is_authenticated %}
                     <a href="/feeds/{{ feed.id }}/comments/{{ c.id }}/like/" class="material-icons comment-like" data-badge='{{ c.like_users.count }}' data-fid="{{ feed.id }}" data-cid="{{ c.id }}" data-csrfmiddlewaretoken="{{ csrf_token }}">
@@ -81,6 +81,7 @@
                 {% else %} <!--나머지 댓글의 경우-->
                  <div class="toggle-comment cid-{{c.id}}" style="display: none;"> <!--나머지 댓글의 경우 toggle-comment라는 클래스를 적용하고 보이지 않게 설정합니다-->
                     <p>{{c.author.username}}: {{ c.content }}</p> 
+                    <!-- 댓글 삭제 2 -->
                     {% if request.user == c.author %}
                     <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST" class='cmt-delete' data-fid='{{ feed.id }}' data-cid='{{ c.id }}' data-csrfmiddlewaretoken="{{ csrf_token }}">
                       {% csrf_token %}
@@ -119,12 +120,16 @@
             <button class="more-comment-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
               Load more
             </button>
+            {% else %}
+            <button class="more-comment-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="display: none;">
+              Load more
+            </button>
             {% endif %}
           </div>
         <div class="mdl-card__actions mdl-card--border">
     {% if user.is_authenticated %}
           {% if request.user != feed.author %}
-          <a href="/accounts/{{ feed.author.id }}/follow" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          <a href="/accounts/{{ feed.author.id }}/follow" class="flw-manager mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" data-autid="{{ feed.author.id }}" data-csrfmiddlewaretoken="{{ csrf_token }}">
                  (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }})
                 {% if request.user.profile not in feed.author.profile.follows.all %}
                     팔로우

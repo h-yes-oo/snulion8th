@@ -17,6 +17,7 @@ $('.scroll-up').on('click', function (event) {
     $('.mdl-layout__content').scrollTop(0);
 });
 
+
 $('.comment-submit').submit((e) => {
     e.preventDefault();
     console.log('form submitted');
@@ -35,7 +36,7 @@ $('.comment-submit').submit((e) => {
         dataType: 'json',
         success: function (response) {
             console.log(response);
-            console.log(`This is count like!!! : ${response.like_count}`);
+            console.log(  )
             const str = `
                 <div class="toggle-comment last-comment cid-${response.id}">
                     <p>${response.username}: ${response.content}</p>
@@ -56,6 +57,7 @@ $('.comment-submit').submit((e) => {
             const $lastComment = $this.siblings('.last-comment');
 
             if ($commentBtn.hasClass('showing-comment')) {
+                console.log($commentBtn, '')
                 $lastComment.removeClass('last-comment');
             } else {
                 $lastComment.removeClass('last-comment').hide();
@@ -63,7 +65,15 @@ $('.comment-submit').submit((e) => {
 
             $(str).insertBefore($this);
             $(`input#${fid}[name=content]`).val('');
+
+            if($this.prevAll().length > 1) {
+                $commentBtn.removeAttr('style');
+            } else if($this.prevAll().length < 2){
+                $commentBtn.attr('style', 'display: none');
+            }
+            
         },
+
         error: function (response, status, error) {
             console.log(response, status, error);
         },
@@ -75,10 +85,10 @@ $('.comment-submit').submit((e) => {
 
 $(".feed-like").click((e) => {
     e.preventDefault();
-    const dom = e.target
     const $this = $(e.currentTarget);
     const fid = $this.data('fid');
     const csrfmiddlewaretoken = $this.data('csrfmiddlewaretoken');
+
     $.ajax({
         url: `/feeds/${fid}/like/`,
         type: "POST",
@@ -90,11 +100,23 @@ $(".feed-like").click((e) => {
         success: function (response) {
             console.log(response);
             const count = parseInt($this.attr('data-badge'));
+            const ucount = response.ucount;
+            const str = `
+                    <div id="ucount">
+                        내가 좋아한 글 : ${ucount}개
+                    </div>
+            `
+
             if (response.like_count > 0) {
                 $this.attr('data-badge', count + 1);
             } else {
                 $this.attr('data-badge', count - 1);
             }
+
+            $('#ucount').html(str);
+
+
+
         },
         error: function (response, status, error) {
             console.log(response, status, error);
@@ -105,7 +127,7 @@ $(".feed-like").click((e) => {
     })
 });
 
-$('.comment-like').click((e) => {
+$(document).on('click', '.comment-like', (e) => {
     e.preventDefault();
     const $this = $(e.currentTarget);
     const fid = $this.data('fid');
@@ -135,14 +157,13 @@ $('.comment-like').click((e) => {
             `
 
             if (response.like_count > 0) {
-                $this.attr('data-badge', count + 1);
                 $(str1).insertAfter($this.children());
                 select2.remove();
             } else {
-                $this.attr('data-badge', count - 1);
                 $(str2).insertAfter($this.children());
                 select1.remove();
             }
+
         },
 
         error: function (response, status, error) {
@@ -156,7 +177,7 @@ $('.comment-like').click((e) => {
     });
 });
 
-$('.cmt-delete').submit((e) => {
+$(document).on('submit', '.cmt-delete', (e) => {
     e.preventDefault();
     const $this = $(e.currentTarget);
     const fid = $this.data('fid');
@@ -175,18 +196,31 @@ $('.cmt-delete').submit((e) => {
         dataType: 'json',
 
         success: function(response) {
-            console.log(response); 
-            const $lastComment = $this.parent();
+            console.log(`form submitted too ${response}`); 
+            const $Comment = $this.parent();
+            const $submitbtn = $Comment.siblings('.comment-submit');
+            const $commentBtn = $Comment.siblings('.more-comment-btn');
             const cid2 = response.cid2;
-            console.log($lastComment.siblings(`.cid-${cid2}`))
-
-            if($lastComment.hasClass('last-comment')){
-                $lastComment.siblings(`.cid-${cid2}`).addClass('last-comment')
-                $lastComment.siblings(`.cid-${cid2}`).removeAttr('style')
-                $lastComment.remove();
+            
+            if(cid == 0){
+                $Comment.remove();
+            } else if($Comment.hasClass('last-comment')){
+                $Comment.siblings(`.cid-${cid2}`).addClass('last-comment')
+                $Comment.siblings(`.cid-${cid2}`).removeAttr('style')
+                $Comment.remove();
             } else {
-                $lastComment.remove();
+                $Comment.remove();
             }
+
+
+            if($submitbtn.prevAll().length > 1) {
+                console.log($submitbtn.prevAll().length, "Comment more than 2");
+                $commentBtn.removeAttr('style');
+            } else if($submitbtn.prevAll().length < 2){
+                console.log($submitbtn.prevAll().length, "Comment less than 2");
+                $commentBtn.attr('style', 'display: none');
+            }
+            
         },
 
         error: function(response, status, error) {
@@ -199,3 +233,33 @@ $('.cmt-delete').submit((e) => {
         
     })
 })
+
+// $('.flw-manager').click((e) => {
+//     e.preventDefault();
+//     const $this = $(e.currentTarget);
+//     const autid = $this.data(autid);
+//     const csrfmiddlewaretoken = $this.data(csrfmiddlewaretoken);
+
+//     $.ajax({
+//         url: `/accounts/${autid}/follow`,
+//         type: 'POST',
+//         data: {
+//             autid = autid,
+//             csrfmiddlewaretoken = csrfmiddlewaretoken,
+//         },
+//         dataType: 'JSON',
+
+//         success: function(response) {
+//             console.log(response);
+//         },
+
+//         error: function(response, status, error){
+//             console.log(response, status, error)
+//         },
+
+//         complete: function(response){
+//             console.log(response);
+//         }
+//     })
+
+// });
