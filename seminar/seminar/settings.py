@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@#5$81lm(vq8vj#2ywsx-62w-49iqo8$1&u5h^(y(*0yw3yg*e'
+SECRET_KEY = os.environ.get('SECRET_KEY', "test_secret_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
 
 # Application definition
@@ -86,12 +86,27 @@ WSGI_APPLICATION = 'seminar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+def get_db():
+    try:
+        return {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': os.environ['RDS_DB_NAME'],
+                'USER': os.environ['RDS_USERNAME'],
+                'PASSWORD': os.environ['RDS_PASSWORD'],
+                'HOST': os.environ['RDS_HOSTNAME'],
+                'PORT': os.environ['RDS_PORT'],
+            }
+        }
+    except:
+        return {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            }
+        }
+
+DATABASES = get_db()
 
 
 # Password validation
@@ -132,9 +147,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT =  os.path.join(BASE_DIR, 'static') 
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, 'seminar', 'static'),
-) 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL='/feeds/'
