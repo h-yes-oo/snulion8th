@@ -27,15 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', feedpage.views.index, name='index'),
     path('feeds/', include('feedpage.urls')),
-<<<<<<< HEAD
-    path('accounts/', include('allauth.urls')),
-    path('accounts/<int:id>/update/', accounts.views.profile_update, name='profile_update'),
-    path('accounts/signup/', accounts.views.signup, name='account_signup'),
-=======
     path('accounts/<int:id>/update/', accounts.views.profile_update, name='profile_update'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', accounts.views.signup, name='signup'),
->>>>>>> parent of 7291414... 7.7 기본과제 (회원가입 js 작성까지 헀음)
     path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
