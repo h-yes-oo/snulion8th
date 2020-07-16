@@ -1,0 +1,190 @@
+@charset "UTF-8";
+* {
+  font-family: 'Nanum Gothic', sans-serif; }
+
+* {
+  margin: 0px;
+  padding: 0px; }
+
+.logo {
+  height: 46px;
+  width: auto;
+  /* 위에서 지정해준 높이에 맞게 넓이를 자동으로 맞추어주는 속성 */
+  flex: 1 9999 0%;
+  /* flex 속성에 대해서는 아래 css 이모저모 파트에서 자세하게 다룸 */ }
+
+.logo_img {
+  height: 100%;
+  /* 해당 요소가 속한 div 의 height의 100% 크기로 높이를 설정함 */
+  width: auto; }
+
+.search {
+  height: 28px;
+  width: 215px;
+  margin: auto; }
+
+.search_box {
+  height: 100%;
+  width: 100%;
+  background: #fafafa;
+  /* 배경색 지정 */
+  border: solid 1px #dbdbdb;
+  /* 테두리의 패턴/ 굵기/ 색상 지정 */
+  border-radius: 3px;
+  /* 박스의 모서리 곡률 지정 */
+  color: #999;
+  /* 글씨체 색상 지정 */
+  cursor: text;
+  font-size: 14px;
+  /* 글씨체 크기 지정 */
+  font-weight: 300;
+  /* 글씨체 굵기 지정 */
+  text-align: center;
+  /* 글 나열 방식 지정 */ }
+
+.button {
+  height: 24px;
+  margin-top: auto;
+  margin-bottom: auto; }
+
+.icon {
+  width: 22px;
+  height: 22px;
+  position: relative;
+  margin-left: 15px;
+  margin-right: 15px; }
+
+.button {
+  display: flex;
+  /* 추가 */
+  flex-direction: row;
+  /* 추가 : 정렬 방향이 row 형태로 되게 하는 속성 */
+  flex: 1;
+  /* 추가 : 컨텐츠들의 크기를 전체 div에 맞게 크기를 조절해주는 속성  */
+  justify-content: flex-end;
+  /* 추가 :  cotents들을 div 끝에 맞춰 정렬해주는 속성 */
+  height: 24px;
+  margin-top: auto;
+  margin-bottom: auto; }
+
+.header {
+  height: 77px;
+  width: 100%;
+  /* 화면 넓이에 꽉 차게 하는 속성 */
+  /* position: fixed; 스크롤해도 항상 위에 고정시키는 속성 */
+  top: 0;
+  /*화면 가장 위에 위치시키는 속성 */
+  z-index: 1;
+  /* 배치 순서를 나타내는 속성, 숫자가 클 수록 앞에 보이게 됨 */
+  background-color: white;
+  border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  /*1px은 테두리의 크기,solid는 테두리의 패턴,rgba~는 색상정보*/ }
+
+.header_inner {
+  max-width: 1010px;
+  padding: 16px;
+  margin: auto;
+  width: 100%;
+  display: flex; }
+
+/* feed 구조 */
+.feed_inner {
+  border: 1px solid;
+  margin-top: 150px;
+  margin-left: 150px;
+  width: 300px;
+  height: 390px; }
+
+/* feed_top 구조 */
+.feed_top {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 30px;
+  border-bottom: 1px solid; }
+
+.feed_top a {
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 10px; }
+
+.feed_top a:link {
+  color: black;
+  font-weight: bold; }
+
+.feed_top a:active {
+  color: black;
+  font-weight: bold; }
+
+/* feed_center 구조 */
+.feed_center {
+  width: 300px;
+  height: 300px;
+  border-bottom: 1px solid; }
+
+.feed_center .picture {
+  width: 100%;
+  height: 100%; }
+
+/* feed_bottom 구조 */
+.feed_bottom1 {
+  border-bottom: 1px solid;
+  width: 300px;
+  height: 30px; }
+
+.feed_bottom1 .emotion {
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 30px; }
+
+.feed_bottom1 a {
+  display: inline-block;
+  width: 20px;
+  height: 20px; }
+
+.feed_bottom1 .feed_icon {
+  width: 100%;
+  height: 100%;
+  margin-left: 10px; }
+
+.feed_bottom2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  height: 30px; }
+
+.feed_bottom2 .comment {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 30px; }
+
+.feed_bottom2 .comment_box {
+  display: inline-block;
+  width: 200px;
+  height: 25px;
+  cursor: text;
+  margin-left: 10px;
+  border: 0px; }
+
+.feed_bottom2 .submit {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  width: 50px;
+  height: 30px; }
+
+.feed_bottom2 .submit a {
+  text-decoration: none;
+  color: red; }
+
+.feed_bottom2 .submit a:link {
+  font-weight: bold; }
+
+.feed_bottom2 .submit a:active {
+  font-weight: bold; }
+
+/*# sourceMappingURL=main.css.map */

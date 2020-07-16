@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Feed, FeedComment, Like, LikeComment
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -9,8 +10,11 @@ def index(request):
     if request.method == "POST":
         title = request.POST['title']
         content = request.POST['content']
-        Feed.objects.create(title=title, content=content, author=request.user)
-        return redirect('/feeds/')
+        photo = request.FILES.get('photo', False)
+        Feed.objects.create(title=title, content=content,
+                            author=request.user, photo=photo)
+
+        return JsonResponse({"message": "created!!"}, status=201)
 
     elif request.method == "GET":
         feeds = Feed.objects.all()
@@ -48,7 +52,15 @@ def create_comment(request, id):
     content = request.POST['content']
     FeedComment.objects.create(
         feed_id=id, content=content, author=request.user)
-    return redirect('/feeds')
+    new_comment = FeedComment.objects.latest('id')
+
+    context = {
+        'id': new_comment.id,
+        'username': new_comment.author.username,
+        'content': new_comment.content,
+    }
+
+    return JsonResponse(context)
 
 
 def delete_comment(request, id, commentid):
@@ -64,10 +76,17 @@ def feed_like(request, pk):
         feed.like_set.get(user_id=request.user.id).delete()
     else:
         Like.objects.create(user_id=request.user.id, feed_id=feed.id)
-    return redirect('/feeds')
+
+    context = {
+        'fid': feed.id,
+        'like_count': like_list.count()
+    }
+
+    return JsonResponse(context)
 
 
 def feedcomment_like(request, pk, commentid):
+    feed = Feed.objects.get(id=pk)  # 추가
     feedcomment = FeedComment.objects.get(id=commentid)
     like_list = feedcomment.likecomment_set.filter(user_id=request.user.id)
     if like_list.count() > 0:
@@ -75,4 +94,16 @@ def feedcomment_like(request, pk, commentid):
     else:
         LikeComment.objects.create(
             user_id=request.user.id, feedcomment_id=feedcomment.id)
-    return redirect('/feeds')
+    # 추가
+    context = {
+        'fid': feed.id,
+        'cid': feedcomment.id,
+        'like_count': like_list.count()
+    }
+
+    return JsonResponse(context)
+
+    # return redirect('/feeds')
+
+def map(request):                                #추가
+    return render(request,'feedpage/map.html')   #추가
