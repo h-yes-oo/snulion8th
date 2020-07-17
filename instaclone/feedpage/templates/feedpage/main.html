@@ -40,23 +40,26 @@
         </div>
         <a class="delete" href="/feeds/{{ feed.id }}/delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
         <a href="/feeds/{{ feed.id }}">
-        <article>
+          <article>
             {% if feed.photo %}
-                <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%">
+              <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%">
             {% endif %}
             <p class='content'>{{ feed.content }}</p>
-        </article>
+          </article>
+        </a>
         <section class="icon-banner">
             <div class="icon">
                 <img src="..\..\static\feedpage\images\heart-regular.svg">
             </div>
         </section>
-        <form action="/feeds/{{ feed.id }}/comments/" method="POST">
+        <section class="comment">
+
+          <form action="/feeds/{{ feed.id }}/comments/" method="POST">
             {% csrf_token %}
-            <input type="text" name="feedcomment"/>
-            <button type="submit">게시</button>
-        </form>
-        </a>
+              <input type="text" name="comment" />
+              <button type="submit">게시</button>
+          </form>
+        </section>        
         {% endfor %}
     </section>
 </div>

@@ -1,8 +1,56 @@
-{% extends 'base.html'%}
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createModalLabel">새로운 피드 생성하기</h5>    
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id='feed-create' data-csrfmiddlewaretoken="{{ csrf_token }}">  
+              <div class="form-group">                                           
+                <label for="title" class="col-form-label">Title</label>
+                <input type="text" name="title" class="form-control" id="title">
+              </div>
+              <div class="form-group">                                           
+                <label for="content" class="col-form-label">Content</label>
+                <textarea class="form-control" name="content" id="content"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button> 
+                <button type="submit" class="btn btn-primary">만들기</button>                      
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<input name="photo" type="file" /> <br />
+
 {%block content%}
   <div class='new-form'>
     <h1 class="new-message">new feed</h1>
-    <form action="/feeds/" method="POST">
+        <form enctype="multipart/from-data" action="/feeds/" method="POST">
+          {% csrf_token %}  
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="sample1">
+              <label class="mdl-textfield__label" for="sample1">Title...</label>
+            </div>
+        </form>
+        <form enctype="multipart/from-data" action="/feeds/" method="POST">
+          {% csrf_token %}
+          
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="textarea" id="sample1">
+            <label class="mdl-textfield__label" for="sample1">Content...</label>
+          </div>
+          <p>photo</p>
+          <input name="photo" type="file" /> <br />
+        </form>        
+      
+  
+    <form enctype="multipart/form-data" action="/feeds/" method="POST">
       {% csrf_token %}
       <div class="title-input">
         <p>title</p>
@@ -11,9 +59,10 @@
       <div class="content-input">
         <p>content</p>
         <input class="type-in" name="content" /> <br />
+        <p>photo</p>
+        <input name="photo" type="file" /> <br />
       </div>
       <div class="submit"><input type="submit" value="submit" /></div>
     </form>
   </div>
-    
-{% endblock content%}
+{% endblock content%}-->

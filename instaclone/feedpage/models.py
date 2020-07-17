@@ -19,7 +19,7 @@ class Feed(models.Model):
         return self.id
 
 class FeedComment(models.Model):
-    content=models.TextField()
+    comment=models.TextField()
     feed=models.ForeignKey(Feed, on_delete=models.CASCADE)
     created_at=models.DateTimeField(default=timezone.now)
     author=models.ForeignKey(User, null=True, on_delete=models.CASCADE)
