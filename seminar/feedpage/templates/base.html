@@ -1,42 +1,131 @@
 <!-- feedpage/templates/base.html -->
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=d, initial-scale=1.0">
-        <title>Snulion</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'feedpage/index.css' %}">
-    </head>
-    <body>
-        <header>
-            <div class="headerinner">
-                <div class="headertitle">SNU LION FEED</div>
-                <div class="headerinfo">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stonestagram</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_green-red.min.css" />
+    <link rel="stylesheet" href="{% static 'feedpage/index.css' %}">    
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=byqudor486"></script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row headercss">
+                <!-- Title -->
+                <a class="mdl-link" href="/feeds/">
+                    <span class="mdl-layout-title">Stonestagram</span>
+                </a>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
                     {% if user.is_authenticated %}
+                    <div style = "margin-right: 20px;">
                         {{ user.get_username }}님, 안녕하세요<br>
+                    </div>
+                    <div style = "margin-right: 20px;">
+                      {% if user.profile.college %}
                         대학: {{ user.profile.college }}<br>
+                      {% else %}
+                        대학을 입력해주세요!<br>
+                      {% endif %}
+                      {% if user.profile.major %}
                         전공: {{ user.profile.major }}<br>
-                        <div style="text-align: right">
-                            내가 좋아한 글 : {{ user.like_feeds.count }}개
-                        </div>           
-                        <a href="{% url 'editaccount'%}?next={{request.path}}">
-                            <input class="bts" type="button" value="Edit Account">
-                        </a>
-                        <a href="{% url 'logout'%}?next={{request.path}}">
-                            <input class="bts" type="button" value="Logout">
-                        </a>
-                        {% else %}
-                    <a href="{% url 'signup' %}">
-                        <input class="bts" type="button" value="Signup">
+                      {% else %}
+                        전공을 입력해주세요!<br>
+                      {% endif %}
+                      <div id="ucount">
+                        내가 좋아한 글 : {{ user.like_feeds.count }}개
+                      </div>
+                    </div>
+                    <a href="{% url 'editaccount'%}?next={{request.path}}">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            Edit
+                        </button>
                     </a>
-                    <a href="{% url 'login'%}?next={{request.path}}">
-                        <input class="bts" type="button" value="Login">
+                    <a href="#logoutModal" data-toggle="modal">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            Logout
+                        </button>
+                    </a>
+                    {% else %}
+                    <a href="#signupModal" data-toggle="modal">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            Sign up
+                        </button>
+                    </a>
+                    <a href="#loginModal" data-toggle="modal">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            Login
+                        </button>
                     </a>
                     {% endif %}
-                </div>
+                </nav>
             </div>
         </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Stonestagram</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/feeds/">메인 페이지</a>
+                <a class="mdl-navigation__link" href="/feeds/map/">지도 보기</a>
+            </nav>
+        </div>
+        {% block content %}
+        {% endblock %}
 
-{% block content %}
-{% endblock %}
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="createModalLabel">새로운 피드 생성하기</h5> 
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form enctype="multipart/form-data" id='feed-create' data-csrfmiddlewaretoken="{{ csrf_token }}"> 
+                    <div class="form-group">                                           
+                      <label for="title" class="col-form-label">Title</label>
+                      <input type="text" name="title" class="form-control" id="title">
+                    </div>
+                    <div class="form-group">                                         
+                      <label for="content" class="col-form-label">Content</label>
+                      <textarea class="form-control" name="content" id="content"></textarea>
+                    </div>
+                    <div class="form-group">                                         
+                      <label for="photo" class="col-form-label">Photo</label>
+                      <input type='file' class="form-control" name="photo" id="photo"></input>
+                    </div>
+        
+                    <!-- Modal footer를 form 태그 안으로 이동 -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                      <button type="submit" class="btn btn-warning" name="submit">만들기</button> 
+                    </div>
+                    <!-- 여기까지 -->
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% include 'account/signup.html' %}
+        {% include 'account/login.html' %}
+        {% include 'account/logout.html' %}
+        <script src="{% static 'feedpage/myjs.js' %}"></script>
+        <script src="{% static 'feedpage/modal.js' %}"></script>
+
+    </body>
+
+</html>

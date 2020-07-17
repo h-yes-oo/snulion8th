@@ -2,9 +2,12 @@
 
 from django.urls import path
 from feedpage import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('map/', views.map, name='map'),
     path('new/', views.new, name='new'),
     path('<int:id>/', views.show, name='show'),
     path('<int:id>/delete/', views.delete, name='delete'),
@@ -15,3 +18,4 @@ urlpatterns = [
 	path('<int:pk>/like/', views.feed_like, name='like'),
     path('<int:id>/comments/<int:cid>/like/', views.comment_like, name='commentlike'),
 ]
+

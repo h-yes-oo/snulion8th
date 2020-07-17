@@ -1,86 +1,79 @@
-header {
-    width: 100%;
-    background-color: darkgrey;
-    color: black;
-    overflow: hidden;
-}
-
-.headerinner {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.headertitle {
-    margin-right: 224px;
-    width: 600px;
-    height: 100%;
-    font-size: 60px;
-}
-
-.headerinfo{
-    width: 300px;
-    height: 100%;
-    font-size: 18px;
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-right: 1%;
-}
-
-
 body {
-    width: 100;
+    background-color: lightyellow;
 }
 
-.Feedcontainer{
-    display: center;
+.demo-card-square.mdl-card.mdl-shadow--2dp {
+	display:  inline-block;
+	width:  350px;
+	margin:  10px;
+	vertical-align:  top;
 }
 
-.Feedheader {
-    width: 40%;
-    margin: auto;    
+
+.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored {
+	z-index:  2;
+	position:  fixed;
+	bottom:  20px;
+	right:  40px;
 }
 
-.bt {
-    width: 100%;
-    display: flex;
+.button-wrapper {
+	padding: 16px;
+	text-align: right;
+}
+
+.button-wrapper > a {
+	text-decoration: none;
+}
+
+.button-wrapper > span {
+	float: left;
+}
+
+.button-wrapper > span > i {
+	vertical-align: -25%;
+}
+
+.comment-wrapper {
+    padding: 16px;
+}
+
+.toggle-comment > p, form {
+    display: inline;
+}
+
+.mdl-textfield.mdl-js-textfield > button  {
+	margin-left:  260px;
+}
+
+.mdl-link, .mdl-link:active{
+	color: inherit;
+	text-decoration: none;
+}
+
+.scroll-up {
+	position: fixed;
+	bottom: 84px !important;
+	right: 40px !important;
+}
+
+.more-comment-btn {
+	text-transform: none;
+}
+
+.new-feed {
+	display:  inline-block;
+	width:  800px;
+	margin:  10px;
+	vertical-align:  center;
+}
+
+.new-css {
+	display: flex;
     justify-content: space-between;
-}
-
-.bts {
     margin: 10px;
 }
 
-
-.Feeds {
-    border: 1px solid grey;
-    margin-top: 10px;
-    width: 40%;
-    margin: auto;  
-    padding: 2px 20px;
-}
-
-.feednumber {
-    font-size: 20px;
-} 
-
-
-.showcontainer{
-    width: 40%;
-    border: 1px black solid;
-    margin: auto;
-    padding-left: 20px;
-}
-
-.contentbox{
-    width: 80%;
-    height: 30px;
-}
-
-.headerbts{
-    margin: 10px;
-    background-color: darkgrey;
+a:hover {
+	color: rgb(255,82,82);
 }

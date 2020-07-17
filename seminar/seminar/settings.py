@@ -20,12 +20,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x2j5ss9qs98eul61$ca5pc5w%8x0_zpa70m2+tdxeuel%nnh2('
+# 1. SECRET_KEY를 변경합니다. 첫번째 인자는 env 이름이고 두번째 인자는 기본값입니다.
+SECRET_KEY = os.environ.get('SECRET_KEY', "test_secret_key")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# 2. ALLOWED_HOSTS를 변경합니다. (주소,주소 형식으로 넣을 예정입니다)
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
-ALLOWED_HOSTS = []
+# 3. DEBUG 모드는 프로덕션에서는 꺼야합니다. (환경변수는 모두 문자열이므로 'True', False'로 받습니다.)
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
+
+# ALLOWED_HOSTS = [
+#     'Stonestagram-env.eba-3b6hx8am.us-east-1.elasticbeanstalk.com'
+# ]
 
 
 # Application definition
@@ -35,11 +41,21 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sass_processor',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',
 ]
+
 #인증과 보안과 관련된 파트
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,13 +91,27 @@ WSGI_APPLICATION = 'seminar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+def get_db():
+    try:
+        return {
+           'default': {
+               'ENGINE': 'django.db.backends.mysql',
+               'NAME': os.environ['RDS_DB_NAME'],
+               'USER': os.environ['RDS_USERNAME'],
+               'PASSWORD': os.environ['RDS_PASSWORD'],
+               'HOST': os.environ['RDS_HOSTNAME'],
+               'PORT': os.environ['RDS_PORT'],
+           }
+        }
+    except:
+        return {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            }
+        }
 
+DATABASES = get_db()
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -120,9 +150,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT =  os.path.join(BASE_DIR, 'static') # 추가
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, 'seminar', 'static'),
-) # 추가
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 LOGIN_REDIRECT_URL = "/feeds/"
+
+SASS_PROCESSOR_ENABLED =  True
+SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'feedpage', 'static')
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+ )
+
+SITE_ID = 1
+
+ACCOUNT_LOGOUT_ON_GET = True 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

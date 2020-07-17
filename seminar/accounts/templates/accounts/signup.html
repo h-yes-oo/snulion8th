@@ -1,42 +1,61 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="Feedcontainer">
-    <div class="Feedheader">
-        <h1>Sign up!</h1>
-    </div>
+<main class="mdl-layout__content" style="
+display: flex;
+justify-content: center;">
+    <div class="page-content">
+        <div class="demo-card-square mdl-card mdl-shadow--2dp" style="width: 500px; margin-top: 50px; display:contents">
+            <h3>Sign up!</h3>
     <div class="showcontainer">
         <form method="POST" action="{%url 'signup'%}">
             {% csrf_token %}
             사용자 이름:
             <br>
-            <input name="username" type="text" value="" required>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                <input class="mdl-textfield__input" type="text" id="sample3" name='username'>
+                <label class="mdl-textfield__label" for="sample3">Username</label>
+            </div>
             <br>
             <br>
             비밀번호:
             <br>
-            <input name="password1" type="password" value="" required>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                <input class="mdl-textfield__input" type="password" id="sample3" name='password1' required>
+                <label class="mdl-textfield__label" for="sample3">Password</label>
+            </div>
             <br>
             <br>
             비밀번호 확인:
             <br>
-            <input name="password2" type="password" value="" required>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                <input class="mdl-textfield__input" type="password" id="sample3" name='password2' required>
+                <label class="mdl-textfield__label" for="sample3">Password Check</label>
+            </div>
             <br>
             <br>
             학교:
             <br>
-            <input name="college" type="text" value="">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                <input class="mdl-textfield__input" type="text" id="sample3" name='college'>
+                <label class="mdl-textfield__label" for="sample3">College</label>
+            </div>
             <br>
             <br>
             전공:
             <br>
-            <input name="major" type="text" value="">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                <input class="mdl-textfield__input" type="text" id="sample3" name='major'>
+                <label class="mdl-textfield__label" for="sample3">Major</label>
+            </div>
             <br>
             <br>
-            <input type="submit" value="Sign Up!">
+            <button type="submit" class="mdl-button mdl-js-button">
+                <p>submit</p>
+            </button>
         </form>
     </div>
 </div>
-</body>
+</div>
+</main>
 {% endblock content %}
-</html>
