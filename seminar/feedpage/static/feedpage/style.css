@@ -1,35 +1,46 @@
-* {
-    font-family: 'Nanum Gothic', sans-serif;
+body  {
+	background-color:  lightgrey;
 }
 
-a {
-    color: black;
-    text-decoration: none;
+.demo-card-wide.mdl-card.mdl-shadow--2dp {
+	display:  inline-block;
+	width:  350px;
+	margin:  10px;
+	vertical-align:  top;
 }
 
-a:hover {
-    color: rgba(0, 0, 0, 0.3);
+.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored {
+	z-index:  2;
+	position:  fixed;
+	bottom:  20px;
+	right:  40px;
 }
 
-.header-inner {
-    width: 95%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
+.button-wrapper {
+	padding: 16px;
+	text-align: right;
 }
 
-.header-text-logo {
-    font-size: 60px;
-    line-height: 80px;
-    padding: 0px 10px;
-    color: black;
-    font-weight: bold;
+.button-wrapper > a {
+	text-decoration: none;
 }
 
-.header-inner-box {
-    width: 65%;
-    height: 80px;
-    background-color: gainsboro; 
-    color: white; 
-    text-align: left;
+.button-wrapper > span {
+	float: left;
+}
+
+.button-wrapper > span > i {
+	vertical-align: -25%;
+}
+
+.comment-wrapper {
+    padding: 16px;
+}
+
+.toggle-comment > p, form {
+    display: inline;
+}
+
+.mdl-textfield.mdl-js-textfield > button  {
+	margin-left:  260px;
 }

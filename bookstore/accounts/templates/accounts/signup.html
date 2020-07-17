@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST" action="/accounts/signup/">
+    {% csrf_token %}
+    ID: <input name="user_id" type="text"> <br></br>
+    NAME: <input name="user_name" type="text"> <br></br>
+    PASSWORD: <input name="password1" type="password"> <br></br>
+    PASSWORD CHECK: <input name="password2" type="password"> <br></br>
+    PHONE: <input name="phone_number" type="text"> <br></br>
+    <input type="submit" name="SIGNUP">
+</form>
+
+{% endblock content %}

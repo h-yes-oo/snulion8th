@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form method="POST" action="{% url 'profile_update' %}">
-    이름:
-    학교:
-    전공:
-    생년월일:
-    SNS 주소: 
+    <form method="POST" action="accounts/{{ user.id }}/update/">
+    이름: <input type="text" value='{{ user.username }}'>
+    <br>
+    학교: <input type="text" value='{{ user.profile.colleg }}'>
+    <br>
+    전공: <input type="text" value='{{ user.profile.major }}'>
+    <br>
+    생년월일: <input type="text" value='{{ user.profile.birth }}'>
+    <br>
+    SNS 주소: <input type="text" value='{{ user.profile.sns }}'>
+    <br>
     <input type="submit" value="저장">
     </form>
 {% endblock content %}

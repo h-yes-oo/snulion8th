@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="login-page">
+    <section class="login">
+        <h1>Instagram</h1>
+        <form class="login-form" method="POST" action="/accounts/login/" >
+            {% csrf_token %}
+            <p class="login-id"><input type="text" name="username" placeholder="전화번호, 사용자 이름 또는 이메일"> </p>
+            <p class="login-password"><input type="password" name="password" placeholder="비밀번호"> </p> 
+            {% comment %} {{ form.as_p }} {% endcomment %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <p class="login-submit"><input type="submit" value="로그인"> </p>
+            
+            {% if form.errors %}
+            <p class="login-error">아이디나 비밀번호가 일치하지 않습니다.</p>
+            {% endif %}
+        </form>
+        <div class="login-signup">
+            계정이 없으신가요?
+            <a href="{% url 'signup' %}">가입하기</a>
+        </div>
+    </section>
+</div>
+{% endblock content %}

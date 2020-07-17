@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="signup-page">
+    <section class="signup">
+        <h1>Instagram</h1>
+        <h3>친구들의 사진과 동영상을 보려면 가입하세요.</h3>
+        <form class="signup-form" action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            <p class="signup-id"> <input type="text" name="id" placeholder="사용자 이름"> </p>
+            <p class="signup-username"> <input type="text" name="username" placeholder="성명"> </p>
+            <p class="signup-password"> <input type="password" name="password" placeholder="비밀번호"> </p>
+            <p class="signup-password-check"> <input type="password" name="password_check" placeholder="비밀번호 확인"> </p>
+            <p class="signup-submit"> <input type="submit" value="가입"> </p>
+            <p class="signup-notice">가입하면 Instagram의 <strong>약관, 데이터 정책</strong> 및 <strong>쿠키</strong> 정책에 동의하게 됩니다.</p>
+            {% comment %} {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-error">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %} {% endcomment %}
+        </form>
+        <div class="signup-login">
+            계정이 있으신가요?
+            <a href="{% url 'login' %}">로그인</a>
+        </div>
+
+        {% comment %} {% if form.non_field_errors %}
+            빈칸 없이 입력해주세요.
+        {% elif form.errors.id %}
+            아이디가 중복되었거나 입력되지 않았습니다. 다시 입력해주세요.
+        {% elif form.errors.username %}
+            성명을 입력해주세요.
+        {% elif form.errors.password %}
+            패스워드를 입력해주세요.
+        {% else %}
+            다시 입력해주세요.
+        {% endif %} {% endcomment %}
+    </section>
+</div>
+{% endblock content %}

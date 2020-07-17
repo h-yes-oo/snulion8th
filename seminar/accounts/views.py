@@ -8,26 +8,21 @@ from django.db.models.signals import post_save
 
 def signup(request):
     if request.method == "POST":
-        # username 없이 submit할 경우 오류 페이지가 뜨는 문제를 해결하기 위한 예외처리(?)
-        if not request.POST['username']:
-            return render(request, 'accounts/signup.html')
-        # username 입력 되었을 때, 즉 정상적인 경우에 실행되는 코드
-        if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(
-                username = request.POST['username'],
-                password = request.POST['password1']
-            )
-            # 회원가입 시 자동으로 프로필 저장
-            user.profile.college = request.POST['college']
-            user.profile.major = request.POST['major']
-            user.profile.sns = request.POST['sns']
-            user.profile.birth = request.POST['birth']
-
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password1"]
+        password_check = request.POST["password2"]
+        college = request.POST["college"]
+        major = request.POST["major"]
+        if password == password_check: 
+            user = User.objects.create_user(username=username, email=email, password=password)
+            user.profile.college = college
+            user.profile.major = major
             user.save()
-            auth.login(request, user)
-            return redirect('/feeds')
-    return render(request, 'accounts/signup.html/')
 
+            login_user = django_authenticate(username=username, password=password)
+            django_login(request, login_user)
+            return JsonResponse({"response": "signup success"})
 
 def login(request):
     if request.method == "POST":
