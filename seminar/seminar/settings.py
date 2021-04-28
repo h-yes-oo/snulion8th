@@ -34,13 +34,22 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'sass_processor',
+    # 'sass_processor',
     'django.contrib.staticfiles',
     'feedpage.apps.FeedpageConfig',
     
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #provider
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver'
 ]
 
 MIDDLEWARE = [
@@ -131,12 +140,25 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = "/feeds/"
 
-SASS_ROOT = os.path.join(BASE_DIR, 'static')
-SASS_PROCESSOR_ENABLED =  True
-SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'feedpage', 'static')
-SASS_OUTPUT_STYLE = 'compact'
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder'
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
-    'sass_processor.finders.CssFinder'
+AUTHENTICATION_BACKENDS = (
+     'django.contrib.auth.backends.ModelBackend',
+     'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+SITE_ID = 1
+
+ACCOUNT_LOGOUT_ON_GET = True 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+
+
+# SASS_ROOT = os.path.join(BASE_DIR, 'static')
+# SASS_PROCESSOR_ENABLED =  True
+# SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'feedpage', 'static')
+# SASS_OUTPUT_STYLE = 'compact'
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder'
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+#     'sass_processor.finders.CssFinder'
+# )
